@@ -7,6 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var calendar_event = require('./routes/calendar_event');
+var month = require('./routes/month');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
@@ -39,6 +40,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event', calendar_event.view);
+app.get('/month', month.view);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
