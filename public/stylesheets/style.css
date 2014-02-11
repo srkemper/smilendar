@@ -1,6 +1,50 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.nav-bar {
+  height: 44px;
+  width: 100%;
+  background-color: #f2f2f4;
+}
+.event-item {
+  position: relative;
+  box-sizing: border-box;
+  padding-right: 55px;
+}
+.smile {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  width: 36px;
+  height: 36px;
+}
+.smile .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+.smile .mood-status {
+  display: inline-block;
+}
+.smile #happy {
+  background-color: #47ad58;
+}
+.smile #excited {
+  background-color: #FBAF0C;
+}
+.smile #sad {
+  background-color: #4584F0;
+}
+.smile #angry {
+  background-color: #353535;
+}
+.smile-face {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background-color: #f2f2f4;
+  border: 1px solid #eeeeee;
+  text-indent: -9999px;
 }
 a {
   color: #00B7FF;
