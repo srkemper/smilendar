@@ -8,32 +8,37 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var calendar_event = require('./routes/calendar_event');
 var month = require('./routes/month');
+var app = express();
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
 var gapi = require('./lib/gapi');
 
-var app = express();
+var my_calendars = [],
+    my_profile = {},
+    my_email = '';
 
 app.configure('development', function() {
   app.use(express.errorHandler());
 });
 
 // all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', handlebars());
-app.set('view engine', 'handlebars');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(app.router);
-app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.configure(function() {
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', path.join(__dirname, 'views'));
+  app.engine('handlebars', handlebars());
+  app.set('view engine', 'handlebars');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded());
+  app.use(express.methodOverride());
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session());
+  app.use(app.router);
+  app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
+  app.use(express.static(path.join(__dirname, 'public')));
+});
 
 app.locals.layout = 'main.handlebars';
 
@@ -45,10 +50,9 @@ if ('development' == app.get('env')) {
 
 app.get('/', function(req, res) {
   var locals = {
-        title: 'This is my sample app',
         url: gapi.url
       };
-  res.render('index.jade', locals);
+  res.render('login.jade', locals);
 });
 
 app.get('/homepage', routes.index);
@@ -59,17 +63,18 @@ app.get('/month', month.view);
 // handling return value
 app.get('/oauth2callback', function(req, res) {
   var code = req.query.code;
-//  console.log(code);
+  console.log(code);
   gapi.client.getToken(code, function(err, tokens) {
-    gapi.client.credentials = tokens;
+    gapi.client.credentials = tokens;   // getting access tokens
     getData();
-//    console.log(tokens);
+  console.log('getting tokens-----------');
+    console.log(tokens);
   });
   var locals = {
-        title: 'This is my sample app',
+        //title: 'This is my sample app',
         url: gapi.url       // add gapi.url to the locals object that is sent to index.jade.
       };
-  res.render('index.jade', locals);
+  res.render('login.jade', locals);
 });
 
 app.get('/cal', function(req, res){
@@ -85,6 +90,7 @@ app.get('/cal', function(req, res){
 
 var getData = function() {
   gapi.oauth.userinfo.get().withAuthClient(gapi.client).execute(function(err, results){
+  console.log('getting results-----------');
       console.log(results);
       my_email = results.email;
       my_profile.name = results.name;
