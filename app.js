@@ -47,15 +47,17 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// Previous code for log-in
+//app.get('/', function(req, res) {
+//  var locals = {
+//        url: gapi.url
+//      };
+//  res.render('login.jade', locals);
+//});
+//app.get('/homepage', routes.index);
 
-app.get('/', function(req, res) {
-  var locals = {
-        url: gapi.url
-      };
-  res.render('login.jade', locals);
-});
 
-app.get('/homepage', routes.index);
+app.get('/',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event', calendar_event.view);
 app.get('/month', month.view);
@@ -70,11 +72,17 @@ app.get('/oauth2callback', function(req, res) {
   console.log('getting tokens-----------');
     console.log(tokens);
   });
+    console.log('getting name---------');
+    console.log(my_profile.name);
   var locals = {
+        user: my_profile.name,
+        title: 'Today',
         //title: 'This is my sample app',
         url: gapi.url       // add gapi.url to the locals object that is sent to index.jade.
       };
-  res.render('login.jade', locals);
+    console.log(locals);
+    res.render('homepage',locals);
+//  res.render('login.jade', locals);
 });
 
 app.get('/cal', function(req, res){
