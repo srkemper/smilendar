@@ -1,72 +1,109 @@
-<div class="row">
-	<div class="col-xs-12">
-        {{#if user}}
-            <h4 class="text-left">Welcome, {{user}}</h4>
-        {{else}}
-	    <a href={{url}} class="text-left">Login to Google Calendar </a>
-        {{/if}}
-	</div>
-	<div class="col-xs-12">
-	    <a href="/month" class="text-left"> &lt; Month </a>
-	</div>
-</div>
-<div class="row">
-	<h1 class="text-center">{{title}}</h1>
-</div>
-<div class="row">
-	<h4 class="text-center">Su M Tu <kbd>W</kbd> Th F Sa</h4>
-</div>
-<div class="row">
-	<div class="col-xs-3">
-		<h5>2:15 PM</h5>
-	</div>
-	<div class="col-xs-9 event-item">
-		<a href="/calendar_event"><h4>Training</h4></a>
-		<div class="smile">
-			<div class="dropdown">
-				<button data-toggle="dropdown" class="btn-xs smile-face mood-display">smile</button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			    <li id="happy" class="smile-face mood-status">Happy</li>
-			    <li id="excited" class="smile-face mood-status">Excited</li>
-			    <li id="sad" class="smile-face mood-status">Sad</li>
-			    <li id="angry" class="smile-face mood-status">Angry</li>
-			  </ul>
-			</div>
+<div class="day-view">
+	<div class="row">
+		<div class="col-xs-12">
+	        {{#if user}}
+	            <h4 class="text-left">Welcome, {{user}}</h4>
+	        {{else}}
+		    <a href={{url}} class="text-left">Login to Google Calendar </a>
+	        {{/if}}
+		</div>
+		<div class="col-xs-12">
+		    <a href="/month" class="text-left"> &lt; Month </a>
 		</div>
 	</div>
-	<div class="clearfix visible-xs"></div>
-	<div class="col-xs-3">
-		<h5>3:15 PM</h5>
+	<div class="row">
+		<h1 class="text-center">{{title}}</h1>
 	</div>
-	<div class="col-xs-9">
-		<a href="/calendar_event"><h4>Class</h4></a>
-		<div class="smile">
-			<div class="dropdown">
-				<button data-toggle="dropdown" class="btn-xs smile-face mood-display">smile</button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			    <li id="happy" class="smile-face mood-status">Happy</li>
-			    <li id="excited" class="smile-face mood-status">Excited</li>
-			    <li id="sad" class="smile-face mood-status">Sad</li>
-			    <li id="angry" class="smile-face mood-status">Angry</li>
-			  </ul>
-			</div>
+	<div class="row this-week">
+		<div class="cal-row-fluid">
+				<div class="cal-cell1"><small class="day-name">Sun</small>
+					<div class="day-order">9</div>
+				</div>
+				<div class="cal-cell1"><small class="day-name">Mon</small>
+					<div class="day-order">10</div>
+				</div>
+				<div class="cal-cell1"><small class="day-name">Tue</small>
+					<div class="day-order">11</div>
+				</div>
+				<div class="cal-cell1"><small class="day-name">Wed</small>
+					<div class="day-order">12</div>
+				</div>
+				<div class="cal-cell1"><small class="day-name">Thu</small>
+					<div class="day-order">13</div>
+				</div>
+				<div class="cal-cell1"><small class="day-name">Fri</small>
+					<div class="day-order">14</div>
+				</div>
+				<div class="cal-cell1"><small class="day-name">Sat</small>
+					<div class="day-order">15</div>
+				</div>
 		</div>
+{{!-- 		<h4 class="text-center">Su M Tu <kbd>W</kbd> Th F Sa</h4> --}}
 	</div>
-	<div class="clearfix visible-xs"></div>
-	<div class="col-xs-3">
-		<h5>4:15 PM</h5>
-	</div>
-	<div class="col-xs-9">
-		<a href="/calendar_event"><h4>Practice</h4></a>
-		<div class="smile">
-			<div class="dropdown">
-				<button data-toggle="dropdown" class="btn-xs smile-face mood-display">smile</button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			    <li id="happy" class="smile-face mood-status">Happy</li>
-			    <li id="excited" class="smile-face mood-status">Excited</li>
-			    <li id="sad" class="smile-face mood-status">Sad</li>
-			    <li id="angry" class="smile-face mood-status">Angry</li>
-			  </ul>
+	<div class="row">
+		<div class="event-item">
+			<a href="/calendar_event">
+			<div class="event-time col-xs-3">
+				<h6 class="start-time">2:15 PM</h6>
+				<h6 class="end-time">3:30 PM</h6>
+			</div>
+			<div class="col-xs-9 event-info">
+				<h5 class="event-title">Appointment Reminder Writing: Hume</h5>
+				<p class="event-brief">Not excited about this training ...</p>
+				<div class="smile">
+					<div class="dropdown">
+						<button data-toggle="dropdown" class="btn-xs smile-face mood-display">smile</button>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					    <li id="happy" class="smile-face mood-status">Happy</li>
+					    <li id="excited" class="smile-face mood-status">Excited</li>
+					    <li id="sad" class="smile-face mood-status">Sad</li>
+					    <li id="angry" class="smile-face mood-status">Angry</li>
+					  </ul>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix visible-xs"></div>
+			</a>
+		</div>
+		<div class="event-item">
+			<div class="event-time col-xs-3">
+				<h6 class="start-time">3:15 PM</h6>
+				<h6 class="end-time">4:30 PM</h6>
+			</div>
+			<div class="col-xs-9 event-info">
+				<a href="/calendar_event"><h5>Class</h5></a>
+				<div class="smile">
+					<div class="dropdown">
+						<button data-toggle="dropdown" class="btn-xs smile-face mood-display">smile</button>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					    <li id="happy" class="smile-face mood-status">Happy</li>
+					    <li id="excited" class="smile-face mood-status">Excited</li>
+					    <li id="sad" class="smile-face mood-status">Sad</li>
+					    <li id="angry" class="smile-face mood-status">Angry</li>
+					  </ul>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix visible-xs"></div>
+		</div>
+		<div class="event-item">
+			<div class="event-time col-xs-3">
+				<h6 class="start-time">5:15 PM</h6>
+				<h6 class="end-time">6:30 PM</h6>
+			</div>
+			<div class="col-xs-9 event-info">
+				<a href="/calendar_event"><h5>Practice</h5></a>
+				<div class="smile">
+					<div class="dropdown">
+						<button data-toggle="dropdown" class="btn-xs smile-face mood-display">smile</button>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					    <li id="happy" class="smile-face mood-status">Happy</li>
+					    <li id="excited" class="smile-face mood-status">Excited</li>
+					    <li id="sad" class="smile-face mood-status">Sad</li>
+					    <li id="angry" class="smile-face mood-status">Angry</li>
+					  </ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

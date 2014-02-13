@@ -6,7 +6,8 @@ $(document).ready(function(){
 })
 
 
-function chooseMood() {
+function chooseMood(e) {
+  e.preventDefault();
   console.log("did it!");
   var mood = $(this).attr('id');
   console.log(mood);
