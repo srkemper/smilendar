@@ -15,6 +15,9 @@ var handlebars = require('express3-handlebars');
 var gapi = require('./lib/gapi');
 var mongo_client = require('mongodb').MongoClient;
 
+var collections = ['test'];
+var db_test = require('mongojs').connect('exampleDb', collections);
+
 var my_calendars = [],
     my_profile = {},
     my_email = '';
@@ -77,12 +80,19 @@ mongo_client.connect('mongodb://localhost/exampleDb', function(err, db) {
     // stream.on("end", function() {});
 
     collection.findOne({'hello':'doc3'}, function(err, item) {
-      console.log(item);
+      // console.log(item);
     });
   });
 
   console.log(collection);
 });
+
+db_test.test.find({'hello':'doc3'}, function(err, item) {
+  if (item) {
+    console.log('mongojs working!');
+    console.log(item);
+  }
+})
 
 app.get('/',routes.index);
 app.get('/users', user.list);
