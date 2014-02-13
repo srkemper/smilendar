@@ -17,6 +17,7 @@ exports.ping = function() {
 };
 
 var callback = function(clients) {
+    console.log('calling back-----------');
   console.log(clients);
   exports.cal = clients.calendar;
   exports.oauth = clients.oauth2;

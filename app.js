@@ -95,6 +95,8 @@ app.get('/cal', function(req, res){
   res.render('cal.jade', locals);
 });
 
+
+
 var getData = function() {
   gapi.oauth.userinfo.get().withAuthClient(gapi.client).execute(function(err, results){
   console.log('getting results-----------');
@@ -107,6 +109,8 @@ var getData = function() {
     console.log('calendar results');
     console.log(results);
     for (var i = results.items.length - 1; i >= 0; i--) {
+        console.log('---');
+        console.log(results.items[i].summary);
       my_calendars.push(results.items[i].summary);
     };
   });
