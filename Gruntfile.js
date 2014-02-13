@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 	    },
 	    watch: {
 	    	files: ['routes/*.js', '*.js'],
-	    	tasks: ['jshint', 'express:dev'],
+	    	tasks: ['jshint', 'express:dev', 'shell:mongo'],
 	    	options: {
 	    		spawn: false
 	    	}
@@ -48,6 +48,12 @@ module.exports = function(grunt) {
 	    			}
 	    		},
 	    		command: 'node app.js'
+	    	},
+	    	mongo: {
+	    		command: 'mongod',
+	    		options: {
+	    			async: true
+	    		}
 	    	}
 	    },
 	    concurrent: {
@@ -65,7 +71,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-nodemon');
 	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-express-server');
-	grunt.loadNpmTasks('grunt-shell')
+	grunt.loadNpmTasks('grunt-shell');
+	grunt.loadNpmTasks('grunt-shell-spawn');
 
-	grunt.registerTask('default', ['express:dev', 'jshint', 'watch', 'handlebars']);
+	grunt.registerTask('default', ['express:dev', 'jshint', 'watch', 'shell:mongo', 'handlebars']);
 }
