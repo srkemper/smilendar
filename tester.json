@@ -37,7 +37,7 @@
       "mood":"bad"
     },
     {
-      "name": "Practise",
+      "name": "Practice",
       "start": {
         "dateTime": "2014-02-12T05:30:00-06:00"
       },
@@ -45,7 +45,7 @@
         "dateTime": "2014-02-12T07:30:00-06:00"
       },
       "location":"Gym",
-      "comment":"Tired",
+      "comment":"so... tired",
       "mood":"bad"
     }
   ]
