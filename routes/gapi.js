@@ -1,10 +1,12 @@
 var googleapis = require('googleapis'),
     OAuth2Client = googleapis.OAuth2Client,
-    client = '98692743004-fhh57e5no73d1nc6jccfcd8r60r2ebem.apps.googleusercontent.com',
-    secret = 'GG1HhByxR9ka1a1OQiZrnNOE',
-    redirect = 'http://localhost:3000/oauth2callback',
     calendar_auth_url = '',
     oauth2Client = new OAuth2Client(client, secret, redirect);
+
+var key  = require('./../secret/key.js');
+var client = key.client;
+var secret = key.secret;
+var redirect = key.redirect;
 
 calendar_auth_url = oauth2Client.generateAuthUrl({
   access_type: 'offline',

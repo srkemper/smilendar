@@ -22,6 +22,7 @@ function chooseMood(e) {
   $.ajax({
   	url: '/changeMood',
   	type: 'POST',
+        success: success,
   	contentType: 'application/json',
   	data: JSON.stringify({id:dbid, mood: mood})
   });

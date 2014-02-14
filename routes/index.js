@@ -78,8 +78,6 @@ var locals = {
 exports.index = function(req, res){
   console.log(locals);
     console.log('-------------xxx');
-//  res.render('homepage', { title: 'Today' });
-//    console.log('--------------locals-----------');
 	db.events.find(function(err, docs) {
   if (!err) {
     // console.log('mongojs working in index.js!');
