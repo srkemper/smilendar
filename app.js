@@ -12,7 +12,7 @@ var app = express();
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
-var gapi = require('./lib/gapi');
+var gapi = require('./routes/gapi');
 
 var my_calendars = [],
     my_profile = {},
@@ -77,12 +77,11 @@ app.get('/oauth2callback', function(req, res) {
   var locals = {
         user: my_profile.name,
         title: 'Today',
-        //title: 'This is my sample app',
-        url: gapi.url       // add gapi.url to the locals object that is sent to index.jade.
+        url: gapi.url       
       };
     console.log(locals);
+//    res.redirect('/',locals);
     res.render('homepage',locals);
-//  res.render('login.jade', locals);
 });
 
 app.get('/cal', function(req, res){
@@ -96,6 +95,8 @@ app.get('/cal', function(req, res){
   res.render('cal.jade', locals);
 });
 
+
+
 var getData = function() {
   gapi.oauth.userinfo.get().withAuthClient(gapi.client).execute(function(err, results){
   console.log('getting results-----------');
@@ -108,6 +109,8 @@ var getData = function() {
     console.log('calendar results');
     console.log(results);
     for (var i = results.items.length - 1; i >= 0; i--) {
+        console.log('---');
+        console.log(results.items[i].summary);
       my_calendars.push(results.items[i].summary);
     };
   });
