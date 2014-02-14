@@ -195,3 +195,34 @@ body {
 a {
   color: #00B7FF;
 }
+.event-view .alarm,
+.event-view .repeat,
+.event-view .note {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #eeeeee;
+}
+.event-view .alarm {
+  border-right: 1px solid #eeeeee;
+}
+.event-view .comment {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #eeeeee;
+}
+.event-view .comment textarea {
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+.event-view .take-photo {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #eeeeee;
+}
+.event-view .start-time {
+  color: #212121;
+}
+.event-view .end-time {
+  color: #bbcbcb;
+}

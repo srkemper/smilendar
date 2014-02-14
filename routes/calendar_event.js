@@ -1,5 +1,5 @@
 var data = require("../tester.json");
-
+var moment = require('moment');
 
 
 
@@ -16,5 +16,12 @@ exports.view = function(req, res) {
         }
     }
 
+  var std = new Date(Date.parse(eveIns.start.dateTime));
+  var end = new Date(Date.parse(eveIns.end.dateTime));
+  eveIns.startHour = std.getHours();
+  eveIns.startMin = std.getMinutes();
+  eveIns.endHour = end.getHours();
+  eveIns.endMin = end.getMinutes();
 	res.render('calendar_event', eveIns);
 };
+
