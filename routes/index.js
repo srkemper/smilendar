@@ -71,7 +71,8 @@ var locals = {
     user: currUser,
     url: gapi.url,
     title: 'Today',
-    eventlist: {'events':[]}
+    eventlist: data
+//    eventlist: {'events':[]}
 };
 
 exports.index = function(req, res){
@@ -106,7 +107,8 @@ exports.index = function(req, res){
 exports.dayInfo = function(req, res) {
     console.log('dayInfo');
     var dayName = req.params.id;
-    parseCalendarData(locals.eventlist);
+    parseCalendarData(data);
+//    parseCalendarData(locals.eventlist);
 //    console.log(eventsByDay);
     console.log(eventsByDay[dayName]);
     console.log('mongo');
