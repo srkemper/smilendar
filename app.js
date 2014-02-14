@@ -19,6 +19,8 @@ var mongojs = require('mongojs');
 var db = require('./db');
 
 
+var index = require('./routes/index');
+
 var my_calendars = [],
     my_profile = {},
     my_email = '';
@@ -100,6 +102,8 @@ app.post('/changeMood', function(request, response) {
     console.log(updated);
   })
 });
+
+app.get('/dayEvent/:id',index.dayInfo);
 
 // handling return value
 app.get('/oauth2callback', function(req, res) {
