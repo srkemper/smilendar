@@ -14,9 +14,10 @@ var path = require('path');
 var handlebars = require('express3-handlebars');
 var gapi = require('./routes/gapi');
 var mongo_client = require('mongodb').MongoClient;
+var mongojs = require('mongojs');
 
-var collections = ['test'];
-var db_test = require('mongojs').connect('exampleDb', collections);
+var db = require('./db');
+
 
 var my_calendars = [],
     my_profile = {},
@@ -60,44 +61,38 @@ if ('development' == app.get('env')) {
 //});
 //app.get('/homepage', routes.index);
 
-mongo_client.connect('mongodb://localhost/exampleDb', function(err, db) {
-  console.log('connected');
-  if (err) {
-    return console.dir(err);
+
+var eventsJSON = require("./tester.json");
+
+// code to populate original DB with fake events
+// eventsJSON['events'].forEach(function(JSONevent) {
+//   db.events.save(JSONevent, function(err, saved) {
+//     if (err) {console.log("event not saved")};
+//   });
+// });
+
+db.events.find(function(err, docs) {
+  if (!err) {
+    // console.log('mongojs working!');
+    // console.log(docs);
   }
-  var collection = db.collection('test');
-  var doc1 = {'hello':'doc1'};
-  var doc2 = {'hello':'doc2'};
-  var lotsOfDocs = [{'hello':'doc3'}, {'hello':'doc4'}];
-
-  collection.insert(doc1, function(err, result) {});
-  collection.insert(doc2, {w:1}, function(err, result) {});
-  collection.insert(lotsOfDocs, {w:1}, function(err, result) {
-    collection.find().toArray(function(err, items) {});
-
-    // var stream = collection.find({mykey:{$ne:2}}).stream();
-    // stream.on("data", function(item) {});
-    // stream.on("end", function() {});
-
-    collection.findOne({'hello':'doc3'}, function(err, item) {
-      // console.log(item);
-    });
-  });
-
-  console.log(collection);
 });
-
-db_test.test.find({'hello':'doc3'}, function(err, item) {
-  if (item) {
-    console.log('mongojs working!');
-    console.log(item);
-  }
-})
 
 app.get('/',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month', month.view);
+
+app.post('/changeMood', function(request, response) {
+  console.log(request.body.id);
+  console.log(request.body.mood);
+  db.events.update({_id: mongojs.ObjectId(request.body.id)}, {$set: {mood:request.body.mood}}, function(err, updated) {
+    if (err) {
+      console.log("not updated :(");
+    }
+    console.log(updated);
+  })
+});
 
 // handling return value
 app.get('/oauth2callback', function(req, res) {

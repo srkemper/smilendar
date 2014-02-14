@@ -3,14 +3,20 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 	    jshint: {
 	      // uglify task configuration goes here.
-	      files: ['routes/*.js'],
+	      files: ['routes/*.js, *.js'],
 	      options: {
 	      	globals: {
 	      		jQuery: true,
 	      		console: true,
 	      		module: true
 	      	}
-	      }
+	      },
+	      // ignore_warning: {
+	      // 	options: {
+	      // 		'-WO99': true
+	      // 	},
+	      // 	src: ['routes/*.js, *.js']
+	      // }
 	    },
 	    watch: {
 	    	files: ['routes/*.js', '*.js'],
