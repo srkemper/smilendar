@@ -15,8 +15,8 @@ var handlebars = require('express3-handlebars');
 var gapi = require('./routes/gapi');
 var mongo_client = require('mongodb').MongoClient;
 
-var collections = ['test'];
-var db_test = require('mongojs').connect('exampleDb', collections);
+var db = require('./db');
+
 
 var my_calendars = [],
     my_profile = {},
@@ -60,43 +60,61 @@ if ('development' == app.get('env')) {
 //});
 //app.get('/homepage', routes.index);
 
-mongo_client.connect('mongodb://localhost/exampleDb', function(err, db) {
-  console.log('connected');
+// previous code for mongo
+// mongo_client.connect('mongodb://localhost/exampleDb', function(err, db) {
+//   console.log('connected');
+//   if (err) {
+//     return console.dir(err);
+//   }
+//   var collection = db.collection('test');
+//   var doc1 = {'hello':'doc1'};
+//   var doc2 = {'hello':'doc2'};
+//   var lotsOfDocs = [{'hello':'doc3'}, {'hello':'doc4'}];
+
+//   collection.insert(doc1, function(err, result) {});
+//   collection.insert(doc2, {w:1}, function(err, result) {});
+//   collection.insert(lotsOfDocs, {w:1}, function(err, result) {
+//     collection.find().toArray(function(err, items) {});
+
+//     // var stream = collection.find({mykey:{$ne:2}}).stream();
+//     // stream.on("data", function(item) {});
+//     // stream.on("end", function() {});
+
+//     collection.findOne({'hello':'doc3'}, function(err, item) {
+//       // console.log(item);
+//     });
+//   });
+
+//   console.log(collection);
+// });
+
+db.events.save({
+      "name": "CS147 lab session",
+      "start": {
+        "dateTime": "2012-07-11T03:30:00-06:00"
+      },
+      "end": {
+        "dateTime": "2012-07-11T04:30:00-06:00"
+      },
+      "location":"the d.school, Escondido Mall, Stanford, CA",
+      "comment":"Well, I feel very tired at this time.",
+      "mood":"sad"
+    }, function(err, saved) {
   if (err) {
-    return console.dir(err);
+    console.log("event not saved");
   }
-  var collection = db.collection('test');
-  var doc1 = {'hello':'doc1'};
-  var doc2 = {'hello':'doc2'};
-  var lotsOfDocs = [{'hello':'doc3'}, {'hello':'doc4'}];
-
-  collection.insert(doc1, function(err, result) {});
-  collection.insert(doc2, {w:1}, function(err, result) {});
-  collection.insert(lotsOfDocs, {w:1}, function(err, result) {
-    collection.find().toArray(function(err, items) {});
-
-    // var stream = collection.find({mykey:{$ne:2}}).stream();
-    // stream.on("data", function(item) {});
-    // stream.on("end", function() {});
-
-    collection.findOne({'hello':'doc3'}, function(err, item) {
-      // console.log(item);
-    });
-  });
-
-  console.log(collection);
 });
 
-db_test.test.find({'hello':'doc3'}, function(err, item) {
-  if (item) {
+db.events.find(function(err, docs) {
+  if (!err) {
     console.log('mongojs working!');
-    console.log(item);
+    console.log(docs);
   }
 })
 
 app.get('/',routes.index);
 app.get('/users', user.list);
-app.get('/calendar_event', calendar_event.view);
+app.get('/calendar_event/', calendar_event.view);
 app.get('/month', month.view);
 
 // handling return value
