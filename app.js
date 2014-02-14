@@ -14,6 +14,8 @@ var path = require('path');
 var handlebars = require('express3-handlebars');
 var gapi = require('./routes/gapi');
 
+var index = require('./routes/index');
+
 var my_calendars = [],
     my_profile = {},
     my_email = '';
@@ -61,7 +63,8 @@ app.get('/',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event', calendar_event.view);
 app.get('/month', month.view);
-
+app.get('/dayEvent/:id',index.dayInfo);
+//app.get('/calendar_event/:id',routes.index.dayInfo);
 // handling return value
 app.get('/oauth2callback', function(req, res) {
   var code = req.query.code;
