@@ -71,6 +71,13 @@ var eventsJSON = require("./tester.json");
 //   });
 // });
 
+// code to clear db
+// db.events.remove(function(err, removed) {
+//   if (err) {
+//     console.log("couldn't remove");
+//   }
+// })
+
 db.events.find(function(err, docs) {
   if (!err) {
     // console.log('mongojs working!');
