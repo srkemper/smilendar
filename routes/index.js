@@ -71,12 +71,11 @@ var locals = {
     user: currUser,
     url: gapi.url,
     title: 'Today',
-    eventlist: data
-//    eventlist: {'events':[]}
+    // eventlist: data
+   eventlist: {'events':[]}
 };
 
 exports.index = function(req, res){
-  console.log(locals);
     console.log('-------------xxx');
 //  res.render('homepage', { title: 'Today' });
 //    console.log('--------------locals-----------');
@@ -101,14 +100,15 @@ exports.index = function(req, res){
     locals.eventlist.events = docs;
   }
 	});
+  console.log(locals);
   res.render('homepage', locals);
 };
 
 exports.dayInfo = function(req, res) {
     console.log('dayInfo');
     var dayName = req.params.id;
-    parseCalendarData(data);
-//    parseCalendarData(locals.eventlist);
+    // parseCalendarData(data);
+   parseCalendarData(locals.eventlist);
 //    console.log(eventsByDay);
     console.log(eventsByDay[dayName]);
     console.log('mongo');
