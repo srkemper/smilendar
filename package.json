@@ -12,7 +12,8 @@
     "less-middleware": "*",
     "grunt": "*",
     "jade": "*",
-    "googleapis": "*"
+    "googleapis": "*",
+    "moment": "~2.5.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

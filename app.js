@@ -96,7 +96,7 @@ db_test.test.find({'hello':'doc3'}, function(err, item) {
 
 app.get('/',routes.index);
 app.get('/users', user.list);
-app.get('/calendar_event', calendar_event.view);
+app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month', month.view);
 
 // handling return value
@@ -114,7 +114,7 @@ app.get('/oauth2callback', function(req, res) {
   var locals = {
         user: my_profile.name,
         title: 'Today',
-        url: gapi.url       
+        url: gapi.url
       };
     console.log(locals);
 //    res.redirect('/',locals);

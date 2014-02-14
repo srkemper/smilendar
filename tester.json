@@ -1,7 +1,8 @@
-{ 
+{
   "events": [
     {
       "name": "CS147 lab session",
+      "id": "1",
       "start": {
         "dateTime": "2012-07-11T03:30:00-06:00"
       },
@@ -14,6 +15,7 @@
     },
     {
       "name": "Meeting with James",
+      "id": "2",
       "start": {
         "dateTime": "2012-07-11T04:40:00-06:00"
       },
@@ -25,7 +27,8 @@
       "mood":"excited"
     },
     {
-      "name": "Practise",
+      "name": "Practice",
+      "id": "3",
       "start": {
         "dateTime": "2012-07-11T05:30:00-06:00"
       },
@@ -38,6 +41,7 @@
     },
     {
       "name": "Practise",
+      "id": "4",
       "start": {
         "dateTime": "2012-07-11T05:30:00-06:00"
       },

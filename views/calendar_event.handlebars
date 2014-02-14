@@ -1,11 +1,40 @@
-<div class="row">
-  <div class="col-xs-12">
-    <a href="/" class="text-left"> &lt; Today </a>
-  </div>
-  <div class="col-xs-12">
-    <h2>Calendar Event</h2>
-    <p>Information about the event, how it went, etc will be here.</p>
-    <textarea>The user will be able to input comments/notes about the day.</textarea>
-    <button>Or upload a photo.</button>
+<div class="event-view">
+  <div class="row">
+    <div class="col-xs-12">
+      <a href="/" class="text-left"> &lt; Today </a>
+    </div>
+    <div class="col-xs-12">
+      <h4>{{name}}</h4>
+      <div class="event-time">
+          <h6 class="start-time">{{startHour}}:{{startMin}}</h6>
+          <h6 class="end-time">{{endHour}}:{{endMin}}</h6>
+      </div>
+      <div class="smile">
+        <div class="dropdown">
+          <button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{mood}}">smile</button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li id="happy" class="smile-face mood-status">Happy</li>
+            <li id="excited" class="smile-face mood-status">Excited</li>
+            <li id="sad" class="smile-face mood-status">Sad</li>
+            <li id="angry" class="smile-face mood-status">Angry</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 alarm">
+      alarm
+    </div>
+    <div class="col-xs-6 repeat">
+      repeat
+    </div>
+    <div class="col-xs-12 note">
+      <p>Places for notes</p>
+    </div>
+    <div class="col-xs-12 comment">
+      <textarea>{{comment}}</textarea>
+    </div>
+    <div class="col-xs-12 take-photo navbar-fixed-bottom">
+      <button type="button" class="btn btn-default camIcon"><span class="glyphicon glyphicon-star"></span></button>
+    </div>
   </div>
 </div>
