@@ -1,0 +1,52 @@
+{
+  "events": [
+    {
+      "name": "CS147 lab session",
+      "start": {
+        "dateTime": "2012-07-11T03:30:00-06:00"
+      },
+      "end": {
+        "dateTime": "2012-07-11T04:30:00-06:00"
+      },
+      "location":"the d.school, Escondido Mall, Stanford, CA",
+      "comment":"Well, I feel very tired at this time.",
+      "mood":"sad"
+    },
+    {
+      "name": "Meeting with James",
+      "start": {
+        "dateTime": "2012-07-11T04:40:00-06:00"
+      },
+      "end": {
+        "dateTime": "2012-07-11T05:00:00-06:00"
+      },
+      "location":"the d.school, Escondido Mall, Stanford, CA",
+      "comment":"He is a nice guy! need to contact more",
+      "mood":"excited"
+    },
+    {
+      "name": "Practise",
+      "start": {
+        "dateTime": "2012-07-11T05:30:00-06:00"
+      },
+      "end": {
+        "dateTime": "2012-07-11T07:30:00-06:00"
+      },
+      "location":"Gym",
+      "comment":"Tired",
+      "mood":"bad"
+    },
+    {
+      "name": "Practise",
+      "start": {
+        "dateTime": "2012-07-11T05:30:00-06:00"
+      },
+      "end": {
+        "dateTime": "2012-07-11T07:30:00-06:00"
+      },
+      "location":"Gym",
+      "comment":"Tired",
+      "mood":"bad"
+    }
+  ]
+}
