@@ -3,9 +3,21 @@
     <a href="/" class="text-left"> &lt; Today </a>
   </div>
   <div class="col-xs-12">
-    <h2>Calendar Event</h2>
+    <h2>{{name}}</h2>
     <p>Information about the event, how it went, etc will be here.</p>
+    <p>{{comment}}</p>
     <textarea>The user will be able to input comments/notes about the day.</textarea>
+    <div class="smile">
+      <div class="dropdown">
+        <button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{mood}}">smile</button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li id="happy" class="smile-face mood-status">Happy</li>
+          <li id="excited" class="smile-face mood-status">Excited</li>
+          <li id="sad" class="smile-face mood-status">Sad</li>
+          <li id="angry" class="smile-face mood-status">Angry</li>
+        </ul>
+      </div>
+    </div>
     <button>Or upload a photo.</button>
   </div>
 </div>
