@@ -14,6 +14,7 @@ var path = require('path');
 var handlebars = require('express3-handlebars');
 var gapi = require('./routes/gapi');
 var mongo_client = require('mongodb').MongoClient;
+var mongojs = require('mongojs');
 
 var db = require('./db');
 
@@ -72,15 +73,26 @@ var eventsJSON = require("./tester.json");
 
 db.events.find(function(err, docs) {
   if (!err) {
-    console.log('mongojs working!');
-    console.log(docs);
+    // console.log('mongojs working!');
+    // console.log(docs);
   }
-})
+});
 
 app.get('/',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/', calendar_event.view);
 app.get('/month', month.view);
+
+app.post('/changeMood', function(request, response) {
+  console.log(request.body.id);
+  console.log(request.body.mood);
+  db.events.update({_id: mongojs.ObjectId(request.body.id)}, {$set: {mood:request.body.mood}}, function(err, updated) {
+    if (err) {
+      console.log("not updated :(");
+    }
+    console.log(updated);
+  })
+});
 
 // handling return value
 app.get('/oauth2callback', function(req, res) {
