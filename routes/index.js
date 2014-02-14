@@ -47,6 +47,15 @@ function parseDateTime(datetime) {
 
 // regroups the json data by days
 function parseCalendarData(dat) {
+	eventsByDay = {
+    'sun': [],
+    'mon': [],
+    'tue': [],
+    'wed': [],
+    'thu': [],
+    'fri': [],
+    'sat': []
+	};
     var events = dat.events;
     for (var i=0; i<events.length; i++) {
         var start = events[i].start.dateTime; // format: "2012-02-11T03:30:00-06:00"
@@ -97,8 +106,12 @@ exports.index = function(req, res){
 exports.dayInfo = function(req, res) {
     console.log('dayInfo');
     var dayName = req.params.id;
-    parseCalendarData(data);
+    parseCalendarData(locals.eventlist);
 //    console.log(eventsByDay);
     console.log(eventsByDay[dayName]);
+    console.log('mongo');
+    db.events.find(function(err, docs) {
+    	console.log(docs);
+    });
     res.json(eventsByDay[dayName]);
 }

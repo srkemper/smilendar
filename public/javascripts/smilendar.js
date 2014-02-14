@@ -37,9 +37,12 @@ function selectDay(e) {
 }
 
 function renderDayEvent(result) {
+	console.log("renderDayEvent results:");
     console.log(result);
     eventlist = {events: result};
     var source = $('#this_day').html(); // gets the contents of handlebars template
+    console.log(source);
     var template = Handlebars.compile(source);
+    console.log(template(eventlist));
     $('#this_day').html(template(eventlist));
 }
