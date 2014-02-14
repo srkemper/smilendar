@@ -80,12 +80,12 @@ var eventsJSON = require("./tester.json");
 //   }
 // })
 
-db.events.find(function(err, docs) {
-  if (!err) {
-    // console.log('mongojs working!');
-    // console.log(docs);
-  }
-});
+// db.events.find(function(err, docs) {
+//   if (!err) {
+//     // console.log('mongojs working!');
+//     // console.log(docs);
+//   }
+// });
 
 app.get('/',routes.index);
 app.get('/users', user.list);
@@ -101,6 +101,7 @@ app.post('/changeMood', function(request, response) {
     }
     console.log(updated);
   })
+  response.json(200);
 });
 
 app.get('/dayEvent/:id',index.dayInfo);

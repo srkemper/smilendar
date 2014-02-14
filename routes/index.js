@@ -72,36 +72,34 @@ var locals = {
     url: gapi.url,
     title: 'Today',
     // eventlist: data
-   eventlist: {'events':[]}
+   eventlist: {'events':[]},
+   todaysEvents: {'events': []}
 };
 
 exports.index = function(req, res){
     console.log('-------------xxx');
 //  res.render('homepage', { title: 'Today' });
 //    console.log('--------------locals-----------');
+	locals.todaysEvents.events = [];
 	db.events.find(function(err, docs) {
   if (!err) {
     // console.log('mongojs working in index.js!');
     // console.log(docs);
-    // sorting, for later
-    // docs.sort(function(first, second) {
-	  	// var date1 = first.start.dateTime;
-	  	// var date2 = second.start.dateTime;
-	  	// if (date1 > date2) {
-				// return 1;
-	  	// }
-	  	// else if (date2 > date1) {
-				// return -1;
-	  	// }
-	  	// else {
-	  	// 	return 0;
-	  	// }
-    // });
+    docs.forEach(function(doc) {
+    	var today = new Date();
+    	var todaysDate = 12; //today.getDate();
+    	var docDate = new Date(Date.parse(doc.start.dateTime));
+    	var eventDate = docDate.getDate();
+    	if (todaysDate == eventDate) {
+    		locals.todaysEvents.events.push(doc);
+    	}
+    });
+		// console.log(docs);
     locals.eventlist.events = docs;
+	  res.render('homepage', locals);
   }
 	});
   console.log(locals);
-  res.render('homepage', locals);
 };
 
 exports.dayInfo = function(req, res) {
