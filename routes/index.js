@@ -1,4 +1,4 @@
-
+var data = require("../tester.json");
 /*
  * GET home page.
  */
@@ -7,12 +7,13 @@ var gapi = require('./../lib/gapi');
 var locals = {
     user: currUser,
     url: gapi.url,
-    title: 'Today'
+    title: 'Today',
+    eventlist: data
 };
 //console.log(gapi);
 exports.index = function(req, res){
+  console.log(data);
 //  res.render('homepage', { title: 'Today' });
 //    console.log('--------------locals-----------');
-//    console.log(locals);
   res.render('homepage', locals);
 };
