@@ -3,7 +3,7 @@
  * GET home page.
  */
 var currUser;
-var gapi = require('./../lib/gapi');
+var gapi = require('./gapi');
 var locals = {
     user: currUser,
     url: gapi.url,
