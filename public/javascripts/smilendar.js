@@ -34,5 +34,5 @@ function renderDayEvent(result) {
     eventlist = {events: result};
     var source = $('#this_day').html(); // gets the contents of handlebars template
     var template = Handlebars.compile(source);
-    $('#this_day').append(template(eventlist));
+    $('#this_day').html(template(eventlist));
 }
