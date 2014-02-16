@@ -78,8 +78,6 @@ var locals = {
 
 exports.index = function(req, res){
     console.log('-------------xxx');
-//  res.render('homepage', { title: 'Today' });
-//    console.log('--------------locals-----------');
 	locals.todaysEvents.events = [];
 	db.events.find(function(err, docs) {
   if (!err) {
