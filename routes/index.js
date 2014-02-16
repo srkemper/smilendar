@@ -71,6 +71,10 @@ var locals = {
     user: currUser,
     url: gapi.url,
     title: 'Today',
+    goback: {
+        link: '/month',
+        display: 'Febrary',
+    },
     // eventlist: data
    eventlist: {'events':[]},
    todaysEvents: {'events': []}
@@ -82,23 +86,23 @@ exports.index = function(req, res){
 //    console.log('--------------locals-----------');
 	locals.todaysEvents.events = [];
 	db.events.find(function(err, docs) {
-  if (!err) {
-    // console.log('mongojs working in index.js!');
-    // console.log(docs);
-    docs.forEach(function(doc) {
-    	var today = new Date();
-    	var todaysDate = 12; //today.getDate();
-    	var docDate = new Date(Date.parse(doc.start.dateTime));
-    	var eventDate = docDate.getDate();
-    	if (todaysDate == eventDate) {
-    		locals.todaysEvents.events.push(doc);
-    	}
+      if (!err) {
+        console.log('mongojs working in index.js!');
+        // console.log(docs);
+        docs.forEach(function(doc) {
+        	var today = new Date();
+        	var todaysDate = 12; //today.getDate();
+        	var docDate = new Date(Date.parse(doc.start.dateTime));
+        	var eventDate = docDate.getDate();
+        	if (todaysDate == eventDate) {
+        		locals.todaysEvents.events.push(doc);
+        	}
+        });
+		console.log(docs);
+        locals.eventlist.events = docs;
+    	res.render('homepage', locals);
+      }
     });
-		// console.log(docs);
-    locals.eventlist.events = docs;
-	  res.render('homepage', locals);
-  }
-	});
   console.log(locals);
 };
 
@@ -109,7 +113,7 @@ exports.dayInfo = function(req, res) {
    parseCalendarData(locals.eventlist);
 //    console.log(eventsByDay);
     console.log(eventsByDay[dayName]);
-    console.log('mongo');
+    console.log('mongo--22');
     // db.events.find(function(err, docs) {
     // 	console.log(docs);
     // });

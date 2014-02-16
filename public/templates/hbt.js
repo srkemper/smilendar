@@ -8,8 +8,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<div class=\"event-item\">\n  <a href=\"/calendar_event/";
-  if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = (depth0 && depth0.id); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0._id); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
     + "\">\n  <div class=\"event-time col-xs-3\">\n    <h6 class=\"start-time\">2:15 PM</h6>\n    <h6 class=\"end-time\">3:30 PM</h6>\n  </div>\n  <div class=\"col-xs-9 event-info\">\n    <h5 class=\"event-title\">";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
