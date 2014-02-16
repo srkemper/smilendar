@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
     initializePage();
+    $('.cal-cell1').on('click',selectDay);
 })
 
 
@@ -31,8 +32,6 @@ function initDynamicEventHandlers() {
     // Dynamically append event handler to AJAX created content.
     console.log('initialized!');
     $(".smile").on('click','.mood-status',chooseMood);
-    $('.cal-cell1').on('click',selectDay);
-
 }
 
 function chooseMood(e) {
@@ -59,6 +58,8 @@ function selectDay(e) {
     // Retrieve event list of a day using AJAX
     e.preventDefault();
     console.log('selecting day-----');
+    $(this).siblings().find(".day-order").removeClass("active");
+    $(this).find(".day-order").addClass("active");
     var day = $(this).attr('id');
     console.log(day);
     var urlToPass = '/dayEvent/'+day;
