@@ -8,6 +8,7 @@ exports.list = function(req, res){
 };
 
 exports.login = function(req, res){
+	console.log("login");
 	var username = req.query.username;
 	console.log("username is: " + username);
 	req.session.username = username;

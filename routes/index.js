@@ -85,6 +85,7 @@ exports.index = function(req, res){
     // parse id for date from URL
     var dayId = req.params.id;
     locals.dayId = dayId;
+    locals.user = req.session.username;
 
     console.log('-------------xxx');
 	locals.todaysEvents.events = [];
@@ -99,7 +100,7 @@ exports.index = function(req, res){
         	var eventDate = docDate.getDate();
         	if (todaysDate == eventDate) {
         		locals.todaysEvents.events.push(doc);
-                console.log(doc);
+                // console.log(doc);
             }
         });
         console.log(locals.todaysEvents);

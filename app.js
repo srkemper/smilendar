@@ -122,10 +122,10 @@ var eventsJSON = require("./tester.json");
 //   }
 // });
 
-app.get('/:id',routes.index);
-app.get('/users', user.list);
 app.get('/login', user.login);
 app.get('/logout', user.logout);
+app.get('/:id',routes.index);
+app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month/:id', month.view);
 
