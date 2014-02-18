@@ -65,7 +65,7 @@ if ('development' == app.get('env')) {
 //app.get('/homepage', routes.index);
 
 
-var eventsJSON = require("./tester.json");
+var eventsJSON = require("./data.json");
 
 // code to populate original DB with fake events
 // eventsJSON['events'].forEach(function(JSONevent) {

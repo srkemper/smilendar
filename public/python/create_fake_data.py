@@ -9,6 +9,7 @@ end = "end"
 loc = "location"
 comment = "comment"
 mood = "mood"
+note = "note"
 
 moodChoices = [-2, -1, 0, 1, 2]
 
@@ -56,7 +57,7 @@ def getX(day, event, interval_time, j):
 		commentToday = ""
 
 	x = {name: event[0], loc: event[1], start: start_time_int, 
-	end: final_time_int, mood: moodToday, comment: commentToday}
+	end: final_time_int, mood: moodToday, comment: commentToday, note:""}
 	return x
 
 x_list = []
