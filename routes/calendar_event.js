@@ -3,9 +3,18 @@ var db = require('../db.js');
 var mongojs = require('mongojs');
 
 
+// The object of today, Currently fixed for testing.
+var today = {
+  date: 12,
+  month: 1,
+  year: 2014
+};
+
+
 var locals = {
+    script: '/javascripts/event_view.js',
     goback: {
-        link: '/',
+        link: '/12',
         display: 'Today',
     },
     // eventlist: data
@@ -31,9 +40,13 @@ exports.view = function(req, res) {
       console.log(doc);
       var std = new Date(Date.parse(eveIns.start.dateTime));
       var end = new Date(Date.parse(eveIns.end.dateTime));
-      eveIns.day = std.getDay();
-      if (eveIns.day != 3){
+      eveIns.date = std.getDate();
+      if (eveIns.date != today.date){
+        locals.goback.link = '/'+ eveIns.date.toString();
         locals.goback.display = 'Day';
+      } else {
+        locals.goback.link = '/' + today.date.toString();
+        locals.goback.display = 'Today';
       }
       eveIns.startHour = std.getHours();
       eveIns.startMin = std.getMinutes();

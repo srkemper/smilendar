@@ -1,39 +1,3 @@
-
-$(document).ready(function(){
-    initializePage();
-    $('.cal-cell1').on('click',selectDay);
-})
-
-
-function initializePage() {
-    urlToPass ='/dayEvent/wed'
-    // Load the event list of today
-    $.get(urlToPass, renderDayEvent);
-    console.log('initialize page');
-}
-
-
-function renderDayEvent(result) {
-  // Using handlebars template to render event list of a day
-	console.log("renderDayEvent results:");
-    console.log(result);
-
-    // Retrieve templates from template file
-    var template = Smilendar.Templates["templates/eventList.handlebars"];
-    Handlebars.registerPartial('eventItem', Smilendar.Templates["templates/eventItem.handlebars"]);
-    var htmlText = template(result);
-    $('#this_day').html(htmlText);
-
-    // append event handler to AJAX created content
-    initDynamicEventHandlers();
-}
-
-function initDynamicEventHandlers() {
-    // Dynamically append event handler to AJAX created content.
-    console.log('initialized!');
-    $(".smile").on('click','.mood-status',chooseMood);
-}
-
 function chooseMood(e) {
     // Choose the mood for according event
     e.preventDefault();
@@ -54,16 +18,9 @@ function chooseMood(e) {
     });
 }
 
-function selectDay(e) {
-    // Retrieve event list of a day using AJAX
-    e.preventDefault();
-    console.log('selecting day-----');
-    $(this).siblings().find(".day-order").removeClass("active");
-    $(this).find(".day-order").addClass("active");
-    var day = $(this).attr('id');
-    console.log(day);
-    var urlToPass = '/dayEvent/'+day;
-    $.get(urlToPass, renderDayEvent);
-    console.log(urlToPass);
 
+function initDynamicEventHandlers() {
+    // Dynamically append event handler to AJAX created content.
+    console.log('initialized!');
+    $(".smile").on('click','.mood-status',chooseMood);
 }

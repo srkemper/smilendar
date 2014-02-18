@@ -87,10 +87,10 @@ var eventsJSON = require("./tester.json");
 //   }
 // });
 
-app.get('/',routes.index);
+app.get('/:id',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
-app.get('/month', month.view);
+app.get('/month/:id', month.view);
 
 app.post('/changeMood', function(request, response) {
   console.log(request.body.id);

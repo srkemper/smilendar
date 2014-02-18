@@ -71,8 +71,9 @@ var locals = {
     user: currUser,
     url: gapi.url,
     title: 'Today',
+    script: '/javascripts/day_view.js',
     goback: {
-        link: '/month',
+        link: '/month/2',
         display: 'Febrary',
     },
     // eventlist: data
@@ -81,6 +82,10 @@ var locals = {
 };
 
 exports.index = function(req, res){
+    // parse id for date from URL
+    var dayId = req.params.id;
+    locals.dayId = dayId;
+
     console.log('-------------xxx');
 //  res.render('homepage', { title: 'Today' });
 //    console.log('--------------locals-----------');
