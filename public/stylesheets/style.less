@@ -6,10 +6,18 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.nav-bar {
+.navbar-header {
+  padding: 0 15px;
+  line-height: 44px;
   height: 44px;
+  margin-bottom: 20px;
   width: 100%;
   background-color: #f2f2f4;
+
+  .menu {
+    float: right;
+  }
+
 }
 
 .day-view {
@@ -20,6 +28,30 @@ body {
 
   .cal-cell1 {
     text-align: center;
+  }
+
+  .day-order {
+    margin: 0 auto;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+  }
+
+  .active {
+    background-color: #121212;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 50%;
+  }
+
+  .today {
+    color: #D20012;
+
+    &.active {
+      color: #ffffff;
+      background-color: #D20012 !important;
+    }
+
   }
 
   .event-item {

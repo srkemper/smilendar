@@ -42,28 +42,28 @@ function parseDateTime(datetime) {
             'hour': hour,
             'minutes': minutes
         };
-        return timeobj; 
+        return timeobj;
 }
 
 // regroups the json data by days
 function parseCalendarData(dat) {
 	eventsByDay = {
-    'sun': [],
-    'mon': [],
-    'tue': [],
-    'wed': [],
-    'thu': [],
-    'fri': [],
-    'sat': []
+    'sun': {'eventList':[]},
+    'mon': {'eventList':[]},
+    'tue': {'eventList':[]},
+    'wed': {'eventList':[]},
+    'thu': {'eventList':[]},
+    'fri': {'eventList':[]},
+    'sat': {'eventList':[]}
 	};
     var events = dat.events;
     for (var i=0; i<events.length; i++) {
         var start = events[i].start.dateTime; // format: "2012-02-11T03:30:00-06:00"
         var end = events[i].end.dateTime; // format: "2012-02-11T03:30:00-06:00"
-       
+
         timeobj = parseDateTime(start);
         var name = timeobj['day'];
-        eventsByDay[name].push(events[i]); 
+        eventsByDay[name]['eventList'].push(events[i]);
     }
 }
 
@@ -71,32 +71,41 @@ var locals = {
     user: currUser,
     url: gapi.url,
     title: 'Today',
+    script: '/javascripts/day_view.js',
+    goback: {
+        link: '/month/2',
+        display: 'Febrary',
+    },
     // eventlist: data
    eventlist: {'events':[]},
    todaysEvents: {'events': []}
 };
 
 exports.index = function(req, res){
+    // parse id for date from URL
+    var dayId = req.params.id;
+    locals.dayId = dayId;
+
     console.log('-------------xxx');
 	locals.todaysEvents.events = [];
 	db.events.find(function(err, docs) {
-  if (!err) {
-    // console.log('mongojs working in index.js!');
-    // console.log(docs);
-    docs.forEach(function(doc) {
-    	var today = new Date();
-    	var todaysDate = 12; //today.getDate();
-    	var docDate = new Date(Date.parse(doc.start.dateTime));
-    	var eventDate = docDate.getDate();
-    	if (todaysDate == eventDate) {
-    		locals.todaysEvents.events.push(doc);
-    	}
+      if (!err) {
+        console.log('mongojs working in index.js!');
+        // console.log(docs);
+        docs.forEach(function(doc) {
+        	var today = new Date();
+        	var todaysDate = 12; //today.getDate();
+        	var docDate = new Date(Date.parse(doc.start.dateTime));
+        	var eventDate = docDate.getDate();
+        	if (todaysDate == eventDate) {
+        		locals.todaysEvents.events.push(doc);
+        	}
+        });
+		console.log(docs);
+        locals.eventlist.events = docs;
+    	res.render('homepage', locals);
+      }
     });
-		// console.log(docs);
-    locals.eventlist.events = docs;
-	  res.render('homepage', locals);
-  }
-	});
   console.log(locals);
 };
 
@@ -107,9 +116,9 @@ exports.dayInfo = function(req, res) {
    parseCalendarData(locals.eventlist);
 //    console.log(eventsByDay);
     console.log(eventsByDay[dayName]);
-    console.log('mongo');
-    db.events.find(function(err, docs) {
-    	console.log(docs);
-    });
+    console.log('mongo--22');
+    // db.events.find(function(err, docs) {
+    // 	console.log(docs);
+    // });
     res.json(eventsByDay[dayName]);
 }
