@@ -8,6 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var calendar_event = require('./routes/calendar_event');
 var month = require('./routes/month');
+var addEvent = require('./routes/addEvent');
 var app = express();
 var http = require('http');
 var path = require('path');
@@ -91,6 +92,7 @@ app.get('/:id',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month/:id', month.view);
+app.get('/addEvent', addEvent.view);
 
 app.post('/changeMood', function(request, response) {
   console.log(request.body.id);
