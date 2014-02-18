@@ -27,8 +27,8 @@ var eventsByDay = {
 };   // organize events by day
 
 // parses datetime
-function parseDateTime(datetime) {
-        var d = new Date(Date.parse(datetime));
+function parseEpoch(epoch) {
+        var d = new Date(epoch);
         var day = dayToName[d.getDay()];   // gets the day of the week
         var month = d.getMonth();
         var date = d.getDate();
@@ -58,10 +58,10 @@ function parseCalendarData(dat) {
 	};
     var events = dat.events;
     for (var i=0; i<events.length; i++) {
-        var start = events[i].start.dateTime; // format: "2012-02-11T03:30:00-06:00"
-        var end = events[i].end.dateTime; // format: "2012-02-11T03:30:00-06:00"
+        var start = events[i].start; // format: epoch time
+        var end = events[i].end; // format: epoch time
 
-        timeobj = parseDateTime(start);
+        timeobj = parseEpoch(start);
         var name = timeobj['day'];
         eventsByDay[name]['eventList'].push(events[i]);
     }
@@ -74,13 +74,13 @@ var locals = {
     script: '/javascripts/day_view.js',
     goback: {
         link: '/month/2',
-        display: 'Febrary',
+        display: 'February',
     },
     // eventlist: data
    eventlist: {'events':[]},
    todaysEvents: {'events': []}
 };
-
+//gets a ordered list (by start time) of the events for this day
 exports.index = function(req, res){
     // parse id for date from URL
     var dayId = req.params.id;
@@ -95,13 +95,15 @@ exports.index = function(req, res){
         docs.forEach(function(doc) {
         	var today = new Date();
         	var todaysDate = 12; //today.getDate();
-        	var docDate = new Date(Date.parse(doc.start.dateTime));
+        	var docDate = new Date(doc.start);
         	var eventDate = docDate.getDate();
         	if (todaysDate == eventDate) {
         		locals.todaysEvents.events.push(doc);
-        	}
+                console.log(doc);
+            }
         });
-		console.log(docs);
+        console.log(locals.todaysEvents);
+		// console.log(docs);
         locals.eventlist.events = docs;
     	res.render('homepage', locals);
       }
