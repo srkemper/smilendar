@@ -23,7 +23,14 @@ var mongoose = require('mongoose');
 var mongoosedb = require('./mongoose');
 var Event = mongoose.model('Event');
 
+
 var User = mongoose.model('User');
+
+// Event.find(function(err, events) {
+//   if (err) {console.log('error retrieving events')};
+//   //console.log(events);
+// });
+
 
 var index = require('./routes/index');
 
@@ -102,8 +109,8 @@ app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month/:id', month.view);
 
 app.post('/changeMood', function(request, response) {
-  console.log(request.body.id);
-  console.log(request.body.mood);
+  //console.log(request.body.id);
+  //console.log(request.body.mood);
   mongoosedb.once('open', function callback () {
     var eventSchema = mongoose.Schema({
       name: String,
@@ -118,7 +125,7 @@ app.post('/changeMood', function(request, response) {
     var Event = mongoose.model('Event', eventSchema);
     Event.find({"_id": mongojs.ObjectId(request.body.id)}).exec(function(err, eve) {
       if (err) {console.log('error finding in mongoose')};
-      console.log(eve);
+      //console.log(eve);
     });
   });
   db.events.update({_id: mongojs.ObjectId(request.body.id)}, {$set: {mood:request.body.mood}}, function(err, updated) {
@@ -126,6 +133,7 @@ app.post('/changeMood', function(request, response) {
       console.log("not updated :(");
     }
     // console.log(updated);
+
   })
   response.json(200);
 });

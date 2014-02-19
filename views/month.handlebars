@@ -16,7 +16,16 @@
 				<div class="cal-cell1" id="sat"><small>Sat</small>
 				</div>
 		</div>
-		<div class="cal-row-fluid weekday-num">
+		{{#each weeks}}
+			<div class="cal-row-fluid weekday-num">
+			{{#each weekDays}}
+				<div class="cal-cell1">
+					<div class="day-order">{{date}}</div>
+				</div>
+			{{/each}}
+			</div>
+		{{/each}}
+{{!-- 		<div class="cal-row-fluid weekday-num">
 				<div class="cal-cell1" id="sun" href="9">
 					<div class="day-order"></div>
 				</div>
@@ -130,7 +139,7 @@
 				<div class="cal-cell1" id="sat" href="15">
 					<div class="day-order"></div>
 				</div>
-		</div>
+		</div> --}}
 	</div>
 </div>
 

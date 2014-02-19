@@ -19,8 +19,10 @@ Date.prototype.getWeek = function(){
                      }, this )
           );
 }
-// usage 
+
+// usage
 // console.log(new Date().getWeek());
+
 
 var dayToName = {
     0: 'sun',
@@ -100,7 +102,8 @@ function parseCalendarData(dat) {
 
 // returns a parsed list of today's events
 function populateTodayEvents(todayData) {
-    
+
+
 }
 
 // append '0' to the front of string if string has length 1
@@ -123,7 +126,7 @@ function getCurrentWeek(currDate) {
     var tagDate = new Array();
 
     for (var i=0; i<weekList.length; i++) {
-        var month = weekList[i].getMonth()+1;   
+        var month = weekList[i].getMonth()+1;
         month = month.toString();
         var date = weekList[i].getDate();
         date = date.toString();
@@ -181,13 +184,14 @@ exports.index = function(req, res){
  //        // console.log(locals.todaysEvents);
 	// 	// console.log(docs);
  //        locals.eventlist.events = docs;
- //    	
+ //
  //      }
  //    });
 
 
   console.log(locals);
     res.render('homepage', locals);
+
 };
 
 // source: http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
@@ -203,6 +207,7 @@ function formatAMPM(date) {
 }
 
 exports.dayInfo = function(req, res) {
+
     console.log('dayInfo');
     var dateId = req.params.id;
     var date = getDateFromDayID(dateId)
@@ -212,7 +217,7 @@ exports.dayInfo = function(req, res) {
 
     Event.findByDate(date, function(err, events) {
       console.log("--------Event.findByDate--------------")
-      
+
 
       // adding "starttime" and "endtime" in strings
       for (var i=0; i<events.length; i++) {
