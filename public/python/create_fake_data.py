@@ -36,7 +36,7 @@ TTh = [("Physical therapy","Vaden",(9,0),(9,30)),("CS 228", "online", (1,15),(15
 daily = [("feed cat", "home", (20,15),(20,45)),("exercise","gym",(8,0),(9,0))]
 
 def getX(day, event, interval_time, j):
-	start_time = j*interval_time+datetime.datetime(year,month,day,event[3][0],event[3][1])
+	start_time = j*interval_time+datetime.datetime(year,month,day,event[2][0],event[2][1])
 	print start_time
 	start_time_int = int(start_time.strftime('%s')+'000')
 	final_time = j*interval_time+datetime.datetime(year,month,day,event[3][0],event[3][1])

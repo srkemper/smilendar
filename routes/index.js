@@ -136,7 +136,6 @@ function getCurrentWeek(currDate) {
         dates[i] = date;
         tagDate[i] = [tags[i], date] //, dayToName[i]]
     }
-    // res.json(["tags":tag, "dates":dates])
     return [tags, dates, tagDate]
 }
 
@@ -191,32 +190,51 @@ exports.index = function(req, res){
     res.render('homepage', locals);
 };
 
+// source: http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
 exports.dayInfo = function(req, res) {
     console.log('dayInfo');
     var dateId = req.params.id;
     var date = getDateFromDayID(dateId)
     console.log(dateId)
     console.log(date)
+    // var eventForDate = [];
 
     Event.findByDate(date, function(err, events) {
-        // console.log(typeof(events))
-        // console.log(events.length)
-        // locals.todayEvents.events = events;
       console.log("--------Event.findByDate--------------")
-      // console.log(locals.todayEvents.events);
-      console.log(events)
+      
 
+      // adding "starttime" and "endtime" in strings
+      for (var i=0; i<events.length; i++) {
+            // eventForDate[i] = events[i];
+            // eventForDate[i].star = 'hello';
+            // console.log(eventForDate[i])
+            // console.log(events[i])
+            // events[i].star = 'hello';
+            // console.log(events[i].star)
+            // console.log(events[i].name)
+            // events[i].push({key: 'hello', value: 2})
+            // console.log(typeof(events[i]))
+            // console.log('after')
+            console.log(i)
+            console.log(events[i].start)
+            console.log(events[i].end)
+            events[i].starttime = formatAMPM(new Date(events[i].start))
+            events[i].endtime = formatAMPM(new Date(events[i].end))
+            console.log(events[i])
+      }
+      // console.log(events)
       res.json({"eventList": events});
 
     });
-
-    // parseCalendarData(data);
-   // parseCalendarData(locals.eventlist);
-//    console.log(eventsByDay);
-    // console.log(eventsByDay[dayName]);
-    // console.log('mongo--22');
-    // db.events.find(function(err, docs) {
-    // 	console.log(docs);
-    // });
-    // res.json(eventsByDay[dayName]);
 }
