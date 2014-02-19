@@ -98,11 +98,11 @@ var eventsJSON = require("./data.json");
 
 app.get('/login', user.login);
 app.get('/logout', user.logout);
+app.get('/addEvent', addEvent.view);
 app.get('/:id',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month/:id', month.view);
-app.get('/addEvent', addEvent.view);
 
 app.post('/changeMood', function(request, response) {
   console.log(request.body.id);
