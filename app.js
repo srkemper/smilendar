@@ -23,10 +23,11 @@ var db = require('./db');
 var mongoosedb = require('./mongoose');
 
 var Event = mongoose.model('Event');
-Event.find(function(err, events) {
-  if (err) {console.log('error retrieving events')};
-  console.log(events);
-});
+var User = mongoose.model('User');
+
+// Event.findByDate(new Date(), function(err, events) {
+//   console.log(events);
+// })
 
 var index = require('./routes/index');
 
