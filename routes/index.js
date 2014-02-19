@@ -6,6 +6,19 @@ var currUser;
 var gapi = require('./gapi');
 var db = require('../db.js');
 
+// given a day in a week, return the entire week in array
+Date.prototype.getWeek = function(){
+ return [new Date(this.setDate(this.getDate()-this.getDay()))]
+          .concat(
+            String(Array(6)).split(',')
+               .map ( function(){
+                       return new Date(this.setDate(this.getDate()+1));
+                     }, this )
+          );
+}
+// usage 
+console.log(new Date().getWeek());
+
 var dayToName = {
     0: 'sun',
     1: 'mon',
@@ -67,6 +80,10 @@ function parseCalendarData(dat) {
     }
 }
 
+function populateTodayEvents() {
+    
+}
+
 var locals = {
     user: currUser,
     url: gapi.url,
@@ -74,7 +91,7 @@ var locals = {
     script: '/javascripts/day_view.js',
     goback: {
         link: '/month/2',
-        display: 'Febrary',
+        display: 'February',
     },
     // eventlist: data
    eventlist: {'events':[]},
