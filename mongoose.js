@@ -35,8 +35,8 @@ eventSchema.virtual('start_year').get(function() {
 // eventually will be extended to events for a specific user on a specific date
 eventSchema.statics.findByDate = function(date, callback) {
   var eventList = [];
-  var date = new Date();
-  this.find({}, function(err, events) {
+  // var date = new Date();
+  this.find({}, null, {sort:{'start':1}}, function(err, events) {
     events.forEach(function(eve) {
       if (eve.start_day == date.getDate() && eve.start_month == date.getMonth() && eve.start_year == date.getYear()) {
         eventList.push(eve);

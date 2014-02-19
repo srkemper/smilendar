@@ -40,12 +40,20 @@
 				</div>
 		</div>
 		<div class="cal-row-fluid weekday-num">
-			{{!-- {{#each tagDate}}
-				<div class="cal-cell1" id="mon" href=tagDate>
-					<div class="day-order">10</div>
-				</div>
-			{{/each}} --}}
-				<div class="cal-cell1" id="sun" href="9">
+			{{#each tagDate}}
+				{{!-- <div> {{this.0}}</div> --}}
+				{{#each this}}
+					{{#unless @index}}
+						{{!-- <div> {{this}}</div> --}}
+					<div class="cal-cell1" id="{{this}} "href="{{this}}">
+					{{else}}
+						{{!-- <div> {{this}}</div> --}}
+						<div class="day-order">{{this}}</div>
+					{{/unless}}
+				{{/each}}
+					</div> 
+			{{/each}}
+		{{!-- 		<div class="cal-cell1" id="sun" href="9">
 					<div class="day-order">9</div>
 				</div>
 				<div class="cal-cell1" id="mon" href="10">
@@ -65,7 +73,7 @@
 				</div>
 				<div class="cal-cell1" id="sat" href="15">
 					<div class="day-order">15</div>
-				</div>
+				</div> --}}
 		</div>
 {{!-- 		<h4 class="text-center">Su M Tu <kbd>W</kbd> Th F Sa</h4> --}}
 	</div>

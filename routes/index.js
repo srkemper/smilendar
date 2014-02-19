@@ -6,6 +6,8 @@ var currUser;
 var gapi = require('./gapi');
 var db = require('../db.js');
 var year = 2014;    // only code for current year
+var mongoose = require('../mongoose')
+var Event = mongoose.model('Event');
 
 // given a day in a week, return the entire week in array
 Date.prototype.getWeek = function(){
@@ -130,9 +132,9 @@ function getCurrentWeek(currDate) {
         date = appendZero(date);
 
         tag = month+'-'+date;
-        
+        tags[i] = tag;
         dates[i] = date;
-        tagDate[i] = [tags[i], date]
+        tagDate[i] = [tags[i], date] //, dayToName[i]]
     }
     // res.json(["tags":tag, "dates":dates])
     return [tags, dates, tagDate]
@@ -161,6 +163,7 @@ exports.index = function(req, res){
     var currWeekInfo = getCurrentWeek(today);
     locals.tag = currWeekInfo[0];
     locals.dates = currWeekInfo[1];
+    locals.tagDate = currWeekInfo[2];
 
     // locals.todaysEvents.events = [];
 	// db.events.find(function(err, docs) {
@@ -182,20 +185,38 @@ exports.index = function(req, res){
  //    	
  //      }
  //    });
-  // console.log(locals);
+
+
+  console.log(locals);
     res.render('homepage', locals);
 };
 
 exports.dayInfo = function(req, res) {
     console.log('dayInfo');
-    var dayName = req.params.id;
+    var dateId = req.params.id;
+    var date = getDateFromDayID(dateId)
+    console.log(dateId)
+    console.log(date)
+
+    Event.findByDate(date, function(err, events) {
+        // console.log(typeof(events))
+        // console.log(events.length)
+        // locals.todayEvents.events = events;
+      console.log("--------Event.findByDate--------------")
+      // console.log(locals.todayEvents.events);
+      console.log(events)
+
+      res.json({"eventList": events});
+
+    });
+
     // parseCalendarData(data);
-   parseCalendarData(locals.eventlist);
+   // parseCalendarData(locals.eventlist);
 //    console.log(eventsByDay);
     // console.log(eventsByDay[dayName]);
-    console.log('mongo--22');
+    // console.log('mongo--22');
     // db.events.find(function(err, docs) {
     // 	console.log(docs);
     // });
-    res.json(eventsByDay[dayName]);
+    // res.json(eventsByDay[dayName]);
 }
