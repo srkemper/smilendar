@@ -16,12 +16,11 @@ var handlebars = require('express3-handlebars');
 // var gapi = require('./routes/gapi');
 var mongo_client = require('mongodb').MongoClient;
 var mongojs = require('mongojs');
-var mongoose = require('mongoose');
 
 var db = require('./db');
 
+var mongoose = require('mongoose');
 var mongoosedb = require('./mongoose');
-
 var Event = mongoose.model('Event');
 var User = mongoose.model('User');
 
