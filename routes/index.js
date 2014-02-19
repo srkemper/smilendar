@@ -131,8 +131,8 @@ function getCurrentWeek(currDate) {
         var date = weekList[i].getDate();
         date = date.toString();
 
-        month = appendZero(month);
-        date = appendZero(date);
+        // month = appendZero(month);
+        // date = appendZero(date);
 
         tag = month+'-'+date;
         tags[i] = tag;
@@ -145,8 +145,10 @@ function getCurrentWeek(currDate) {
 
 // given a dayId object, returns the Javascript date object
 function getDateFromDayID(dayId) {
-    var monthId = parseInt(dayId.substring(0,2))-1; // just extract month part, e.g. 02
-    var dateId = parseInt(dayId.substring(3,5));
+    var monthId = parseInt(dayId.split('-')[0])-1;
+    // var monthId = parseInt(dayId.substring(0,2))-1; // just extract month part, e.g. 02
+    // var dateId = parseInt(dayId.substring(3,5));
+    var dateId = parseInt(dayId.split('-')[1]);
     // console.log('getDateFromDayID')
     // console.log(monthId)
     // console.log(dateId)

@@ -4,7 +4,8 @@ var calendar = require('calendar').Calendar;
 
 var locals = {
   user: 'random',
-  title: 'Today'
+  title: 'Today',
+  script: '/javascripts/month_view.js'
 };
 
 
@@ -26,7 +27,8 @@ exports.view = function(req, res) {
   };
   for (i = 0; i<dayCount; i++) {
     var j = i+1;
-    monthMood.days.push({date:j});
+    var k =("0" + j).slice(-2);
+    monthMood.days.push({date:j,url:k});
   }
 
   cal = new calendar(0);               // weeks starting on Monday
