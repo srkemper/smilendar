@@ -16,8 +16,8 @@ Date.prototype.getWeek = function(){
                      }, this )
           );
 }
-// usage 
-console.log(new Date().getWeek());
+// usage
+//console.log(new Date().getWeek());
 
 var dayToName = {
     0: 'sun',
@@ -81,7 +81,7 @@ function parseCalendarData(dat) {
 }
 
 function populateTodayEvents() {
-    
+
 }
 
 var locals = {
@@ -104,11 +104,11 @@ exports.index = function(req, res){
     locals.dayId = dayId;
     locals.user = req.session.username;
 
-    console.log('-------------xxx');
+    //console.log('-------------xxx');
 	locals.todaysEvents.events = [];
 	db.events.find(function(err, docs) {
       if (!err) {
-        console.log('mongojs working in index.js!');
+        //console.log('mongojs working in index.js!');
         // console.log(docs);
         docs.forEach(function(doc) {
         	var today = new Date();
@@ -117,26 +117,26 @@ exports.index = function(req, res){
         	var eventDate = docDate.getDate();
         	if (todaysDate == eventDate) {
         		locals.todaysEvents.events.push(doc);
-                // console.log(doc);
+                // //console.log(doc);
             }
         });
-        console.log(locals.todaysEvents);
-		// console.log(docs);
+        //console.log(locals.todaysEvents);
+		// //console.log(docs);
         locals.eventlist.events = docs;
     	res.render('homepage', locals);
       }
     });
-  console.log(locals);
+  //console.log(locals);
 };
 
 exports.dayInfo = function(req, res) {
-    console.log('dayInfo');
+    //console.log('dayInfo');
     var dayName = req.params.id;
     // parseCalendarData(data);
    parseCalendarData(locals.eventlist);
-//    console.log(eventsByDay);
-    console.log(eventsByDay[dayName]);
-    console.log('mongo--22');
+//    //console.log(eventsByDay);
+    //console.log(eventsByDay[dayName]);
+    //console.log('mongo--22');
     // db.events.find(function(err, docs) {
     // 	console.log(docs);
     // });

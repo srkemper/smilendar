@@ -7,26 +7,64 @@ var locals = {
   title: 'Today'
 };
 
-var monthMood = [
-  1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0
-];
+
+function daysInMonth(month,year)
+{
+   return new Date(year, month, 0).getDate();
+}
+
 
 exports.view = function(req, res) {
   var monthId = req.params.id;
   console.log(monthId);
-  cal = new calendar(0);               // weeks starting on Monday
-  m = cal.monthDays(2014, parseInt(monthId)-1);
-  console.log(m.length);
-  for (i=0; i<m.length; i++) console.log(m[i]);
-  m_entire = [];
-  for (i=0; i<m.length; i++){
-    m_entire = m_entire.concat(m[i]);
-  }
-  console.log(m_entire);
-  locals.month = m;
-	res.render('month', locals);
-  // tested with calendar_event
+  dayCount = daysInMonth(monthId,2014);  // currently hardcoded for 2014 only
+  console.log('How many days in this month? : '+dayCount);
 
+  // Generating sudo data about daily summary here
+  var monthMood = {
+    days:[]
+  };
+  for (i = 0; i<dayCount; i++) {
+    var j = i+1;
+    monthMood.days.push({date:j});
+  }
+
+  cal = new calendar(0);               // weeks starting on Monday
+  // m = cal.monthDays(2014, parseInt(monthId)-1);
+  m = cal.monthJSON(2014, parseInt(monthId)-1, monthMood);  // month is from 0 - 11
+
+  // Assign data into JSON objects
+  // { weeks: [
+  //     { weekDays: [
+  //         { date : 1,
+  //           attr : somevalue
+  //         },...
+  //       ]
+  //     },...
+  //   ]
+  // }
+
+  var weeks = [],
+      weekDay =[], // Temporary Array
+      week = {
+        weekDays:[]
+      },
+      i = 0;
+
+  for (i = 0; i < m.length; i+=7) {
+    weekDay = m.slice(i,i+7);
+    // console.log(weekDay);
+    // console.log('---------');
+    week.weekDays = weekDay;
+    weeks.push(week);
+    week = {
+        weekDays:[]
+      };
+  }
+
+  locals.weeks = weeks;
+	res.render('month', locals);
 
 
 };
+
