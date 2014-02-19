@@ -1,4 +1,15 @@
 <div class="month-view">
+	<div class="month-nav">
+		<ul class="pager">
+			{{#if nav.pUrl}}
+		  <li class="previous"><a href="{{nav.pUrl}}">{{nav.pMonth}}</a></li>
+		  {{/if}}
+		  {{#if nav.nUrl}}
+		  <li class="next"><a href="{{nav.nUrl}}">{{nav.nMonth}}</a></li>
+		  {{/if}}
+		</ul>
+		<div class="thisMonth">{{nav.month}}</div>
+	</div>
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
 			<div class="cal-cell1" id="sun"><small>Sun</small>

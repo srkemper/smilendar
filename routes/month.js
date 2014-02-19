@@ -8,6 +8,8 @@ var locals = {
   script: '/javascripts/month_view.js'
 };
 
+var monthNameFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var monthName = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 function daysInMonth(month,year)
 {
@@ -20,6 +22,9 @@ exports.view = function(req, res) {
   console.log(monthId);
   dayCount = daysInMonth(monthId,2014);  // currently hardcoded for 2014 only
   console.log('How many days in this month? : '+dayCount);
+
+
+
 
   // Generating sudo data about daily summary here
   var monthMood = {
@@ -62,8 +67,22 @@ exports.view = function(req, res) {
         weekDays:[]
       };
   }
-
   locals.weeks = weeks;
+  // Clear the local months
+  var nav = {};
+  nav.url = monthId;
+  nav.month = monthNameFull[parseInt(monthId) - 1];
+  if (parseInt(monthId) - 1 >= 0) {
+    nav.pUrl = parseInt(monthId) - 1;
+    console.log('pUrl: '+ nav.pUrl);
+    nav.pMonth = monthName[nav.pUrl -1 ];
+  }
+  if (parseInt(monthId) + 1 < 13) {
+    nav.nUrl = parseInt(monthId) + 1;
+    console.log('nUrl: '+nav.nUrl);
+    nav.nMonth = monthName[nav.nUrl - 1];
+  }
+  locals.nav = nav;
 	res.render('month', locals);
 
 
