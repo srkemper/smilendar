@@ -129,6 +129,15 @@ body {
 .navbar-header .menu {
   float: right;
 }
+.month-view .this-week {
+  margin: 10px 0;
+}
+.month-view .cal-cell1 {
+  text-align: center;
+}
+.month-view .weekday-num {
+  padding: 20px 0;
+}
 .day-view .this-week {
   margin: 10px 0;
 }
