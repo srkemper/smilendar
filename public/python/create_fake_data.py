@@ -12,6 +12,8 @@ mood = "mood"
 note = "note"
 user = "user"
 
+userNames = ['Sean','Zayne','Jim']
+
 moodChoices = [-2, -1, 0, 1, 2]
 
 year = 2014
@@ -32,7 +34,7 @@ happy_comments = ["wow this is awesome, I'm learning so much!",
 # tuple (event, type, start, end)
 MW = [("CS 147", "Annenberg", (13,15), (15,0)), ("CS 110", "Gates B2", (9,0), (10,0)), 
 ("CS 107", "Gates B2", (11,0),(12,15)), ("CS 103", "nVidia", (15,30),(16,45))]
-TTh = [("Physical therapy","Vaden",(9,0),(9,30)),("CS 228", "online", (1,15),(15,0)), ("CS 231A", "nVidia", (11,0),(12,15))]
+TTh = [("Physical therapy","Vaden",(9,0),(9,30)),("CS 228", "online", (13,15),(15,0)), ("CS 231A", "nVidia", (11,0),(12,15))]
 daily = [("feed cat", "home", (20,15),(20,45)),("exercise","gym",(8,0),(9,0))]
 
 def getX(day, event, interval_time, j):
@@ -57,7 +59,9 @@ def getX(day, event, interval_time, j):
 		moodToday = 0
 		commentToday = ""
 
-	x = {user: "", name: event[0], loc: event[1], start: start_time_int, 
+	currUser = choice(userNames)
+
+	x = {user: currUser, name: event[0], loc: event[1], start: start_time_int, 
 	end: final_time_int, mood: moodToday, comment: commentToday, note:""}
 	return x
 
