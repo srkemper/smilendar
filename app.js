@@ -16,9 +16,17 @@ var handlebars = require('express3-handlebars');
 // var gapi = require('./routes/gapi');
 var mongo_client = require('mongodb').MongoClient;
 var mongojs = require('mongojs');
+var mongoose = require('mongoose');
 
 var db = require('./db');
 
+var mongoosedb = require('./mongoose');
+
+var Event = mongoose.model('Event');
+Event.find(function(err, events) {
+  if (err) {console.log('error retrieving events')};
+  console.log(events);
+});
 
 var index = require('./routes/index');
 
@@ -88,6 +96,8 @@ var eventsJSON = require("./data.json");
 //   }
 // });
 
+app.get('/login', user.login);
+app.get('/logout', user.logout);
 app.get('/:id',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
@@ -97,6 +107,23 @@ app.get('/addEvent', addEvent.view);
 app.post('/changeMood', function(request, response) {
   console.log(request.body.id);
   console.log(request.body.mood);
+  mongoosedb.once('open', function callback () {
+    var eventSchema = mongoose.Schema({
+      name: String,
+      id: String,
+      start: Number,
+      end: Number,
+      location: String,
+      mood: Number,
+      comment: String,
+      note: String
+    });
+    var Event = mongoose.model('Event', eventSchema);
+    Event.find({"_id": mongojs.ObjectId(request.body.id)}).exec(function(err, eve) {
+      if (err) {console.log('error finding in mongoose')};
+      console.log(eve);
+    });
+  });
   db.events.update({_id: mongojs.ObjectId(request.body.id)}, {$set: {mood:request.body.mood}}, function(err, updated) {
     if (err) {
       console.log("not updated :(");
