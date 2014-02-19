@@ -27,8 +27,7 @@ exports.view = function(req, res) {
   };
   for (i = 0; i<dayCount; i++) {
     var j = i+1;
-    var k =("0" + j).slice(-2);
-    monthMood.days.push({date:j,url:k});
+    monthMood.days.push({date:j,url:monthId + '-' + j});
   }
 
   cal = new calendar(0);               // weeks starting on Monday
