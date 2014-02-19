@@ -6,6 +6,19 @@ var currUser;
 var gapi = require('./gapi');
 var db = require('../db.js');
 
+// given a day in a week, return the entire week in array
+Date.prototype.getWeek = function(){
+ return [new Date(this.setDate(this.getDate()-this.getDay()))]
+          .concat(
+            String(Array(6)).split(',')
+               .map ( function(){
+                       return new Date(this.setDate(this.getDate()+1));
+                     }, this )
+          );
+}
+// usage 
+console.log(new Date().getWeek());
+
 var dayToName = {
     0: 'sun',
     1: 'mon',
@@ -27,8 +40,8 @@ var eventsByDay = {
 };   // organize events by day
 
 // parses datetime
-function parseDateTime(datetime) {
-        var d = new Date(Date.parse(datetime));
+function parseEpoch(epoch) {
+        var d = new Date(epoch);
         var day = dayToName[d.getDay()];   // gets the day of the week
         var month = d.getMonth();
         var date = d.getDate();
@@ -58,13 +71,17 @@ function parseCalendarData(dat) {
 	};
     var events = dat.events;
     for (var i=0; i<events.length; i++) {
-        var start = events[i].start.dateTime; // format: "2012-02-11T03:30:00-06:00"
-        var end = events[i].end.dateTime; // format: "2012-02-11T03:30:00-06:00"
+        var start = events[i].start; // format: epoch time
+        var end = events[i].end; // format: epoch time
 
-        timeobj = parseDateTime(start);
+        timeobj = parseEpoch(start);
         var name = timeobj['day'];
         eventsByDay[name]['eventList'].push(events[i]);
     }
+}
+
+function populateTodayEvents() {
+    
 }
 
 var locals = {
@@ -74,17 +91,18 @@ var locals = {
     script: '/javascripts/day_view.js',
     goback: {
         link: '/month/2',
-        display: 'Febrary',
+        display: 'February',
     },
     // eventlist: data
    eventlist: {'events':[]},
    todaysEvents: {'events': []}
 };
-
+//gets a ordered list (by start time) of the events for this day
 exports.index = function(req, res){
     // parse id for date from URL
     var dayId = req.params.id;
     locals.dayId = dayId;
+    locals.user = req.session.username;
 
     console.log('-------------xxx');
 	locals.todaysEvents.events = [];
@@ -95,13 +113,15 @@ exports.index = function(req, res){
         docs.forEach(function(doc) {
         	var today = new Date();
         	var todaysDate = 12; //today.getDate();
-        	var docDate = new Date(Date.parse(doc.start.dateTime));
+        	var docDate = new Date(doc.start);
         	var eventDate = docDate.getDate();
         	if (todaysDate == eventDate) {
         		locals.todaysEvents.events.push(doc);
-        	}
+                // console.log(doc);
+            }
         });
-		console.log(docs);
+        console.log(locals.todaysEvents);
+		// console.log(docs);
         locals.eventlist.events = docs;
     	res.render('homepage', locals);
       }
