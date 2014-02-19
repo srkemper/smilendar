@@ -158,30 +158,32 @@ exports.index = function(req, res){
     locals.user = req.session.username;
 
     var today = getDateFromDayID(dayId);
- //    console.log('-------------xxx');
-	// console.log(dayId)
- //    console.log(today)
-    locals.todaysEvents.events = [];
-	db.events.find(function(err, docs) {
-      if (!err) {
-        console.log('mongojs working in index.js!');
-        // console.log(docs);
-        docs.forEach(function(doc) {
-        	var todaysDate = today.getDate();
-        	var docDate = new Date(doc.start);
-        	var eventDate = docDate.getDate();
-        	if (todaysDate == eventDate) {
-        		locals.todaysEvents.events.push(doc);
-                // console.log(doc);
-            }
-        });
-        // console.log(locals.todaysEvents);
-		// console.log(docs);
-        locals.eventlist.events = docs;
-    	res.render('homepage', locals);
-      }
-    });
+    var currWeekInfo = getCurrentWeek(today);
+    locals.tag = currWeekInfo[0];
+    locals.dates = currWeekInfo[1];
+
+    // locals.todaysEvents.events = [];
+	// db.events.find(function(err, docs) {
+ //      if (!err) {
+ //        console.log('mongojs working in index.js!');
+ //        // console.log(docs);
+ //        docs.forEach(function(doc) {
+ //        	var todaysDate = today.getDate();
+ //        	var docDate = new Date(doc.start);
+ //        	var eventDate = docDate.getDate();
+ //        	if (todaysDate == eventDate) {
+ //        		locals.todaysEvents.events.push(doc);
+ //                // console.log(doc);
+ //            }
+ //        });
+ //        // console.log(locals.todaysEvents);
+	// 	// console.log(docs);
+ //        locals.eventlist.events = docs;
+ //    	
+ //      }
+ //    });
   // console.log(locals);
+    res.render('homepage', locals);
 };
 
 exports.dayInfo = function(req, res) {
