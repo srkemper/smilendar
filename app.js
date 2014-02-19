@@ -21,37 +21,10 @@ var db = require('./db');
 
 var mongoosedb = require('./mongoose');
 
-mongoosedb.once('open', function callback () {
-  var eventSchema = mongoose.Schema({
-    name: String,
-    id: String,
-    start: Number,
-    end: Number,
-    location: String,
-    mood: Number,
-    comment: String,
-    note: String
-  });
-  var Event = mongoose.model('Event', eventSchema);
-  var practice = new Event({
-    name: "Practice",
-    id: "5",
-    start: new Date().valueOf(),
-    end: new Date().valueOf() + 60000,
-    location: 'Maples Pavillion',
-    mood: '1',
-    comment: 'i am tired',
-    note: 'early practice today for presidents day'
-  });
-  // console.log(practice.start);
-  // practice.save(function(err, saved) {
-  //   if (err) {console.log('error saving')};
-  //   console.log(saved);
-  // });
-  // Event.find(function(err, events) {
-  //   if (err) {console.log('error retrieving events')};
-  //   console.log(events);
-  // });
+var Event = mongoose.model('Event');
+Event.find(function(err, events) {
+  if (err) {console.log('error retrieving events')};
+  console.log(events);
 });
 
 var index = require('./routes/index');
