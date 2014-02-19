@@ -39,7 +39,7 @@ eventSchema.statics.findByDate = function(date, callback) {
   this.find({}, null, {sort:{'start':1}}, function(err, events) {
     events.forEach(function(eve) {
       if (eve.start_day == date.getDate() && eve.start_month == date.getMonth() && eve.start_year == date.getYear()) {
-        eventList.push(eve);
+        eventList.push(eve.toJSON());
       }
     });
     callback(err, eventList);
