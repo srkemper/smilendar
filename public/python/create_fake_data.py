@@ -79,7 +79,7 @@ for event in TTh:
 		x_list.append(x)
 
 		# Thursdays
-		x = getX(day+2, event, oneweek, j)
+		x = getX(day+3, event, oneweek, j)
 		x_list.append(x)
 
 for event in daily:
