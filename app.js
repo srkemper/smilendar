@@ -25,7 +25,7 @@ var mongoosedb = require('./mongoose');
 var Event = mongoose.model('Event');
 Event.find(function(err, events) {
   if (err) {console.log('error retrieving events')};
-  console.log(events);
+  // console.log(events);
 });
 
 var index = require('./routes/index');
@@ -128,7 +128,7 @@ app.post('/changeMood', function(request, response) {
     if (err) {
       console.log("not updated :(");
     }
-    console.log(updated);
+    // console.log(updated);
   })
   response.json(200);
 });

@@ -5,6 +5,7 @@ var data = require("../tester.json");
 var currUser;
 var gapi = require('./gapi');
 var db = require('../db.js');
+var year = 2014;    // only code for current year
 
 // given a day in a week, return the entire week in array
 Date.prototype.getWeek = function(){
@@ -17,7 +18,7 @@ Date.prototype.getWeek = function(){
           );
 }
 // usage 
-console.log(new Date().getWeek());
+// console.log(new Date().getWeek());
 
 var dayToName = {
     0: 'sun',
@@ -28,6 +29,21 @@ var dayToName = {
     5: 'fri',
     6: 'sat',
 }
+
+
+var locals = {
+    user: currUser,
+    url: gapi.url,
+    title: 'Today',
+    script: '/javascripts/day_view.js',
+    goback: {
+        link: '/month/2',
+        display: 'February',
+    },
+    // eventlist: data
+   eventlist: {'events':[]},
+   todaysEvents: {'events': []}
+};
 
 var eventsByDay = {
     'sun': [],
@@ -80,23 +96,60 @@ function parseCalendarData(dat) {
     }
 }
 
-function populateTodayEvents() {
+// returns a parsed list of today's events
+function populateTodayEvents(todayData) {
     
 }
 
-var locals = {
-    user: currUser,
-    url: gapi.url,
-    title: 'Today',
-    script: '/javascripts/day_view.js',
-    goback: {
-        link: '/month/2',
-        display: 'February',
-    },
-    // eventlist: data
-   eventlist: {'events':[]},
-   todaysEvents: {'events': []}
-};
+// append '0' to the front of string if string has length 1
+function appendZero(tag) {
+    if (tag.length == 1) {
+            tag = "0"+tag;  // of form e.g. "02-12"
+    }
+    return tag;
+}
+
+function getCurrentWeek(currDate) {
+    // defaults to today if currDate == NULL
+    currDate = typeof currDate !== 'undefined' ? currDate : new Date();
+    console.log('getCurrentWeek----------------')
+    console.log(currDate)
+    console.log('getCurrentWeek----------------')
+    var weekList = currDate.getWeek();  // get an array of current week
+    var tags = new Array();
+    var dates = new Array();
+    var tagDate = new Array();
+
+    for (var i=0; i<weekList.length; i++) {
+        var month = weekList[i].getMonth()+1;   
+        month = month.toString();
+        var date = weekList[i].getDate();
+        date = date.toString();
+
+        month = appendZero(month);
+        date = appendZero(date);
+
+        tag = month+'-'+date;
+        
+        dates[i] = date;
+        tagDate[i] = [tags[i], date]
+    }
+    // res.json(["tags":tag, "dates":dates])
+    return [tags, dates, tagDate]
+}
+
+
+// given a dayId object, returns the Javascript date object
+function getDateFromDayID(dayId) {
+    var monthId = parseInt(dayId.substring(0,2))-1; // just extract month part, e.g. 02
+    var dateId = parseInt(dayId.substring(3,5));
+    // console.log('getDateFromDayID')
+    // console.log(monthId)
+    // console.log(dateId)
+
+    return new Date(year, monthId, dateId)
+}
+
 //gets a ordered list (by start time) of the events for this day
 exports.index = function(req, res){
     // parse id for date from URL
@@ -104,15 +157,17 @@ exports.index = function(req, res){
     locals.dayId = dayId;
     locals.user = req.session.username;
 
-    console.log('-------------xxx');
-	locals.todaysEvents.events = [];
+    var today = getDateFromDayID(dayId);
+ //    console.log('-------------xxx');
+	// console.log(dayId)
+ //    console.log(today)
+    locals.todaysEvents.events = [];
 	db.events.find(function(err, docs) {
       if (!err) {
         console.log('mongojs working in index.js!');
         // console.log(docs);
         docs.forEach(function(doc) {
-        	var today = new Date();
-        	var todaysDate = 12; //today.getDate();
+        	var todaysDate = today.getDate();
         	var docDate = new Date(doc.start);
         	var eventDate = docDate.getDate();
         	if (todaysDate == eventDate) {
@@ -120,13 +175,13 @@ exports.index = function(req, res){
                 // console.log(doc);
             }
         });
-        console.log(locals.todaysEvents);
+        // console.log(locals.todaysEvents);
 		// console.log(docs);
         locals.eventlist.events = docs;
     	res.render('homepage', locals);
       }
     });
-  console.log(locals);
+  // console.log(locals);
 };
 
 exports.dayInfo = function(req, res) {
@@ -135,7 +190,7 @@ exports.dayInfo = function(req, res) {
     // parseCalendarData(data);
    parseCalendarData(locals.eventlist);
 //    console.log(eventsByDay);
-    console.log(eventsByDay[dayName]);
+    // console.log(eventsByDay[dayName]);
     console.log('mongo--22');
     // db.events.find(function(err, docs) {
     // 	console.log(docs);
