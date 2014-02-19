@@ -12,8 +12,12 @@ exports.login = function(req, res){
 	var username = req.query.username;
 	console.log("username is: " + username);
 	req.session.username = username;
-	var id = new Date().getDate();
-	res.redirect('/' + id);
+	var day = new Date().getDate();
+	var month = new Date().getMonth() + 1;
+	if (month >= 10) {
+		month = "0" + month
+	}
+	res.redirect('/' + month + "-" + day);
 }
 
 exports.logout = function(req, res){
