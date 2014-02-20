@@ -111,23 +111,23 @@ app.get('/month/:id', month.view);
 app.post('/changeMood', function(request, response) {
   //console.log(request.body.id);
   //console.log(request.body.mood);
-  mongoosedb.once('open', function callback () {
-    var eventSchema = mongoose.Schema({
-      name: String,
-      id: String,
-      start: Number,
-      end: Number,
-      location: String,
-      mood: Number,
-      comment: String,
-      note: String
-    });
-    var Event = mongoose.model('Event', eventSchema);
-    Event.find({"_id": mongojs.ObjectId(request.body.id)}).exec(function(err, eve) {
-      if (err) {console.log('error finding in mongoose')};
-      //console.log(eve);
-    });
-  });
+  // mongoosedb.once('open', function callback () {
+  //   var eventSchema = mongoose.Schema({
+  //     name: String,
+  //     id: String,
+  //     start: Number,
+  //     end: Number,
+  //     location: String,
+  //     mood: Number,
+  //     comment: String,
+  //     note: String
+  //   });
+  //   var Event = mongoose.model('Event', eventSchema);
+  //   Event.find({"_id": mongojs.ObjectId(request.body.id)}).exec(function(err, eve) {
+  //     if (err) {console.log('error finding in mongoose')};
+  //     //console.log(eve);
+  //   });
+  // });
   db.events.update({_id: mongojs.ObjectId(request.body.id)}, {$set: {mood:request.body.mood}}, function(err, updated) {
     if (err) {
       console.log("not updated :(");
@@ -144,10 +144,25 @@ app.post('/addEvent', function(request, response) {
   var endString = params.date + " " + params.endTime;
   var start = Date.parse(startString);
   var end = Date.parse(endString);
-  console.log(startString, endString);
-  console.log(start, end);
-  console.log(params);
-  // response.send();
+  // console.log(startString, endString);
+  // console.log(start, end);
+  // console.log(params);
+  var newEvent = new Event({
+    name: params.name,
+    start: start,
+    end: end,
+    location: params.location,
+    mood: 0,
+    comment: "",
+    note: params.note
+  });
+  newEvent.save(function(err, saved) {
+    if (err) {console.log('could not save new event')};
+    console.log(saved);
+  })
+  var month = new Date().getMonth() + 1;
+  var date = new Date().getDate();
+  response.redirect('/' + month + "-" + date);
 });
 
 app.get('/dayEvent/:id',index.dayInfo);
