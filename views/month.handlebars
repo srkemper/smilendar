@@ -31,9 +31,11 @@
 			<div class="cal-row-fluid weekday-num">
 			{{#each weekDays}}
 				<div class="cal-cell1">
+					{{#if date}}
 					<a href="../{{url}}">
-						<div class="day-order">{{date}}</div>
+						<div class="smile-face">{{date}}</div>
 					</a>
+					{{/if}}
 				</div>
 			{{/each}}
 			</div>

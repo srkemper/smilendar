@@ -16,6 +16,10 @@ function daysInMonth(month,year)
    return new Date(year, month, 0).getDate();
 }
 
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 exports.view = function(req, res) {
   var monthId = req.params.id;
@@ -32,7 +36,12 @@ exports.view = function(req, res) {
   };
   for (i = 0; i<dayCount; i++) {
     var j = i+1;
-    monthMood.days.push({date:j,url:monthId + '-' + j});
+    monthMood.days.push(
+      { date:j,
+        url:monthId + '-' + j,
+        aveMood:getRandomInt(-2,2)
+      }
+    );
   }
 
   cal = new calendar(0);               // weeks starting on Monday
