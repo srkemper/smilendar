@@ -20,9 +20,9 @@
 		    <a href="/addEvent" class="text-right"> Add Event </a>
 		</div> --}}
 	</div>
-	<div class="row">
+	{{!-- <div class="row">
 		<h1 class="text-center">{{title}}</h1>
-	</div>
+	</div> --}}
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
 			<div class="cal-cell1" id="sun"><small>Sun</small>
@@ -78,6 +78,10 @@
 		</div>
 {{!-- 		<h4 class="text-center">Su M Tu <kbd>W</kbd> Th F Sa</h4> --}}
 	</div>
+	<div class="row">
+		<h4 class="text-center", id="fullDate">{{fullDateInString}}</h4>
+	</div>
+
 	<div class="row", id="this_day">
 
 {{!--		<script id="ajax-comment" type="text/x-handlebars"> --}}

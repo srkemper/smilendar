@@ -10,28 +10,35 @@ var mongoose = require('../mongoose')
 var Event = mongoose.model('Event');
 
 // given a day in a week, return the entire week in array
-Date.prototype.getWeek = function(){
- return [new Date(this.setDate(this.getDate()-this.getDay()))]
-          .concat(
-            String(Array(6)).split(',')
-               .map ( function(){
-                       return new Date(this.setDate(this.getDate()+1));
-                     }, this )
-          );
-}
-
 // usage
 // console.log(new Date().getWeek());
+// Date.prototype.getWeek = function(){
+//  return [new Date(this.setDate(this.getDate()-this.getDay()))]
+//           .concat(
+//             String(Array(6)).split(',')
+//                .map ( function(){
+//                        return new Date(this.setDate(this.getDate()+1));
+//                      }, this )
+//           );
+// }
 
+function getWeek(fromDate){
+ var sunday = new Date(fromDate.setDate(fromDate.getDate()-fromDate.getDay()))
+    ,result = [new Date(sunday)];
+ while (sunday.setDate(sunday.getDate()+1) && sunday.getDay()!==0) {
+  result.push(new Date(sunday));
+ }
+ return result;
+}
 
 var dayToName = {
-    0: 'sun',
-    1: 'mon',
-    2: 'tue',
-    3: 'wed',
-    4: 'thu',
-    5: 'fri',
-    6: 'sat',
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
 }
 
 var monthToName = {
@@ -52,73 +59,68 @@ var monthToName = {
 var locals = {
     user: currUser,
     url: gapi.url,
-    title: 'Today',
+    // title: 'Today',
     script: '/javascripts/day_view.js',
     goback: {
         link: '',
         display: '',
     },
+    fullDateInString: ''
     // eventlist: data
-   eventlist: {'events':[]},
-   todaysEvents: {'events': []}
+   // eventlist: {'events':[]},
+   // todaysEvents: {'events': []}
 };
 
-var eventsByDay = {
-    'sun': [],
-    'mon': [],
-    'tue': [],
-    'wed': [],
-    'thu': [],
-    'fri': [],
-    'sat': []
-};   // organize events by day
+// var eventsByDay = {
+//     'sun': [],
+//     'mon': [],
+//     'tue': [],
+//     'wed': [],
+//     'thu': [],
+//     'fri': [],
+//     'sat': []
+// };   // organize events by day
 
 // parses datetime
-function parseEpoch(epoch) {
-        var d = new Date(epoch);
-        var day = dayToName[d.getDay()];   // gets the day of the week
-        var month = d.getMonth();
-        var date = d.getDate();
-        var hour = d.getHours(); // returns the hour (from 0-23) of the time
-        var minutes = d.getMinutes();   // returns the min (from 0-59)
+// function parseEpoch(epoch) {
+//         var d = new Date(epoch);
+//         var day = dayToName[d.getDay()];   // gets the day of the week
+//         var month = d.getMonth();
+//         var date = d.getDate();
+//         var hour = d.getHours(); // returns the hour (from 0-23) of the time
+//         var minutes = d.getMinutes();   // returns the min (from 0-59)
 
-        timeobj = {
-            'day': day,
-            'month': month,
-            'date': date,
-            'hour': hour,
-            'minutes': minutes
-        };
-        return timeobj;
-}
+//         timeobj = {
+//             'day': day,
+//             'month': month,
+//             'date': date,
+//             'hour': hour,
+//             'minutes': minutes
+//         };
+//         return timeobj;
+// }
 
 // regroups the json data by days
-function parseCalendarData(dat) {
-	eventsByDay = {
-    'sun': {'eventList':[]},
-    'mon': {'eventList':[]},
-    'tue': {'eventList':[]},
-    'wed': {'eventList':[]},
-    'thu': {'eventList':[]},
-    'fri': {'eventList':[]},
-    'sat': {'eventList':[]}
-	};
-    var events = dat.events;
-    for (var i=0; i<events.length; i++) {
-        var start = events[i].start; // format: epoch time
-        var end = events[i].end; // format: epoch time
+// function parseCalendarData(dat) {
+// 	eventsByDay = {
+//     'sun': {'eventList':[]},
+//     'mon': {'eventList':[]},
+//     'tue': {'eventList':[]},
+//     'wed': {'eventList':[]},
+//     'thu': {'eventList':[]},
+//     'fri': {'eventList':[]},
+//     'sat': {'eventList':[]}
+// 	};
+//     var events = dat.events;
+//     for (var i=0; i<events.length; i++) {
+//         var start = events[i].start; // format: epoch time
+//         var end = events[i].end; // format: epoch time
 
-        timeobj = parseEpoch(start);
-        var name = timeobj['day'];
-        eventsByDay[name]['eventList'].push(events[i]);
-    }
-}
-
-// returns a parsed list of today's events
-function populateTodayEvents(todayData) {
-
-
-}
+//         timeobj = parseEpoch(start);
+//         var name = timeobj['day'];
+//         eventsByDay[name]['eventList'].push(events[i]);
+//     }
+// }
 
 // append '0' to the front of string if string has length 1
 function appendZero(tag) {
@@ -133,7 +135,8 @@ function getCurrentWeek(currDate) {
     currDate = typeof currDate !== 'undefined' ? currDate : new Date();
     console.log('getCurrentWeek----------------')
     console.log(currDate)
-    var weekList = currDate.getWeek();  // get an array of current week
+    var lastSunday = new Date(currDate.getFullYear(),currDate.getMonth(),currDate.getDate()-currDate.getDay());
+    var weekList = getWeek(lastSunday);  // get an array of current week
     var tags = new Array();
     var dates = new Array();
     var tagDate = new Array();
@@ -150,7 +153,7 @@ function getCurrentWeek(currDate) {
         tag = month+'-'+date;
         tags[i] = tag;
         dates[i] = date;
-        tagDate[i] = [tags[i], date] //, dayToName[i]]
+        tagDate[i] = [tags[i], date] 
     }
     return [tags, dates, tagDate]
 }
@@ -172,6 +175,19 @@ function getDateFromDayID(dayId) {
     return new Date(year, monthId, dateId)
 }
 
+// given date object, return date in string in format like
+// "Thursday, February 20, 2014"
+function returnDayInString(date) {
+    console.log('---returnDayInString---')
+    var currYear = date.getFullYear();
+    var monthId = date.getMonth();
+    var day = date.getDate();
+    var dayOfWeek = dayToName[date.getDay()];
+    var fullDate = dayOfWeek + ' ' + monthToName[monthId] + ' ' + day.toString() + ', '+ currYear.toString();
+    console.log(fullDate)
+    return fullDate
+}
+
 //gets a ordered list (by start time) of the events for this day
 exports.index = function(req, res){
     console.log('---routes.index---')
@@ -186,6 +202,7 @@ exports.index = function(req, res){
     locals.dates = currWeekInfo[1];
     locals.tagDate = currWeekInfo[2];
 
+    locals.fullDateInString = returnDayInString(today);
    
 
     // locals.todaysEvents.events = [];
@@ -210,7 +227,7 @@ exports.index = function(req, res){
  //    });
 
     console.log('---returning to routes.index---')
-  console.log(locals);
+  // console.log(locals);
     res.render('homepage', locals);
 
 };
@@ -236,32 +253,22 @@ exports.dayInfo = function(req, res) {
     // console.log(dateId)
     console.log(date)
     // var eventForDate = [];
-
+    locals.fullDateInString = returnDayInString(date);
     Event.findByDate(date, function(err, events) {
       console.log("--------Event.findByDate--------------")
 
 
       // adding "starttime" and "endtime" in strings
       for (var i=0; i<events.length; i++) {
-            // eventForDate[i] = events[i];
-            // eventForDate[i].star = 'hello';
-            // console.log(eventForDate[i])
-            // console.log(events[i])
-            // events[i].star = 'hello';
-            // console.log(events[i].star)
-            // console.log(events[i].name)
-            // events[i].push({key: 'hello', value: 2})
-            // console.log(typeof(events[i]))
-            // console.log('after')
-            console.log(i)
-            console.log(events[i].start)
-            console.log(events[i].end)
+            // console.log(i)
+            // console.log(events[i].start)
+            // console.log(events[i].end)
             events[i].starttime = formatAMPM(new Date(events[i].start))
             events[i].endtime = formatAMPM(new Date(events[i].end))
-            console.log(events[i])
+            // console.log(events[i])
       }
       // console.log(events)
-      res.json({"eventList": events});
+      res.json({"eventList": events, "fullDateInString": locals.fullDateInString});
 
     });
 }
