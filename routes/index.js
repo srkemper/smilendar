@@ -34,6 +34,20 @@ var dayToName = {
     6: 'sat',
 }
 
+var monthToName = {
+    0: 'January',
+    1: 'February',
+    2: 'March',
+    3: 'April',
+    4: 'May',
+    5: 'June',
+    6: 'July',
+    7: 'Auguest',
+    8: 'September',
+    9: 'October',
+    10: 'November',
+    11: 'December'
+}
 
 var locals = {
     user: currUser,
@@ -41,8 +55,8 @@ var locals = {
     title: 'Today',
     script: '/javascripts/day_view.js',
     goback: {
-        link: '/month/2',
-        display: 'February',
+        link: '',
+        display: '',
     },
     // eventlist: data
    eventlist: {'events':[]},
@@ -119,7 +133,6 @@ function getCurrentWeek(currDate) {
     currDate = typeof currDate !== 'undefined' ? currDate : new Date();
     console.log('getCurrentWeek----------------')
     console.log(currDate)
-    console.log('getCurrentWeek----------------')
     var weekList = currDate.getWeek();  // get an array of current week
     var tags = new Array();
     var dates = new Array();
@@ -149,15 +162,19 @@ function getDateFromDayID(dayId) {
     // var monthId = parseInt(dayId.substring(0,2))-1; // just extract month part, e.g. 02
     // var dateId = parseInt(dayId.substring(3,5));
     var dateId = parseInt(dayId.split('-')[1]);
-    // console.log('getDateFromDayID')
-    // console.log(monthId)
-    // console.log(dateId)
+    console.log('---getDateFromDayID---')
+    console.log(monthId)
+    console.log(dateId)
+
+    locals.goback.link = "/month/" + (monthId+1).toString();
+    locals.goback.display = monthToName[monthId];
 
     return new Date(year, monthId, dateId)
 }
 
 //gets a ordered list (by start time) of the events for this day
 exports.index = function(req, res){
+    console.log('---routes.index---')
     // parse id for date from URL
     var dayId = req.params.id;
     locals.dayId = dayId;
@@ -168,6 +185,8 @@ exports.index = function(req, res){
     locals.tag = currWeekInfo[0];
     locals.dates = currWeekInfo[1];
     locals.tagDate = currWeekInfo[2];
+
+   
 
     // locals.todaysEvents.events = [];
 	// db.events.find(function(err, docs) {
@@ -190,7 +209,7 @@ exports.index = function(req, res){
  //      }
  //    });
 
-
+    console.log('---returning to routes.index---')
   console.log(locals);
     res.render('homepage', locals);
 
@@ -213,7 +232,8 @@ exports.dayInfo = function(req, res) {
     console.log('dayInfo');
     var dateId = req.params.id;
     var date = getDateFromDayID(dateId)
-    console.log(dateId)
+    console.log('dateId is '+ dateId)
+    // console.log(dateId)
     console.log(date)
     // var eventForDate = [];
 

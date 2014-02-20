@@ -7,15 +7,14 @@ $(document).ready(function(){
 
 
 function initializeDayView() {
+    console.log('---initializeDayView---')
     var curUrl = window.location.pathname;
     var dayUrl = curUrl.split('/')[1];
     console.log('dayUrl: '+dayUrl);
-    if(dayUrl == '11') {
-      var urlToPass ='/dayEvent/tue';
-    } else {
-      var urlToPass ='/dayEvent/wed';
-    }
+
+    var urlToPass = 'dayEvent/' + dayUrl;
     // Load the event list of today
+    console.log('urlToPass: '+urlToPass)
     $.get(urlToPass, renderDayEvent);
     highlightDay(dayUrl);
     console.log('initialize page');
