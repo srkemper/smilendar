@@ -138,6 +138,18 @@ app.post('/changeMood', function(request, response) {
   response.json(200);
 });
 
+app.post('/addEvent', function(request, response) {
+  var params = request.body;
+  var startString = params.date + " " + params.startTime;
+  var endString = params.date + " " + params.endTime;
+  var start = Date.parse(startString);
+  var end = Date.parse(endString);
+  console.log(startString, endString);
+  console.log(start, end);
+  console.log(params);
+  // response.send();
+});
+
 app.get('/dayEvent/:id',index.dayInfo);
 
 // handling return value

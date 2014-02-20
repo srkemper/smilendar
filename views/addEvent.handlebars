@@ -1,50 +1,70 @@
 <div class="event-view">
   <div class="row">
+    <form method='post' action='/addEvent' role='form'>
     <div class="col-xs-12">
       <a href="/" class="text-left"> &lt; Today </a>
     </div>
     <div class="col-xs-12">
-      <h4>Add Event</h4>
-{{!--       <div class="event-time">
-          <h6 class="start-time">{{startHour}}:{{startMin}}</h6>
-          <h6 class="end-time">{{endHour}}:{{endMin}}</h6>
-      </div> --}}
-      <div class='form-group col-xs-6'>
-        <label class="control-label" for="add-event-datepicker">Event Date</label>
-        <input type='text' class='form-control' id='add-event-datepicker'>
+      <h4>Add Event, {{username}}</h4>
+  {{!--       <div class="event-time">
+            <h6 class="start-time">{{startHour}}:{{startMin}}</h6>
+            <h6 class="end-time">{{endHour}}:{{endMin}}</h6>
+        </div> --}}
+        <input type='hidden' name='user' value='{{username}}'>
+        <input type='hidden' name='mood' value='0'>
+        <input type='hidden' name='comment' value=''>
+        <div class='form-group'>
+          <label for="name-input">Title:</label>
+          <input type='text' class='form-control' name='name' id='name-input'>
+        </div>
+{{!--         <div class='form-group col-xs-6'>
+          <label class="control-label" for="add-event-datepicker">Event Date</label>
+          <input type='text' class='form-control' id='add-event-datepicker'>
+        </div> --}}
+        <div class='form-group'>
+          <label>Date:</label>
+          <div class="bfh-datepicker" data-icon='glyphicon glyphicon-calendar' data-name='date'></div>
+        </div>
+        {{!-- <div class="smile">
+          <div class="dropdown">
+            <button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{mood}}">smile</button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li id="happy" class="smile-face mood-status">Happy</li>
+              <li id="excited" class="smile-face mood-status">Excited</li>
+              <li id="sad" class="smile-face mood-status">Sad</li>
+              <li id="angry" class="smile-face mood-status">Angry</li>
+            </ul>
+          </div>
+        </div> --}}
       </div>
-      <div class="smile">
-        <div class="dropdown">
-          <button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{mood}}">smile</button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li id="happy" class="smile-face mood-status">Happy</li>
-            <li id="excited" class="smile-face mood-status">Excited</li>
-            <li id="sad" class="smile-face mood-status">Sad</li>
-            <li id="angry" class="smile-face mood-status">Angry</li>
-          </ul>
+      <div class="col-xs-6 alarm">
+        <div class='form-=group'>
+          <label>Start time:</label>
+          <div class="bfh-timepicker" data-mode="12h" data-name="startTime" data-input='form-control col-xs-12'></div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-6 alarm">
-      <div class="input-append bootstrap-timepicker">
-            <input id="timepicker-start" type="text" class="input-small">
-            <span class="add-on"><i class="glyphicon glyphicon-time"></i></span>
-          </input>
+      <div class="col-xs-6 repeat">
+        <div class='form-gropu'>
+          <label>End time:</label>
+          <div class="bfh-timepicker" data-mode="12h" data-name="endTime" data-align="right"></div>
         </div>
- 
-        <script type="text/javascript">
-            $('#timepicker-start').timepicker('showWidget');
-        </script>
-    </div>
-    <div class="col-xs-6 repeat">
-      repeat
-    </div>
-    <div class="col-xs-12 note">
-      <p>Places for notes</p>
-    </div>
-    <div class="col-xs-12 comment">
-      <textarea>{{comment}}</textarea>
-    </div>
+      </div>
+      <div class="col-xs-12 note">
+        <div class='form-group'>
+          <label for="notes-input">Notes:</label>
+          <input type='text' class='form-control' name='note' id='notes-input'>
+        </div>
+      </div>
+      <div class="col-xs-12 comment">
+        <div class='form-group'>
+          <label for='location-input'>Location:</label>
+          <input type='text' class='form-control' name='location' id='location-input'>
+        </div>
+      </div>
+      <div class='form-group'>
+        <input type='submit' class='btn btn-primary btn-block' value='Add Event'>
+      </div>  
+    </form>
 {{!--     <div class="col-xs-12 take-photo navbar-fixed-bottom">
       <button type="button" class="btn btn-default camIcon"><span class="glyphicon glyphicon-star"></span></button>
     </div> --}}
