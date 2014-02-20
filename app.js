@@ -154,7 +154,8 @@ app.post('/addEvent', function(request, response) {
     location: params.location,
     mood: 0,
     comment: "",
-    note: params.note
+    note: params.note,
+    user: params.user
   });
   newEvent.save(function(err, saved) {
     if (err) {console.log('could not save new event')};

@@ -13,7 +13,8 @@ var eventSchema = new Schema({
   location: String,
   mood: Number,
   comment: String,
-  note: String
+  note: String,
+  user: String
 });
 
 eventSchema.virtual('start_day').get(function() {
@@ -33,10 +34,10 @@ eventSchema.virtual('start_year').get(function() {
 
 // static findByDate method that takes in a date and returns a list of all the events on that date
 // eventually will be extended to events for a specific user on a specific date
-eventSchema.statics.findByDate = function(date, callback) {
+eventSchema.statics.findByDate = function(date, user, callback) {
   var eventList = [];
   // var date = new Date();
-  this.find({}, null, {sort:{'start':1}}, function(err, events) {
+  this.find({user: user}, null, {sort:{'start':1}}, function(err, events) {
     events.forEach(function(eve) {
       if (eve.start_day == date.getDate() && eve.start_month == date.getMonth() && eve.start_year == date.getYear()) {
         eventList.push(eve.toJSON());

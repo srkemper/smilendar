@@ -237,7 +237,7 @@ exports.dayInfo = function(req, res) {
     console.log(date)
     // var eventForDate = [];
 
-    Event.findByDate(date, function(err, events) {
+    Event.findByDate(date, req.session.username, function(err, events) {
       console.log("--------Event.findByDate--------------")
 
 
