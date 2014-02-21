@@ -13,7 +13,7 @@ var locals = {
 
 var monthNameFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var monthName = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-var moodId = ['excited','happy','soso','sad','angry', 'undecided'];
+var moodId = ['angry','sad','soso','happy','excited', 'undecided'];
 
 function daysInMonth(month,year)
 {
@@ -27,6 +27,7 @@ function getRandomInt (min, max) {
 
 exports.view = function(req, res) {
   var monthId = req.params.id;
+  locals.dayId = monthId + "-" + new Date().getDate();
   console.log(monthId);
   dayCount = daysInMonth(monthId,2014);  // currently hardcoded for 2014 only
   console.log('How many days in this month? : '+dayCount);
@@ -38,16 +39,16 @@ exports.view = function(req, res) {
   Event.moodByMonth(parseInt(monthId) - 1, 114, req.session.username, function(err, moods) {
     // console.log(parseInt(monthId) - 1, 114, req.session.username)
     if (err) {console.log('error getting moods');}
-    // console.log(moods);
+    console.log(moods);
     var monthMood = {
       days:[]
     };
     for (i = 0; i<dayCount; i++) {
       var j = i+1;
       var mood = null, events = null, average = null;
-      if (moods[i] != null) {
-        mood = moods[i].totalMood;
-        events = moods[i].totalEvents;
+      if (moods[i + 1] != null) {
+        mood = moods[i + 1].totalMood;
+        events = moods[i + 1].totalEvents;
         average = null;
       }
       if (events != null && events > 0) {
@@ -56,6 +57,7 @@ exports.view = function(req, res) {
       } else {
         average = 5;
       }
+      console.log('average = ' + average + " : " + moodId[average]);
       monthMood.days.push(
         { date:j,
           url:monthId + '-' + j,
