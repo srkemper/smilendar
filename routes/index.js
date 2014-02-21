@@ -193,12 +193,14 @@ function formatAMPM(date) {
 }
 
 function returnURLforPrevAndNextWeek(date) {
-    var tempDate = new Date();
-    tempDate.setDate(date.getDate()-7);
-    var lastWeek = new Date(tempDate)
-    var tempDate = new Date();
-    tempDate.setDate(date.getDate()+7);
-    var nextWeek = new Date(tempDate)
+    var oneWeekInEpoch = 60*60*24*7*1000;
+    // var tempDate = new Date();
+    // tempDate.setDate(date.getDate()-7);
+    var lastWeek = new Date(date.getTime() - oneWeekInEpoch);
+    // var tempDate = new Date();
+    // tempDate.setDate(date.getDate()+7);
+    // var nextWeek = new Date(tempDate)
+    var nextWeek = new Date(date.getTime() - oneWeekInEpoch);
 
     lastWeekTag = getTagAndDate(lastWeek);
     nextWeekTag = getTagAndDate(nextWeek);
