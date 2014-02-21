@@ -193,14 +193,18 @@ function formatAMPM(date) {
 }
 
 function returnURLforPrevAndNextWeek(date) {
+    console.log('returnURLforPrevAndNextWeek');
     var oneWeekInEpoch = 60*60*24*7*1000;
+    var fiveHours = 60*60*5*1000;
     // var tempDate = new Date();
     // tempDate.setDate(date.getDate()-7);
-    var lastWeek = new Date(date.getTime() - oneWeekInEpoch);
+    var lastWeek = new Date(date.getTime() - oneWeekInEpoch + fiveHours);
     // var tempDate = new Date();
     // tempDate.setDate(date.getDate()+7);
     // var nextWeek = new Date(tempDate)
-    var nextWeek = new Date(date.getTime() - oneWeekInEpoch);
+    var nextWeek = new Date(date.getTime() + oneWeekInEpoch + fiveHours);
+
+    console.log(nextWeek);
 
     lastWeekTag = getTagAndDate(lastWeek);
     nextWeekTag = getTagAndDate(nextWeek);
@@ -233,9 +237,6 @@ exports.dayInfo = function(req, res) {
       for (var i=0; i<events.length; i++) {
             var m = events[i].mood;
             if (m==-2 || m==-1 || m==0 || m==1 || m==2) {
-                console.log('----mood---')
-                console.log(events[i].mood)
-                console.log(events[i].mood <= 2);
                 events[i].moodString = moodToString[events[i].mood+2];
             } else {
                 events[i].moodString = "null"
@@ -244,7 +245,7 @@ exports.dayInfo = function(req, res) {
             events[i].endtime = formatAMPM(new Date(events[i].end))
             // console.log(events[i])
       }
-      console.log(events)
+      // console.log(events)
       res.json({
             "eventList": events, 
             "fullDateInString": locals.fullDateInString,
