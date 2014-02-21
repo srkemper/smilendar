@@ -13,7 +13,7 @@ var locals = {
 
 var monthNameFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var monthName = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-var moodId = ['excited','happy','soso','sad','angry'];
+var moodId = ['excited','happy','soso','sad','angry', 'undecided'];
 
 function daysInMonth(month,year)
 {
@@ -52,11 +52,14 @@ exports.view = function(req, res) {
       }
       if (events != null && events > 0) {
         average = mood / events;
+        average = Math.ceil(average) + 2;
+      } else {
+        average = 5;
       }
       monthMood.days.push(
         { date:j,
           url:monthId + '-' + j,
-          aveMood:average
+          aveMood:moodId[average]
         }
       );
     }
