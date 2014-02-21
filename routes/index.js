@@ -54,7 +54,15 @@ var monthToName = {
     9: 'October',
     10: 'November',
     11: 'December'
-}
+};
+
+var moodToString = {
+    4: "excited",
+    3: "happy",
+    2: "soso",
+    1: "sad",
+    0: "angry"
+};
 
 var locals = {
     user: currUser,
@@ -167,29 +175,6 @@ exports.index = function(req, res){
     locals.lastWeekURL = tagsForPrevAndNextWeek[0];
     locals.nextWeekURL = tagsForPrevAndNextWeek[1];
 
-    // locals.todaysEvents.events = [];
-	// db.events.find(function(err, docs) {
- //      if (!err) {
- //        console.log('mongojs working in index.js!');
- //        // console.log(docs);
- //        docs.forEach(function(doc) {
- //        	var todaysDate = today.getDate();
- //        	var docDate = new Date(doc.start);
- //        	var eventDate = docDate.getDate();
- //        	if (todaysDate == eventDate) {
- //        		locals.todaysEvents.events.push(doc);
- //                // console.log(doc);
- //            }
- //        });
- //        // console.log(locals.todaysEvents);
-	// 	// console.log(docs);
- //        locals.eventlist.events = docs;
- //
- //      }
- //    });
-
-    // console.log('---returning to routes.index---')
-  // console.log(locals);
     res.render('homepage', locals);
 
 };
@@ -246,11 +231,12 @@ exports.dayInfo = function(req, res) {
             // console.log(i)
             // console.log(events[i].start)
             // console.log(events[i].end)
+            events[i].moodString = moodToString[events[i].mood+2];
             events[i].starttime = formatAMPM(new Date(events[i].start))
             events[i].endtime = formatAMPM(new Date(events[i].end))
             // console.log(events[i])
       }
-      // console.log(events)
+      console.log(events)
       res.json({
             "eventList": events, 
             "fullDateInString": locals.fullDateInString,
