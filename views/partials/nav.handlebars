@@ -4,14 +4,15 @@
 </div>
 <div class="menu-drop-down">
   <ul class="drop-down-list">
+    {{#if user}}
+    <li class="go-to-today"><a href="/today">Today</a></li>
     <li class=""><a href="/addEvent">Add Event</a></li>
     <li>
-      {{#if user}}
-          <a href='/logout'>Logout</a>
-      {{else}}
-          <a href="/"> Login </a>
-      {{/if}}
+      <a href='/logout'>Logout</a>
     </li>
+    {{else}}
+    <li><a href="/"> Login </a></li>
+    {{/if}}
   </ul>
 </div>
 
