@@ -5,11 +5,13 @@ var calendar = require('calendar').Calendar;
 var locals = {
   user: 'random',
   title: 'Today',
-  script: '/javascripts/month_view.js'
+  script: '/javascripts/month_view.js',
+  footer: 'month'
 };
 
 var monthNameFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var monthName = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var moodId = ['excited','happy','soso','sad','angry'];
 
 function daysInMonth(month,year)
 {
@@ -39,7 +41,7 @@ exports.view = function(req, res) {
     monthMood.days.push(
       { date:j,
         url:monthId + '-' + j,
-        aveMood:getRandomInt(-2,2)
+        aveMood:moodId[getRandomInt(0,4)]
       }
     );
   }
