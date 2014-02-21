@@ -50,7 +50,14 @@
       </form>
     </div>
     <div class="col-xs-12 take-photo navbar-fixed-bottom">
-      <button type="button" class="btn btn-default camIcon"><span class="glyphicon glyphicon-star"></span></button>
+      {{!-- <button type="button" class="btn btn-default camIcon"><span class="glyphicon glyphicon-star"></span></button> --}}
+      <form method='post' action='/deleteEvent' role='form'>
+        <input type='hidden' name='event_id' value='{{eveIns._id}}'>
+        <input type='hidden' name='goback' value='{{goback.link}}'>
+        <div class='form-group'>
+          <input type='submit' class='btn btn-danger btn-block' value='Delete Event'>
+        </div>
+      </form>
     </div>
   </div>
 </div>

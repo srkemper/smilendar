@@ -103,7 +103,7 @@ var eventsJSON = require("./data.json");
 app.get('/',user.loginpage)
 app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
-app.get('/addEvent', addEvent.view);
+app.get('/addEvent/:id', addEvent.view);
 app.get('/:id',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
@@ -178,7 +178,7 @@ app.post('/addEvent', function(request, response) {
 app.post('/addComment', function(request, response) {
   var params = request.body;
   console.log(params);
-  // Event.find({_id:params.event_id}, {comment:params.comment}, function(err, updated) {
+  // Event.update({_id:params.event_id}, {comment:params.comment}, function(err, updated) {
   //   console.log(updated);
   //   response.redirect('/calendar_event/' + params.event_id);
   // })
@@ -188,6 +188,16 @@ app.post('/addComment', function(request, response) {
     }
     console.log(updated);
     response.redirect('/calendar_event/' + params.event_id);
+  })
+})
+
+app.post('/deleteEvent', function(request, response) {
+  var params = request.body;
+  console.log(params);
+  Event.remove({_id:params.event_id}, function(err) {
+    if (err) {console.log("error, not removed");}
+    else {console.log('removed successfully');}
+    response.redirect(params.goback)
   })
 })
 

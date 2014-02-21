@@ -4,7 +4,7 @@
 	        {{#if user}}
 	            <h4 class="text-left">Welcome, {{user}}</h4>
 	            <a href='/logout' class="btn btn-default">Logout</a>
-	            <a href='/addEvent'>Add Event</a>
+	            <a href='/addEvent/{{dayId}}'>Add Event</a>
 	        {{else}}
 	        	<a href="/"> Login </a>
 	        {{/if}}
