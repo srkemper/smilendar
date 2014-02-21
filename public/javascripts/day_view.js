@@ -3,6 +3,8 @@
 $(document).ready(function(){
     initializeDayView();
     $(".weekday-num").on("click",".cal-cell1", selectDay);
+    // $("#lastweek").on("click", showLastWeek);
+    // $("#nextweek").on("click", showNextWeek);
 })
 
 
@@ -68,4 +70,8 @@ function renderDayEvent(result) {
 function renderFullDateInString(result) {
     console.log(result);
     $("#fullDate").html(result);
+}
+
+function showLastWeek(e) {
+    e.preventDefault();
 }

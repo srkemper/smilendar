@@ -20,25 +20,27 @@
 		    <a href="/addEvent" class="text-right"> Add Event </a>
 		</div> --}}
 	</div>
-	{{!-- <div class="row">
-		<h1 class="text-center">{{title}}</h1>
-	</div> --}}
+	<a id="lastweek" href="#"><small>left</small>
+	</a>
+	<a id="nextweek" href="#"><small>right</small>
+	</a>
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
+			
 			<div class="cal-cell1" id="sun"><small>Sun</small>
-				</div>
-				<div class="cal-cell1" id="mon"><small>Mon</small>
-				</div>
-				<div class="cal-cell1" id="tue"><small>Tue</small>
-				</div>
-				<div class="cal-cell1" id="wed"><small>Wed</small>
-				</div>
-				<div class="cal-cell1" id="thu"><small>Thu</small>
-				</div>
-				<div class="cal-cell1" id="fri"><small>Fri</small>
-				</div>
-				<div class="cal-cell1" id="sat"><small>Sat</small>
-				</div>
+			</div>
+			<div class="cal-cell1" id="mon"><small>Mon</small>
+			</div>
+			<div class="cal-cell1" id="tue"><small>Tue</small>
+			</div>
+			<div class="cal-cell1" id="wed"><small>Wed</small>
+			</div>
+			<div class="cal-cell1" id="thu"><small>Thu</small>
+			</div>
+			<div class="cal-cell1" id="fri"><small>Fri</small>
+			</div>
+			<div class="cal-cell1" id="sat"><small>Sat</small>
+			</div>
 		</div>
 		<div class="cal-row-fluid weekday-num">
 			{{#each tagDate}}
@@ -46,7 +48,7 @@
 				{{#each this}}
 					{{#unless @index}}
 						{{!-- <div> {{this}}</div> --}}
-					<div class="cal-cell1" id="{{this}} "href="{{this}}">
+					<div class="cal-cell1" id="{{this}}" href="{{this}}">
 					{{else}}
 						{{!-- <div> {{this}}</div> --}}
 						<div class="day-order">{{this}}</div>
@@ -56,27 +58,9 @@
 			{{/each}}
 		{{!-- 		<div class="cal-cell1" id="sun" href="9">
 					<div class="day-order">9</div>
-				</div>
-				<div class="cal-cell1" id="mon" href="10">
-					<div class="day-order">10</div>
-				</div>
-				<div class="cal-cell1" id="tue" href="11">
-					<div class="day-order">11</div>
-				</div>
-				<div class="cal-cell1" id="wed" href="12">
-					<div class="day-order">12</div>
-				</div>
-				<div class="cal-cell1" id="thu" href="13">
-					<div class="day-order">13</div>
-				</div>
-				<div class="cal-cell1" id="fri" href="14">
-					<div class="day-order">14</div>
-				</div>
-				<div class="cal-cell1" id="sat" href="15">
-					<div class="day-order">15</div>
 				</div> --}}
 		</div>
-{{!-- 		<h4 class="text-center">Su M Tu <kbd>W</kbd> Th F Sa</h4> --}}
+
 	</div>
 	<div class="row">
 		<h4 class="text-center", id="fullDate">{{fullDateInString}}</h4>

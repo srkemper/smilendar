@@ -130,6 +130,20 @@ function appendZero(tag) {
     return tag;
 }
 
+function getTagAndDate(currDate) {
+    var month = currDate.getMonth()+1;
+    month = month.toString();
+    var date = currDate.getDate();
+    date = date.toString();
+
+    // month = appendZero(month);
+    // date = appendZero(date);
+
+    tag = month+'-'+date;
+
+    return [tag, date]
+}
+
 function getCurrentWeek(currDate) {
     // defaults to today if currDate == NULL
     currDate = typeof currDate !== 'undefined' ? currDate : new Date();
@@ -142,18 +156,16 @@ function getCurrentWeek(currDate) {
     var tagDate = new Array();
 
     for (var i=0; i<weekList.length; i++) {
-        var month = weekList[i].getMonth()+1;
-        month = month.toString();
-        var date = weekList[i].getDate();
-        date = date.toString();
+        // var month = weekList[i].getMonth()+1;
+        // month = month.toString();
+        // var date = weekList[i].getDate();
+        // date = date.toString();
 
-        // month = appendZero(month);
-        // date = appendZero(date);
-
-        tag = month+'-'+date;
-        tags[i] = tag;
-        dates[i] = date;
-        tagDate[i] = [tags[i], date] 
+        // tag = month+'-'+date;
+        temp = getTagAndDate(weekList[i]);
+        tags[i] = temp[0];
+        dates[i] = temp[1];
+        tagDate[i] = temp
     }
     return [tags, dates, tagDate]
 }
@@ -244,6 +256,21 @@ function formatAMPM(date) {
   return strTime;
 }
 
+function returnURLforPrevAndNextWeek(date) {
+    var tempDate = new Date();
+    tempDate.setDate(date.getDate()-7);
+    var lastWeek = new Date(tempDate)
+    var tempDate = new Date();
+    tempDate.setDate(date.getDate()+7);
+    var nextWeek = new Date(tempDate)
+
+    lastWeekTag = getTagAndDate(lastWeek);
+    nextWeekTag = getTagAndDate(nextWeek);
+
+    return ["/"+lastWeekTag[0], "/"+nextWeekTag[0]]
+
+}
+
 exports.dayInfo = function(req, res) {
 
     console.log('dayInfo');
@@ -254,6 +281,11 @@ exports.dayInfo = function(req, res) {
     console.log(date)
     // var eventForDate = [];
     locals.fullDateInString = returnDayInString(date);
+
+    tagsForPrevAndNextWeek = returnURLforPrevAndNextWeek(date);
+    
+
+
     Event.findByDate(date, function(err, events) {
       console.log("--------Event.findByDate--------------")
 
