@@ -28,8 +28,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { stack1 = (depth0 && depth0.comment); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
     + "</p>\n    <div class=\"smile\">\n      <div class=\"dropdown\">\n        <button data-toggle=\"dropdown\" class=\"btn-xs smile-face mood-display\" id=\"";
-  if (stack1 = helpers.mood) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = (depth0 && depth0.mood); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  if (stack1 = helpers.moodString) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.moodString); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
     + "\" data-identifier=\"";
   if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
