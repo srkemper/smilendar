@@ -103,7 +103,7 @@ var eventsJSON = require("./data.json");
 app.get('/',user.loginpage)
 app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
-app.get('/addEvent', addEvent.view);
+app.get('/addEvent/:id', addEvent.view);
 app.get('/:id',routes.index);
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
@@ -153,9 +153,9 @@ app.post('/addEvent', function(request, response) {
   var endString = params.date + " " + params.endTime;
   var start = Date.parse(startString);
   var end = Date.parse(endString);
-  // console.log(startString, endString);
-  // console.log(start, end);
-  // console.log(params);
+  console.log(startString, endString);
+  console.log(start, end);
+  console.log(params);
   var newEvent = new Event({
     name: params.name,
     start: start,
@@ -174,6 +174,32 @@ app.post('/addEvent', function(request, response) {
   var date = new Date().getDate();
   response.redirect('/' + month + "-" + date);
 });
+
+app.post('/addComment', function(request, response) {
+  var params = request.body;
+  console.log(params);
+  // Event.update({_id:params.event_id}, {comment:params.comment}, function(err, updated) {
+  //   console.log(updated);
+  //   response.redirect('/calendar_event/' + params.event_id);
+  // })
+  db.events.update({_id: mongojs.ObjectId(request.body.event_id)}, {$set: {comment:params.comment}}, function(err, updated) {
+    if (err) {
+      console.log("not updated :(");
+    }
+    console.log(updated);
+    response.redirect('/calendar_event/' + params.event_id);
+  })
+})
+
+app.post('/deleteEvent', function(request, response) {
+  var params = request.body;
+  console.log(params);
+  Event.remove({_id:params.event_id}, function(err) {
+    if (err) {console.log("error, not removed");}
+    else {console.log('removed successfully');}
+    response.redirect(params.goback)
+  })
+})
 
 app.get('/dayEvent/:id',index.dayInfo);
 
