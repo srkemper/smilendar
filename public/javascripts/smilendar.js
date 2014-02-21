@@ -1,5 +1,6 @@
 $(document).ready(function(){
     showMenu();
+    $(".go-to-today a").attr('href','/'+getTagAndDate(new Date()));
 });
 
 
@@ -35,4 +36,18 @@ function showMenu() {
         $('.menu-drop-down').toggleClass("show-menu"); //you can list several class names
         e.preventDefault();
     })
+}
+
+function getTagAndDate(currDate) {
+    var month = currDate.getMonth()+1;
+    month = month.toString();
+    var date = currDate.getDate();
+    date = date.toString();
+
+    // month = appendZero(month);
+    // date = appendZero(date);
+
+    tag = month+'-'+date;
+
+    return tag;
 }
