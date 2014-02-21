@@ -37,9 +37,10 @@ exports.view = function(req, res) {
     if (!err) {
       console.log('mongojs working in calendar_event.js!');
       eveIns = doc;
+      console.log('doc')
       console.log(doc);
-      var std = new Date(Date.parse(eveIns.start.dateTime));
-      var end = new Date(Date.parse(eveIns.end.dateTime));
+      var std = new Date(eveIns.start);
+      var end = new Date(eveIns.end);
       eveIns.date = std.getDate();
       if (eveIns.date != today.date){
         locals.goback.link = '/'+ eveIns.date.toString();
@@ -53,6 +54,8 @@ exports.view = function(req, res) {
       eveIns.endHour = end.getHours();
       eveIns.endMin = end.getMinutes();
       locals.eveIns = eveIns;
+      console.log('---print locals---');
+      console.log(locals)
       res.render('calendar_event', locals);
     }
   });
