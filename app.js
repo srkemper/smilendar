@@ -152,7 +152,7 @@ app.post('/addEvent', function(request, response) {
     start: start,
     end: end,
     location: params.location,
-    mood: 0,
+    mood: null,
     comment: "",
     note: params.note,
     user: params.user
