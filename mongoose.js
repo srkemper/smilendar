@@ -47,16 +47,26 @@ eventSchema.statics.findByDate = function(date, user, callback) {
   });
 };
 
-eventSchema.statics.moodByMonth = function(month, year, callback) {
-  var moodForDay = {}
-  this.find({}, function(err, events) {
+eventSchema.statics.moodByMonth = function(month, year, user, callback) {
+  var moodForDay = []
+  this.find({user:user}, function(err, events) {
     events.forEach(function(eve) {
       if (eve.start_month == month && eve.start_year == year) {
+        // console.log(eve);
         var today = moodForDay[eve.start_day];
+        var todaysMood = eve.mood;
+        var eventToAdd = 1;
+        if (todaysMood == null) {
+          todaysMood = 0;
+          eventToAdd = 0;
+        }
         if (today == null) {
-          moodForDay[eve.start_day] = [eve.mood];
+          moodForDay[eve.start_day] = {day:eve.start_day,
+                                       totalMood: todaysMood,
+                                       totalEvents: eventToAdd};
         } else {
-          moodForDay[eve.start_day].push(eve.mood);
+          moodForDay[eve.start_day].totalMood += todaysMood;
+          moodForDay[eve.start_day].totalEvents += eventToAdd;
         }
       }
     });
