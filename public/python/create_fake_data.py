@@ -15,11 +15,12 @@ user = "user"
 userNames = ['Sean','Zayne','Jim']
 
 moodChoices = [-2, -1, 0, 1, 2]
+# noMood = None
 
 year = 2014
 month = 1
-day = 6 	# monday
-numWeeks = 10
+day = 1 	# monday
+numWeeks = 52
 
 today = datetime.datetime.today()
 
@@ -56,7 +57,7 @@ def getX(day, event, interval_time, j):
 		else:
 			commentToday = ""
 	else:
-		moodToday = 0
+		moodToday = None	# show that mood has not been inputted
 		commentToday = ""
 
 	currUser = choice(userNames)

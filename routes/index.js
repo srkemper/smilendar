@@ -95,8 +95,8 @@ function getTagAndDate(currDate) {
 function getCurrentWeek(currDate) {
     // defaults to today if currDate == NULL
     currDate = typeof currDate !== 'undefined' ? currDate : new Date();
-    console.log('getCurrentWeek----------------')
-    console.log(currDate)
+    // console.log('getCurrentWeek----------------')
+    // console.log(currDate)
     var lastSunday = new Date(currDate.getFullYear(),currDate.getMonth(),currDate.getDate()-currDate.getDay());
     var weekList = getWeek(lastSunday);  // get an array of current week
     var tags = new Array();
@@ -125,9 +125,9 @@ function getDateFromDayID(dayId) {
     // var monthId = parseInt(dayId.substring(0,2))-1; // just extract month part, e.g. 02
     // var dateId = parseInt(dayId.substring(3,5));
     var dateId = parseInt(dayId.split('-')[1]);
-    console.log('---getDateFromDayID---')
-    console.log(monthId)
-    console.log(dateId)
+    // console.log('---getDateFromDayID---')
+    // console.log(monthId)
+    // console.log(dateId)
 
     locals.goback.link = "/month/" + (monthId+1).toString();
     locals.goback.display = monthToName[monthId];
@@ -138,13 +138,13 @@ function getDateFromDayID(dayId) {
 // given date object, return date in string in format like
 // "Thursday, February 20, 2014"
 function returnDayInString(date) {
-    console.log('---returnDayInString---')
+    // console.log('---returnDayInString---')
     var currYear = date.getFullYear();
     var monthId = date.getMonth();
     var day = date.getDate();
     var dayOfWeek = dayToName[date.getDay()];
     var fullDate = dayOfWeek + ' ' + monthToName[monthId] + ' ' + day.toString() + ', '+ currYear.toString();
-    console.log(fullDate)
+    // console.log(fullDate)
     return fullDate
 }
 
@@ -188,7 +188,7 @@ exports.index = function(req, res){
  //      }
  //    });
 
-    console.log('---returning to routes.index---')
+    // console.log('---returning to routes.index---')
   // console.log(locals);
     res.render('homepage', locals);
 
@@ -223,12 +223,12 @@ function returnURLforPrevAndNextWeek(date) {
 
 exports.dayInfo = function(req, res) {
 
-    console.log('dayInfo');
+    // console.log('dayInfo');
     var dateId = req.params.id;
     var date = getDateFromDayID(dateId)
-    console.log('dateId is '+ dateId)
+    // console.log('dateId is '+ dateId)
     // console.log(dateId)
-    console.log(date)
+    // console.log(date)
     // var eventForDate = [];
     locals.fullDateInString = returnDayInString(date);
 
@@ -238,7 +238,7 @@ exports.dayInfo = function(req, res) {
 
 
     Event.findByDate(date, req.session.username, function(err, events) {
-      console.log("--------Event.findByDate--------------")
+      // console.log("--------Event.findByDate--------------")
 
 
       // adding "starttime" and "endtime" in strings

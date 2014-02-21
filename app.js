@@ -100,7 +100,8 @@ var eventsJSON = require("./data.json");
 //   }
 // });
 
-app.get('/login', user.login);
+app.get('/',user.loginpage)
+app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
 app.get('/addEvent', addEvent.view);
 app.get('/:id',routes.index);

@@ -6,13 +6,7 @@
 	            <a href='/logout' class="btn btn-default">Logout</a>
 	            <a href='/addEvent'>Add Event</a>
 	        {{else}}
-	        	<form method="get" action="login" role="form">
-	        		<div class="form-group col-xs-6 pull-right">
-	        			<input type="text" class="form-control" name="username">
-	        			<input type="submit" class="form-control btn btn-default" value="Login">
-	        		</div>
-	            </form>
-		    	{{!-- <a href={{url}} class="text-left">Login to Google Calendar </a> --}}
+	        	<a href="/"> Login </a>
 	        {{/if}}
 		</div>
 {{!-- 		<div class="col-xs-12">
