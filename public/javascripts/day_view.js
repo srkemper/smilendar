@@ -3,6 +3,8 @@
 $(document).ready(function(){
     initializeDayView();
     $(".weekday-num").on("click",".cal-cell1", selectDay);
+    // $("#lastweek").on("click", showLastWeek);
+    // $("#nextweek").on("click", showNextWeek);
 })
 
 
@@ -50,7 +52,9 @@ function selectDay(e) {
 function renderDayEvent(result) {
   // Using handlebars template to render event list of a day
     console.log("renderDayEvent results:");
-    console.log(result);
+    console.log(result.eventList);
+
+    renderFullDateInString(result.fullDateInString)
 
     // Retrieve templates from template file
     var template = Smilendar.Templates["templates/eventList.handlebars"];
@@ -62,3 +66,12 @@ function renderDayEvent(result) {
     initDynamicEventHandlers();
 }
 
+
+function renderFullDateInString(result) {
+    console.log(result);
+    $("#fullDate").html(result);
+}
+
+function showLastWeek(e) {
+    e.preventDefault();
+}
