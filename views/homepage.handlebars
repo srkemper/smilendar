@@ -1,25 +1,11 @@
 <div class="day-view">
-	<div class="row">
-		<div class="col-xs-12">
-	        {{#if user}}
-	            <h4 class="text-left">Welcome, {{user}}</h4>
-	            <a href='/logout' class="btn btn-default">Logout</a>
-	            <a href='/addEvent'>Add Event</a>
-	        {{else}}
-	        	<a href="/"> Login </a>
-	        {{/if}}
-		</div>
-{{!-- 		<div class="col-xs-12">
-		    <a href="/month" class="text-left"> &lt; Month </a>
-		    <a href="/addEvent" class="text-right"> Add Event </a>
-		</div> --}}
-	</div>
-	
-		
-		
+
+
+
+
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
-			
+
 			<div class="cal-cell1" id="sun"><small>Sun</small>
 			</div>
 			<div class="cal-cell1" id="mon"><small>Mon</small>
@@ -35,7 +21,7 @@
 			<div class="cal-cell1" id="sat"><small>Sat</small>
 			</div>
 
-			
+
 		</div>
 		<div class="cal-row-fluid weekday-num">
 			<a class="pull-left weekdaynav" id="lastweek" href="{{lastWeekURL}}">
@@ -57,7 +43,7 @@
 		{{!-- 		<div class="cal-cell1" id="sun" href="9">
 					<div class="day-order">9</div>
 				</div> --}}
-			<a class="pull-right weekdaynav" id="nextweek" href="{{nextWeekURL}}">	
+			<a class="pull-right weekdaynav" id="nextweek" href="{{nextWeekURL}}">
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</a>
 		</div>
