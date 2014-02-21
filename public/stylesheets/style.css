@@ -129,6 +129,9 @@ body {
 .navbar-header .menu {
   float: right;
 }
+.weekdaynav {
+  position: absolute;
+}
 .month-view .this-week {
   margin: 10px 0;
 }
@@ -137,6 +140,7 @@ body {
 }
 .month-view .weekday-num {
   padding: 20px 0;
+  position: relative;
 }
 .month-view .smile-face {
   margin: 0 auto;

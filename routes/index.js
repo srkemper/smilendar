@@ -65,62 +65,10 @@ var locals = {
         link: '',
         display: '',
     },
-    fullDateInString: ''
-    // eventlist: data
-   // eventlist: {'events':[]},
-   // todaysEvents: {'events': []}
+    fullDateInString: '',
+    lastWeekURL: '',
+    nextWeekURL: ''
 };
-
-// var eventsByDay = {
-//     'sun': [],
-//     'mon': [],
-//     'tue': [],
-//     'wed': [],
-//     'thu': [],
-//     'fri': [],
-//     'sat': []
-// };   // organize events by day
-
-// parses datetime
-// function parseEpoch(epoch) {
-//         var d = new Date(epoch);
-//         var day = dayToName[d.getDay()];   // gets the day of the week
-//         var month = d.getMonth();
-//         var date = d.getDate();
-//         var hour = d.getHours(); // returns the hour (from 0-23) of the time
-//         var minutes = d.getMinutes();   // returns the min (from 0-59)
-
-//         timeobj = {
-//             'day': day,
-//             'month': month,
-//             'date': date,
-//             'hour': hour,
-//             'minutes': minutes
-//         };
-//         return timeobj;
-// }
-
-// regroups the json data by days
-// function parseCalendarData(dat) {
-// 	eventsByDay = {
-//     'sun': {'eventList':[]},
-//     'mon': {'eventList':[]},
-//     'tue': {'eventList':[]},
-//     'wed': {'eventList':[]},
-//     'thu': {'eventList':[]},
-//     'fri': {'eventList':[]},
-//     'sat': {'eventList':[]}
-// 	};
-//     var events = dat.events;
-//     for (var i=0; i<events.length; i++) {
-//         var start = events[i].start; // format: epoch time
-//         var end = events[i].end; // format: epoch time
-
-//         timeobj = parseEpoch(start);
-//         var name = timeobj['day'];
-//         eventsByDay[name]['eventList'].push(events[i]);
-//     }
-// }
 
 // append '0' to the front of string if string has length 1
 function appendZero(tag) {
@@ -215,7 +163,9 @@ exports.index = function(req, res){
     locals.tagDate = currWeekInfo[2];
 
     locals.fullDateInString = returnDayInString(today);
-   
+    tagsForPrevAndNextWeek = returnURLforPrevAndNextWeek(today);
+    locals.lastWeekURL = tagsForPrevAndNextWeek[0];
+    locals.nextWeekURL = tagsForPrevAndNextWeek[1];
 
     // locals.todaysEvents.events = [];
 	// db.events.find(function(err, docs) {
@@ -283,7 +233,8 @@ exports.dayInfo = function(req, res) {
     locals.fullDateInString = returnDayInString(date);
 
     tagsForPrevAndNextWeek = returnURLforPrevAndNextWeek(date);
-    
+    locals.lastWeekURL = tagsForPrevAndNextWeek[0];
+    locals.nextWeekURL = tagsForPrevAndNextWeek[1];
 
 
     Event.findByDate(date, req.session.username, function(err, events) {
@@ -300,7 +251,12 @@ exports.dayInfo = function(req, res) {
             // console.log(events[i])
       }
       // console.log(events)
-      res.json({"eventList": events, "fullDateInString": locals.fullDateInString});
+      res.json({
+            "eventList": events, 
+            "fullDateInString": locals.fullDateInString,
+            "lastWeekURL": locals.lastWeekURL,
+            "nextWeekURL": locals.nextWeekURL
+        });
 
     });
 }
