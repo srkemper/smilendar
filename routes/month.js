@@ -27,6 +27,7 @@ function getRandomInt (min, max) {
 
 exports.view = function(req, res) {
   var monthId = req.params.id;
+  locals.dayId = monthId + "-" + new Date().getDate();
   console.log(monthId);
   dayCount = daysInMonth(monthId,2014);  // currently hardcoded for 2014 only
   console.log('How many days in this month? : '+dayCount);
