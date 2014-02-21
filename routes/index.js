@@ -61,7 +61,8 @@ var moodToString = {
     3: "happy",
     2: "soso",
     1: "sad",
-    0: "angry"
+    0: "angry",
+    null: "null"
 };
 
 var locals = {
@@ -228,7 +229,11 @@ exports.dayInfo = function(req, res) {
 
       // adding "starttime" and "endtime" in strings
       for (var i=0; i<events.length; i++) {
-            if (events[i].mood+2 in moodToString) {
+            var m = events[i].mood;
+            if (m==-2 || m==-1 || m==0 || m==1 || m==2) {
+                console.log('----mood---')
+                console.log(events[i].mood)
+                console.log(events[i].mood <= 2);
                 events[i].moodString = moodToString[events[i].mood+2];
             } else {
                 events[i].moodString = "null"
