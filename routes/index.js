@@ -231,7 +231,11 @@ exports.dayInfo = function(req, res) {
             // console.log(i)
             // console.log(events[i].start)
             // console.log(events[i].end)
-            events[i].moodString = moodToString[events[i].mood+2];
+            if (events[i].mood != null) {
+                events[i].moodString = moodToString[events[i].mood+2];
+            }{
+                events[i].moodString = "null"
+            }
             events[i].starttime = formatAMPM(new Date(events[i].start))
             events[i].endtime = formatAMPM(new Date(events[i].end))
             // console.log(events[i])
