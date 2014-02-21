@@ -4,10 +4,10 @@ function chooseMood(e) {
     console.log("did it!");
     var mood = $(this).attr('id');
     console.log(mood);
-    $(this).parent().siblings(".mood-display").attr('id',mood);
+    $(this).parent().parent().siblings(".mood-display").attr('id',mood);
 
     // Update mood to database using AJAX
-    var dbid = $(this).parent().siblings(".mood-display").attr('data-identifier');
+    var dbid = $(this).parent().parent().siblings(".mood-display").attr('data-identifier');
     console.log(dbid);
     $.ajax({
      url: '/changeMood',

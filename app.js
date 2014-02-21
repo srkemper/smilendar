@@ -129,11 +129,19 @@ app.post('/changeMood', function(request, response) {
   //     //console.log(eve);
   //   });
   // });
-  db.events.update({_id: mongojs.ObjectId(request.body.id)}, {$set: {mood:request.body.mood}}, function(err, updated) {
+  console.log(request.body.id, request.body.mood)
+  var moods = {
+    "excited":2,
+    "happy":1,
+    "soso":0,
+    "sad":-1,
+    "angry":-2
+  }
+  db.events.update({_id: mongojs.ObjectId(request.body.id)}, {$set: {mood:moods[request.body.mood]}}, function(err, updated) {
     if (err) {
       console.log("not updated :(");
     }
-    // console.log(updated);
+    console.log(updated);
 
   })
   response.json(200);
