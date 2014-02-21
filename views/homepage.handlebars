@@ -6,13 +6,7 @@
 	            <a href='/logout' class="btn btn-default">Logout</a>
 	            <a href='/addEvent'>Add Event</a>
 	        {{else}}
-	        	<form method="get" action="login" role="form">
-	        		<div class="form-group col-xs-6 pull-right">
-	        			<input type="text" class="form-control" name="username">
-	        			<input type="submit" class="form-control btn btn-default" value="Login">
-	        		</div>
-	            </form>
-		    	{{!-- <a href={{url}} class="text-left">Login to Google Calendar </a> --}}
+	        	<a href="/"> Login </a>
 	        {{/if}}
 		</div>
 {{!-- 		<div class="col-xs-12">
@@ -20,10 +14,9 @@
 		    <a href="/addEvent" class="text-right"> Add Event </a>
 		</div> --}}
 	</div>
-	<a id="lastweek" href="#"><small>left</small>
-	</a>
-	<a id="nextweek" href="#"><small>right</small>
-	</a>
+	
+		
+		
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
 			
@@ -41,8 +34,13 @@
 			</div>
 			<div class="cal-cell1" id="sat"><small>Sat</small>
 			</div>
+
+			
 		</div>
 		<div class="cal-row-fluid weekday-num">
+			<a class="pull-left weekdaynav" id="lastweek" href="{{lastWeekURL}}">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
 			{{#each tagDate}}
 				{{!-- <div> {{this.0}}</div> --}}
 				{{#each this}}
@@ -54,11 +52,14 @@
 						<div class="day-order">{{this}}</div>
 					{{/unless}}
 				{{/each}}
-					</div> 
+					</div>
 			{{/each}}
 		{{!-- 		<div class="cal-cell1" id="sun" href="9">
 					<div class="day-order">9</div>
 				</div> --}}
+			<a class="pull-right weekdaynav" id="nextweek" href="{{nextWeekURL}}">	
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
 		</div>
 
 	</div>

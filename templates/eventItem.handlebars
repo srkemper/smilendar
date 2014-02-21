@@ -12,12 +12,19 @@
     <div class="smile">
       <div class="dropdown">
         <button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{mood}}" data-identifier="{{_id}}">smile</button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li id="happy" class="smile-face mood-status">Happy</li>
-          <li id="excited" class="smile-face mood-status">Excited</li>
-          <li id="sad" class="smile-face mood-status">Sad</li>
-          <li id="angry" class="smile-face mood-status">Angry</li>
-        </ul>
+        <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <ul class="moond-list">
+            <li id="excited" attr="2" class="smile-face mood-status">Happy</li>
+            <li id="happy" attr="1" class="smile-face mood-status">Excited</li>
+            <li id="soso" attr="0" class="smile-face mood-status">Soso</li>
+            <li id="sad" attr="-1" class="smile-face mood-status">Sad</li>
+            <li id="angry" attr="-2" class="smile-face mood-status">Angry</li>
+            <div class="clearfix"></div>
+          </ul>
+          <div class="text-input">
+            Comment
+          </div>
+        </div>
       </div>
     </div>
   </div>
