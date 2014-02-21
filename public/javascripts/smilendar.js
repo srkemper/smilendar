@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    showMenu();
+});
+
+
 function chooseMood(e) {
     // Choose the mood for according event
     e.preventDefault();
@@ -18,9 +23,16 @@ function chooseMood(e) {
     });
 }
 
-
 function initDynamicEventHandlers() {
     // Dynamically append event handler to AJAX created content.
     console.log('initialized!');
     $(".smile").on('click','.mood-status',chooseMood);
+}
+
+function showMenu() {
+    $(".menu-button").on('click', function(e){
+        console.log('menu clicked!');
+        $('.menu-drop-down').toggleClass("show-menu"); //you can list several class names
+        e.preventDefault();
+    })
 }
