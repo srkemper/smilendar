@@ -6,6 +6,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+ul, li, div{
+  padding: 0px;
+}
+
 .navbar-header {
   padding: 0 15px;
   line-height: 44px;
@@ -121,33 +125,72 @@ body {
 
 }
 
-
-
 .smile {
   position: absolute;
   right: 20px;
   top: 0;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
 
   .dropdown-menu {
     right: 0;
+    padding: 5px;
+    width: 212px;
     left: auto;
   }
 
-  .mood-status {
-    display:inline-block;
+  .text-input {
+    height:32px;
+    line-height:32px;
+    padding: 0 8px;
+    border: 1px solid #cccccc;
   }
 
-  #happy {background-color: #47ad58;}
-  #excited {background-color: #FBAF0C;}
-  #sad {background-color: #4584F0;}
-  #angry {background-color: #353535;}
+  .mood-list {
+
+  }
+
+  .mood-status {
+    float: left;
+    margin: 2px 0 2px 2px;
+  }
+
+  .mood-display {
+    background-image: url('../images/smiles_s.png');
+    background-position: -202px -11px;
+  }
+
+  #excited {
+    background-color: #47ad58;
+    background-image: url('../images/smiles_s.png');
+    background-position: -2px -11px;
+  }
+  #happy {
+    background-color: #FBAF0C;
+    background-image: url('../images/smiles_s.png');
+    background-position: -42px -11px;
+  }
+  #soso {
+    background-color: #FBAF0C;
+    background-image: url('../images/smiles_s.png');
+    background-position: -82px -11px;
+  }
+  #sad {
+    background-color: #4584F0;
+    background-image: url('../images/smiles_s.png');
+    background-position: -122px -11px;
+  }
+
+  #angry {
+    // background-color: #353535;
+    background-image: url('../images/smiles_s.png');
+    background-position: -162px -11px;
+  }
 }
 
 .smile-face {
-  height: 36px;
-  width: 36px;
+  height: 38px;
+  width: 38px;
   border-radius: 50%;
   background-color: #f2f2f4;
   border: 1px solid #eeeeee;
