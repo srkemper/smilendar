@@ -1,5 +1,6 @@
 <div class="month-view">
 	<div class="month-nav">
+		<div class="this-month">{{nav.month}}</div>
 		<ul class="pager">
 			{{#if nav.pUrl}}
 		  <li class="previous"><a href="{{nav.pUrl}}">{{nav.pMonth}}</a></li>
@@ -8,7 +9,6 @@
 		  <li class="next"><a href="{{nav.nUrl}}">{{nav.nMonth}}</a></li>
 		  {{/if}}
 		</ul>
-		<div class="thisMonth">{{nav.month}}</div>
 	</div>
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
@@ -33,187 +33,13 @@
 				<div class="cal-cell1">
 					{{#if date}}
 					<a href="../{{url}}">
-						<div class="smile-face">{{date}}</div>
+						<div class="smile-face" id="{{aveMood}}"></div>
+						<div class="day-order">{{date}}</div>
 					</a>
 					{{/if}}
 				</div>
 			{{/each}}
 			</div>
 		{{/each}}
-{{!-- 		<div class="cal-row-fluid weekday-num">
-				<div class="cal-cell1" id="sun" href="9">
-					<div class="day-order"></div>
-				</div>
-				<div class="cal-cell1" id="mon" href="10">
-					<div class="day-order"></div>
-				</div>
-				<div class="cal-cell1" id="tue" href="11">
-					<div class="day-order"></div>
-				</div>
-				<div class="cal-cell1" id="wed" href="12">
-					<div class="day-order"></div>
-				</div>
-				<div class="cal-cell1" id="thu" href="13">
-					<div class="day-order"></div>
-				</div>
-				<div class="cal-cell1" id="fri" href="14">
-					<div class="day-order"></div>
-				</div>
-				<div class="cal-cell1" id="sat" href="15">
-					<div class="day-order">1</div>
-				</div>
-		</div>
-		<div class="cal-row-fluid weekday-num">
-				<div class="cal-cell1" id="sun" href="9">
-					<div class="day-order">2</div>
-				</div>
-				<div class="cal-cell1" id="mon" href="10">
-					<div class="day-order">3</div>
-				</div>
-				<div class="cal-cell1" id="tue" href="11">
-					<div class="day-order">4</div>
-				</div>
-				<div class="cal-cell1" id="wed" href="12">
-					<div class="day-order">5</div>
-				</div>
-				<div class="cal-cell1" id="thu" href="13">
-					<div class="day-order">6</div>
-				</div>
-				<div class="cal-cell1" id="fri" href="14">
-					<div class="day-order">7</div>
-				</div>
-				<div class="cal-cell1" id="sat" href="15">
-					<div class="day-order">8</div>
-				</div>
-		</div>
-		<div class="cal-row-fluid weekday-num">
-				<div class="cal-cell1" id="sun" href="9">
-					<div class="day-order">9</div>
-				</div>
-				<div class="cal-cell1" id="mon" href="10">
-					<div class="day-order">10</div>
-				</div>
-				<div class="cal-cell1" id="tue" href="11">
-					<div class="day-order">11</div>
-				</div>
-				<div class="cal-cell1" id="wed" href="12">
-					<div class="day-order">12</div>
-				</div>
-				<div class="cal-cell1" id="thu" href="13">
-					<div class="day-order">13</div>
-				</div>
-				<div class="cal-cell1" id="fri" href="14">
-					<div class="day-order">14</div>
-				</div>
-				<div class="cal-cell1" id="sat" href="15">
-					<div class="day-order">15</div>
-				</div>
-		</div>
-		<div class="cal-row-fluid weekday-num">
-				<div class="cal-cell1" id="sun" href="9">
-					<div class="day-order">16</div>
-				</div>
-				<div class="cal-cell1" id="mon" href="10">
-					<div class="day-order">17</div>
-				</div>
-				<div class="cal-cell1" id="tue" href="11">
-					<div class="day-order">18</div>
-				</div>
-				<div class="cal-cell1" id="wed" href="12">
-					<div class="day-order">19</div>
-				</div>
-				<div class="cal-cell1" id="thu" href="13">
-					<div class="day-order">20</div>
-				</div>
-				<div class="cal-cell1" id="fri" href="14">
-					<div class="day-order">21</div>
-				</div>
-				<div class="cal-cell1" id="sat" href="15">
-					<div class="day-order">22</div>
-				</div>
-		</div>
-		<div class="cal-row-fluid weekday-num">
-				<div class="cal-cell1" id="sun" href="9">
-					<div class="day-order">23</div>
-				</div>
-				<div class="cal-cell1" id="mon" href="10">
-					<div class="day-order">24</div>
-				</div>
-				<div class="cal-cell1" id="tue" href="11">
-					<div class="day-order">25</div>
-				</div>
-				<div class="cal-cell1" id="wed" href="12">
-					<div class="day-order">26</div>
-				</div>
-				<div class="cal-cell1" id="thu" href="13">
-					<div class="day-order">27</div>
-				</div>
-				<div class="cal-cell1" id="fri" href="14">
-					<div class="day-order">28</div>
-				</div>
-				<div class="cal-cell1" id="sat" href="15">
-					<div class="day-order"></div>
-				</div>
-		</div> --}}
 	</div>
 </div>
-
-
-
-{{!-- <h2 class="text-center"> February </h2>
-<div class="table-responsive" id="month">
-	<table class="table">
-		<tr>
-			<td>Su</td>
-			<td>M</td>
-			<td>Tu</td>
-			<td>W</td>
-			<td>Th</td>
-			<td>F</td>
-			<td>Sa</td>
-		</tr>
-			<td> &nbsp; </td>
-			<td> &nbsp; </td>
-			<td> &nbsp; </td>
-			<td> &nbsp; </td>
-			<td> &nbsp; </td>
-			<td> &nbsp; </td>
-			<td><a href="/">1</a></td>
-		<tr>
-			<td><a href="/">2</a></td>
-			<td><a href="/">3</a></td>
-			<td><a href="/">4</a></td>
-			<td><a href="/">5</a></td>
-			<td><a href="/">6</a></td>
-			<td><a href="/">7</a></td>
-			<td><a href="/">8</a></td>
-		</tr>
-		<tr>
-			<td><a href="/">9</a></td>
-			<td><a href="/">10</a></td>
-			<td><a href="/">11</a></td>
-			<td><a href="/">12</a></td>
-			<td><a href="/">13</a></td>
-			<td><a href="/">14</a></td>
-			<td><a href="/">15</a></td>
-		</tr>
-		<tr>
-			<td><a href="/">16</a></td>
-			<td><a href="/">17</a></td>
-			<td><a href="/">18</a></td>
-			<td><a href="/">19</a></td>
-			<td><a href="/">20</a></td>
-			<td><a href="/">21</a></td>
-			<td><a href="/">22</a></td>
-		</tr>
-		<tr>
-			<td><a href="/">23</a></td>
-			<td><a href="/">24</a></td>
-			<td><a href="/">25</a></td>
-			<td><a href="/">26</a></td>
-			<td><a href="/">27</a></td>
-			<td><a href="/">28</a></td>
-			<td> &nbsp; </td>
-		</tr>
-	</table>
-</div> --}}
