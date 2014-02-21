@@ -1,16 +1,20 @@
-<div class="col-xs-12">
-    {{#if catchError}}
-    	<div> You have not logged in yet </div>
-        {{!-- <h4 class="text-left">Welcome, {{user}}</h4>
-        <a href='/logout' class="btn btn-default">Logout</a>
-        <a href='/addEvent'>Add Event</a> --}}
-    {{else}}
-    	<form method="get" action="login" class="navbar-form navbar-left" role="form">
-    		<div class="form-group col-xs-6 pull-right">
-    			<input type="text" class="form-control" name="username" placeholder="Ex: Jim">
-    			<input type="submit" class="form-control btn btn-default" value="Login">
-    		</div>
-        </form>
-    	{{!-- <a href={{url}} class="text-left">Login to Google Calendar </a> --}}
-    {{/if}}
+<div class="login-page">
+    <div class="splash-background">
+        <div class="login-row">
+            {{#if catchError}}
+            <div> You have not logged in yet </div>
+            {{!-- <h4 class="text-left">Welcome, {{user}}</h4>
+            <a href='/logout' class="btn btn-default">Logout</a>
+            <a href='/addEvent'>Add Event</a> --}}
+        {{else}}
+            <form method="get" action="login" class="navbar-form" role="form">
+                <div class="form-group">
+                    <input type="text" class="form-control login-name" name="username" placeholder="Ex: Jim">
+                    <input type="submit" class="form-control btn login-submit" value="Login">
+                </div>
+            </form>
+            {{!-- <a href={{url}} class="text-left">Login to Google Calendar </a> --}}
+        {{/if}}
+        </div>
+    </div>
 </div>
