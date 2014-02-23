@@ -12,7 +12,7 @@
 	</div>
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
-			<div class="cal-cell1" id="sun"><small>Sun</small>
+				<div class="cal-cell1" id="sun"><small>Sun</small>
 				</div>
 				<div class="cal-cell1" id="mon"><small>Mon</small>
 				</div>
@@ -27,12 +27,13 @@
 				<div class="cal-cell1" id="sat"><small>Sat</small>
 				</div>
 		</div>
+
 		{{#each weeks}}
 			<div class="cal-row-fluid weekday-num">
 			{{#each weekDays}}
 				<div class="cal-cell1">
 					{{#if date}}
-					<a href="../{{url}}">
+					<a class="stay" href="../{{url}}">
 						<div class="smile-face" id="{{aveMood}}"></div>
 						<div class="day-order">{{date}}</div>
 					</a>
