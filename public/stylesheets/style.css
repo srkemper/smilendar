@@ -114,8 +114,16 @@
 .cal-row-fluid [class*="cal-cell"].pull-right {
   float: right;
 }
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 body {
   padding: 0px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 ul,
@@ -404,11 +412,14 @@ a {
   height: 100%;
 }
 .login-page .login-row {
-  top: 380px;
+  bottom: 20px;
   position: absolute;
   width: 100%;
   text-align: center;
   min-height: 100px;
+}
+.login-page .navbar-form {
+  margin: 0;
 }
 .login-page .login-name {
   margin: 20px auto;

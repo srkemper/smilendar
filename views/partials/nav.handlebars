@@ -1,17 +1,17 @@
 <div class="navbar-header">
-  <a class="go-back" href="{{goback.link}}">{{goback.display}}</a>
-  <a class="menu-button" href="#">Menu</a>
+  <a class="go-back stay" href="{{goback.link}}">{{goback.display}}</a>
+  <a class="menu-button stay" href="#">Menu</a>
 </div>
 <div class="menu-drop-down">
   <ul class="drop-down-list">
     {{#if user}}
-    <li class="go-to-today"><a href="/today">Today</a></li>
-    <li class=""><a href="/addEvent/{{dayId}}">Add Event</a></li>
+    <li class="go-to-today"><a class="stay" href="/today">Today</a></li>
+    <li class=""><a class="stay" href="/addEvent/{{dayId}}">Add Event</a></li>
     <li>
-      <a href='/logout'>Logout</a>
+      <a class="stay" href='/logout'>Logout</a>
     </li>
     {{else}}
-    <li><a href="/"> Login </a></li>
+    <li><a class="stay" href="/"> Login </a></li>
     {{/if}}
   </ul>
 </div>

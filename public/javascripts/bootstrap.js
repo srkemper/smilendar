@@ -652,18 +652,21 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
-
+    // e.preventDefault();
+    // console.log('toggle!');
+    // e.stopImmediatePropagation();
     if ($this.is('.disabled, :disabled')) return
 
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    clearMenus()
+    clearMenus(e)
 
     if (!isActive) {
       if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
         // if mobile we use a backdrop because click events don't delegate
         $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+        e.stopImmediatePropagation();   // Added by Zayne shen
       }
 
       var relatedTarget = { relatedTarget: this }
@@ -677,7 +680,6 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
 
       $this.focus()
     }
-
     return false
   }
 
@@ -714,11 +716,15 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
   }
 
   function clearMenus(e) {
+    // e.preventDefault();
     $(backdrop).remove()
     $(toggle).each(function () {
       var $parent = getParent($(this))
       var relatedTarget = { relatedTarget: this }
       if (!$parent.hasClass('open')) return
+        console.log('close!');
+        e.preventDefault();
+      // e.stopImmediatePropagation();   // Added by Zayne Shen
       $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
       if (e.isDefaultPrevented()) return
       $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
