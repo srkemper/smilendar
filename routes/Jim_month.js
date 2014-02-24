@@ -74,8 +74,8 @@ function getAvgMoodInMonth(events) {
     moodForDay[start_day].todaysScaledMood += eventMood*timeToAdd;
     moodForDay[start_day].totalEvents += eventsToAdd;
 
-    // console.log(tempEvent)
-    // console.log(moodForDay[start_day])
+    console.log(tempEvent)
+    console.log(moodForDay[start_day])
   }
 
   for (i=0; i<dayCount; i++) {
@@ -84,8 +84,8 @@ function getAvgMoodInMonth(events) {
     } else {
       moodForDay[i].avgMood = 5;
     }
-    // console.log('i='+i);
-    // console.log(moodForDay[i].avgMood)
+    console.log('i='+i);
+    console.log(moodForDay[i].avgMood)
   }
   return moodForDay;
 
@@ -95,25 +95,21 @@ exports.view = function(req, res) {
   var monthId = req.params.id;
   locals.dayId = monthId + "-" + new Date().getDate();
   console.log(monthId);
-  res.render('month', locals);
-}
-
-
-exports.monthInfo = function(req, res) {
-  // Generating sudo data about daily summary here
-  console.log("monthview AJAX received!");
-  var monthId = req.params.id;
   dayCount = daysInMonth(monthId-1,2014);  // currently hardcoded for 2014 only
   console.log('How many days in this month? : '+dayCount);
 
+
+
+
+  // Generating sudo data about daily summary here
   Event.moodByMonth(parseInt(monthId) - 1, 2014, req.session.username, function(err, events) {
+    // console.log(parseInt(monthId) - 1, 114, req.session.username)
     if (err) {console.log('error getting moods');}
     
 
     var monthMood = {
       days:[]
     };
-
     var moodForDay = getAvgMoodInMonth(events);
     for (var i=0; i<dayCount; i++) {
       var j=i+1;
@@ -147,9 +143,7 @@ exports.monthInfo = function(req, res) {
           weekDays:[]
         };
     }
-
-
-    // locals.weeks = weeks;
+    locals.weeks = weeks;
     // Clear the local months
     var nav = {};
     nav.url = monthId;
@@ -164,12 +158,10 @@ exports.monthInfo = function(req, res) {
       console.log('nUrl: '+nav.nUrl);
       nav.nMonth = monthName[nav.nUrl - 1];
     }
-    // locals.nav = nav;
-  	res.json({
-          "weeks": weeks,
-          "nav" : nav
-      });
-
+    locals.nav = nav;
+    console.log('locals----------')
+    console.log(locals.weeks)
+  	res.render('month', locals);
   })
 
 

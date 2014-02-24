@@ -1,0 +1,1 @@
+module.exports.login_secret = "rh9cawkk15q4zpvi6lflfoffn3eah5mi"
