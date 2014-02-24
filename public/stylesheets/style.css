@@ -135,8 +135,9 @@ div {
   position: fixed;
   top: 0px;
   width: 100%;
+  z-index: 50;
 }
-.header-inner {
+.nav-bar-header .header-inner {
   padding: 0 15px;
   z-index: 50;
   line-height: 44px;
@@ -144,30 +145,30 @@ div {
   width: 100%;
   background-color: #f2f2f4;
 }
-.header-inner .menu-button {
+.nav-bar-header .header-inner .menu-button {
   float: right;
 }
-.menu-drop-down {
+.nav-bar-header .menu-drop-down {
   z-index: 999;
   width: 100%;
   background-color: #f2f2f4;
 }
-.drop-down-list {
+.nav-bar-header .drop-down-list {
   max-height: 0px;
   overflow: hidden;
   list-style: none;
   -webkit-transition: all 0.3s;
 }
-.drop-down-list a {
+.nav-bar-header .drop-down-list a {
   text-align: right;
   display: block;
   padding: 10px 15px;
   border-bottom: 1px solid #eeeeee;
 }
-.drop-down-list .active {
+.nav-bar-header .drop-down-list .active {
   background-color: #dedede;
 }
-.show-menu .drop-down-list {
+.nav-bar-header .show-menu .drop-down-list {
   max-height: 500px;
 }
 .weekdaynav {
@@ -382,6 +383,7 @@ a {
 }
 .event-view .comment textarea {
   border: none;
+  background-color: #f2f4f3;
   padding: 0;
   width: 100%;
 }

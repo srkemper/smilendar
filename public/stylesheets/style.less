@@ -27,9 +27,9 @@ ul, li, div{
   position: fixed;
   top: 0px;
   width: 100%;
-}
+  z-index: 50;
 
-.header-inner {
+  .header-inner {
   padding: 0 15px;
   z-index: 50;
   line-height: 44px;
@@ -38,42 +38,44 @@ ul, li, div{
   width: 100%;
   background-color: #f2f2f4;
 
-  .menu-button {
-    float: right;
+    .menu-button {
+      float: right;
+    }
+
   }
 
-}
-
-.menu-drop-down {
-  // margin-top: 44px;
-  z-index: 999;
-  width: 100%;
-  background-color: #f2f2f4;
-}
-
-.drop-down-list {
-  max-height: 0px;
-  overflow:hidden;
-  list-style: none;
-  a {
-    text-align: right;
-    display: block;
-    padding: 10px 15px;
-    border-bottom: 1px solid #eeeeee;
+  .menu-drop-down {
+    // margin-top: 44px;
+    z-index: 999;
+    width: 100%;
+    background-color: #f2f2f4;
   }
 
-  -webkit-transition: all 0.3s;
-
-  .active{
-    background-color: #dedede;
-  }
-}
-
-.show-menu {
   .drop-down-list {
-    max-height: 500px;
+    max-height: 0px;
+    overflow:hidden;
+    list-style: none;
+    a {
+      text-align: right;
+      display: block;
+      padding: 10px 15px;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    -webkit-transition: all 0.3s;
+
+    .active{
+      background-color: #dedede;
+    }
+  }
+
+  .show-menu {
+    .drop-down-list {
+      max-height: 500px;
+    }
   }
 }
+
 
 .weekdaynav {
   position: absolute;
@@ -95,6 +97,7 @@ ul, li, div{
   // margin-bottom: 54px;
 }
 
+// ------------------------- Month View -----------------------
 
 .month-view {
 
@@ -181,6 +184,9 @@ ul, li, div{
     width: 145px;
   }
 }
+
+
+// -------------------------- Day View -----------------------
 
 .day-view {
 
@@ -336,6 +342,8 @@ a {
 }
 
 
+// -------------------------- Event View -----------------------
+
 .event-view {
   .alarm, .repeat, .note{
     padding-top: 20px;
@@ -353,6 +361,7 @@ a {
     border-top: 1px solid #eeeeee;
     textarea {
       border: none;
+      background-color: #f2f4f3;
       padding: 0;
       width: 100%;
     }
@@ -373,6 +382,8 @@ a {
   }
 
 }
+
+// -------------------------- Login Page -----------------------
 
 .login-page {
     position: absolute;
