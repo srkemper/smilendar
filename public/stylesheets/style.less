@@ -4,7 +4,7 @@
 html {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: fixed;
 }
 
 body {
@@ -22,14 +22,19 @@ ul, li, div{
   padding: 0px;
 }
 
-.navbar-header {
+
+.nav-bar-header{
   position: fixed;
   top: 0px;
+  width: 100%;
+}
+
+.header-inner {
   padding: 0 15px;
   z-index: 50;
   line-height: 44px;
   height: 44px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   width: 100%;
   background-color: #f2f2f4;
 
@@ -40,8 +45,10 @@ ul, li, div{
 }
 
 .menu-drop-down {
-  margin-top: 44px;
+  // margin-top: 44px;
+  z-index: 999;
   width: 100%;
+  background-color: #f2f2f4;
 }
 
 .drop-down-list {
@@ -84,7 +91,7 @@ ul, li, div{
 }
 
 .container-fluid{
-  margin-top: 10px;
+  margin-top: 50px;
   // margin-bottom: 54px;
 }
 

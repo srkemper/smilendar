@@ -1,3 +1,10 @@
+// document.ontouchmove = function(event){
+//     event.preventDefault();
+// }
+
+
+
+
 $(document).ready(function(){
     showMenu();
     $(".go-to-today a").attr('href','/'+getTagAndDate(new Date()));

@@ -117,7 +117,7 @@
 html {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: fixed;
 }
 body {
   padding: 0px;
@@ -131,23 +131,26 @@ li,
 div {
   padding: 0px;
 }
-.navbar-header {
+.nav-bar-header {
   position: fixed;
   top: 0px;
+  width: 100%;
+}
+.header-inner {
   padding: 0 15px;
   z-index: 50;
   line-height: 44px;
   height: 44px;
-  margin-bottom: 20px;
   width: 100%;
   background-color: #f2f2f4;
 }
-.navbar-header .menu-button {
+.header-inner .menu-button {
   float: right;
 }
 .menu-drop-down {
-  margin-top: 44px;
+  z-index: 999;
   width: 100%;
+  background-color: #f2f2f4;
 }
 .drop-down-list {
   max-height: 0px;
@@ -182,7 +185,7 @@ div {
   background-color: #f2f2f4;
 }
 .container-fluid {
-  margin-top: 10px;
+  margin-top: 50px;
 }
 .month-view .this-week {
   margin: 10px 0 54px 0;
