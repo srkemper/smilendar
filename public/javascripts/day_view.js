@@ -30,7 +30,7 @@ function highlightDay(dayUrl) {
 
 function selectDay(e) {
     // Retrieve event list of a day using AJAX
-    pageurl = $(this).attr('href');
+    var pageurl = $(this).attr('href');
     e.preventDefault();
     console.log('selecting day-----');
     $(this).siblings().find(".day-order").removeClass("active");

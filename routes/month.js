@@ -29,13 +29,17 @@ exports.view = function(req, res) {
   var monthId = req.params.id;
   locals.dayId = monthId + "-" + new Date().getDate();
   console.log(monthId);
+
+  res.render('month', locals);
+}
+
+
+exports.monthInfo = function(req, res) {
+  // Generating sudo data about daily summary here
+  console.log("monthview AJAX received!");
+  var monthId = req.params.id;
   dayCount = daysInMonth(monthId,2014);  // currently hardcoded for 2014 only
   console.log('How many days in this month? : '+dayCount);
-
-
-
-
-  // Generating sudo data about daily summary here
   Event.moodByMonth(parseInt(monthId) - 1, 114, req.session.username, function(err, moods) {
     // console.log(parseInt(monthId) - 1, 114, req.session.username)
     if (err) {console.log('error getting moods');}
@@ -56,15 +60,18 @@ exports.view = function(req, res) {
         average = Math.ceil(average) + 2;
       } else {
         average = 5;
+        events = 0;
       }
       console.log('average = ' + average + " : " + moodId[average]);
       monthMood.days.push(
         { date:j,
           url:monthId + '-' + j,
-          aveMood:moodId[average]
+          aveMood:moodId[average],
+          totalEvents:events
         }
       );
     }
+
     console.log(monthMood)
     cal = new calendar(0);               // weeks starting on Monday
     // m = cal.monthDays(2014, parseInt(monthId)-1);
@@ -98,7 +105,9 @@ exports.view = function(req, res) {
           weekDays:[]
         };
     }
-    locals.weeks = weeks;
+
+
+    // locals.weeks = weeks;
     // Clear the local months
     var nav = {};
     nav.url = monthId;
@@ -113,8 +122,11 @@ exports.view = function(req, res) {
       console.log('nUrl: '+nav.nUrl);
       nav.nMonth = monthName[nav.nUrl - 1];
     }
-    locals.nav = nav;
-  	res.render('month', locals);
+    // locals.nav = nav;
+  	res.json({
+          "weeks": weeks,
+          "nav" : nav
+      });
   })
 
 

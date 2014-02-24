@@ -202,6 +202,7 @@ app.post('/deleteEvent', function(request, response) {
 })
 
 app.get('/dayEvent/:id',index.dayInfo);
+app.get('/monthEvent/:id',month.monthInfo);   // AJAX to get month view information
 
 // handling return value
 

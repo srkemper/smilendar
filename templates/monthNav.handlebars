@@ -1,0 +1,9 @@
+<div class="this-month">{{nav.month}}</div>
+<ul class="pager">
+  {{#if nav.pUrl}}
+  <li class="previous"><a class="" href="{{nav.pUrl}}">{{nav.pMonth}}</a></li>
+  {{/if}}
+  {{#if nav.nUrl}}
+  <li class="next"><a class="" href="{{nav.nUrl}}">{{nav.nMonth}}</a></li>
+  {{/if}}
+</ul>

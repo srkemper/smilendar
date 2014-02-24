@@ -234,9 +234,9 @@ div {
 .month-view .day-order {
   position: absolute;
   margin: 0 auto;
-  line-height: 36px;
-  width: 36px;
-  height: 36px;
+  line-height: 38px;
+  width: 38px;
+  height: 38px;
   -webkit-transition: all 0.3s;
 }
 .month-view.show-mood .smile-face {
@@ -250,6 +250,14 @@ div {
 }
 .cm-switcher button {
   width: 145px;
+}
+.day-event-identifier {
+  background-color: #00AEEF;
+  position: absolute;
+  bottom: 36px;
+  left: 14px;
+  width: 10px;
+  margin: 0 auto;
 }
 .day-view .this-week {
   margin: 10px 0;
