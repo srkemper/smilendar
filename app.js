@@ -59,8 +59,8 @@ app.configure(function() {
   app.use(express.urlencoded());
   app.use(express.methodOverride());
   app.use(express.cookieParser(process.env.LOGIN_SECRET));
-  app.use(express.cookieSession());
-  // app.use(express.session());
+  // app.use(express.cookieSession());
+  app.use(express.session());
   app.use(app.router);
   app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
   app.use(express.static(path.join(__dirname, 'public')));

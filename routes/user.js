@@ -9,27 +9,28 @@ exports.list = function(req, res){
 
 // login page 
 exports.loginpage = function(req, res) {
-	// if (req.cookies.remember) {
-	// 	var month = new Date().getMonth() + 1;
-	// 	var day = new Date().getDate();
-	//     res.redirect("/" + month + "-" + day);
-	// } else {
-	// 	res.send('<form method="post"><p>Check to <label>'
-	// 	  + '<input type="checkbox" name="remember"/> remember me</label> '
-	// 	  + '<input type="submit" value="Submit"/>.</p></form>');
-	// }
-	console.log("login page");
-	var username = req.query.username;
-	console.log("username is: " + username);
-	var catchError = null;
-	if (username) {
-		var day = new Date().getDate();
+	if (req.cookies.username) {
+		console.log("cookies.username = " + req.cookies.username);
+		req.session.username = req.cookies.username;
 		var month = new Date().getMonth() + 1;
-		res.redirect('/' + month + "-" + day);
+		var day = new Date().getDate();
+	    res.redirect("/" + month + "-" + day);
+	} else {
+		console.log("login page");
+		var username = req.query.username;
+		console.log("username is: " + username);
+		var catchError = null;
+		if (username) {
+			var day = new Date().getDate();
+			var month = new Date().getMonth() + 1;
+			res.redirect('/' + month + "-" + day);
+		}
+		// var three_days = 1000 * 60 * 60 * 24 * 3;
+		// res.cookie('username', username, { maxAge: three_days, httpOnly: true });
+		// res.send();
+		req.session.username = username;
+		res.render('login.handlebars', catchError)
 	}
-
-	req.session.username = username;
-	res.render('login.handlebars', catchError)
 }
 
 // redirect after login
@@ -40,6 +41,8 @@ exports.login_redirect = function(req, res){
 	req.session.username = username;
 	var catchError = null;
 	if (username) {
+		var three_days = 1000 * 60 * 60 * 24 * 3;
+		res.cookie('username', username, { maxAge: three_days, httpOnly: true });
 		var day = new Date().getDate();
 		var month = new Date().getMonth() + 1;
 		res.redirect('/' + month + "-" + day);
@@ -53,5 +56,6 @@ exports.login_redirect = function(req, res){
 
 exports.logout = function(req, res){
 	req.session.username = null;
+	res.clearCookie('username', {path: '/'});
 	res.redirect('/');
 }
