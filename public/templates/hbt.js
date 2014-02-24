@@ -7,7 +7,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"event-item\">\n  <a href=\"/calendar_event/";
+  buffer += "<div class=\"event-item\">\n  <a class=\"go-to-event\" href=\"/calendar_event/";
   if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0._id); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
@@ -57,4 +57,94 @@ function program1(depth0,data) {
   stack1 = helpers.each.call(depth0, (depth0 && depth0.eventList), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
+  });
+
+this["Smilendar"]["Templates"]["templates/monthDay.handlebars"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n  <div class=\"cal-row-fluid weekday-num\">\n  ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.weekDays), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <div class=\"cal-cell1\">\n      ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.date), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n  ";
+  return buffer;
+  }
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n      <a class=\"stay\" href=\"../";
+  if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.url); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n        <div class=\"smile-face\" id=\"";
+  if (stack1 = helpers.aveMood) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.aveMood); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\"></div>\n        <div class=\"day-order\">";
+  if (stack1 = helpers.date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.date); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n        <div class=\"day-event-identifier\" style=\"height: ";
+  if (stack1 = helpers.totalEvents) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.totalEvents); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "px\"></div>\n      </a>\n      ";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.weeks), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+
+this["Smilendar"]["Templates"]["templates/monthNav.handlebars"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n  <li class=\"previous\"><a class=\"\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.nav)),stack1 == null || stack1 === false ? stack1 : stack1.pUrl)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.nav)),stack1 == null || stack1 === false ? stack1 : stack1.pMonth)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></li>\n  ";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n  <li class=\"next\"><a class=\"\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.nav)),stack1 == null || stack1 === false ? stack1 : stack1.nUrl)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.nav)),stack1 == null || stack1 === false ? stack1 : stack1.nMonth)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></li>\n  ";
+  return buffer;
+  }
+
+  buffer += "<div class=\"this-month\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.nav)),stack1 == null || stack1 === false ? stack1 : stack1.month)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n<ul class=\"pager\">\n  ";
+  stack2 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.nav)),stack1 == null || stack1 === false ? stack1 : stack1.pUrl), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\n  ";
+  stack2 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.nav)),stack1 == null || stack1 === false ? stack1 : stack1.nUrl), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\n</ul>";
+  return buffer;
   });

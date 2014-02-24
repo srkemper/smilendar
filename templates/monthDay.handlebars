@@ -1,0 +1,15 @@
+{{#each weeks}}
+  <div class="cal-row-fluid weekday-num">
+  {{#each weekDays}}
+    <div class="cal-cell1">
+      {{#if date}}
+      <a class="stay" href="../{{url}}">
+        <div class="smile-face" id="{{aveMood}}"></div>
+        <div class="day-order">{{date}}</div>
+        <div class="day-event-identifier" style="height: {{totalEvents}}px"></div>
+      </a>
+      {{/if}}
+    </div>
+  {{/each}}
+  </div>
+{{/each}}

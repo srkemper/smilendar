@@ -1,18 +1,10 @@
 <div class="month-view">
 	<div class="month-nav">
-		<div class="this-month">{{nav.month}}</div>
-		<ul class="pager">
-			{{#if nav.pUrl}}
-		  <li class="previous"><a href="{{nav.pUrl}}">{{nav.pMonth}}</a></li>
-		  {{/if}}
-		  {{#if nav.nUrl}}
-		  <li class="next"><a href="{{nav.nUrl}}">{{nav.nMonth}}</a></li>
-		  {{/if}}
-		</ul>
+
 	</div>
 	<div class="row this-week">
 		<div class="cal-row-fluid weekday-name">
-			<div class="cal-cell1" id="sun"><small>Sun</small>
+				<div class="cal-cell1" id="sun"><small>Sun</small>
 				</div>
 				<div class="cal-cell1" id="mon"><small>Mon</small>
 				</div>
@@ -27,19 +19,10 @@
 				<div class="cal-cell1" id="sat"><small>Sat</small>
 				</div>
 		</div>
-		{{#each weeks}}
-			<div class="cal-row-fluid weekday-num">
-			{{#each weekDays}}
-				<div class="cal-cell1">
-					{{#if date}}
-					<a href="../{{url}}">
-						<div class="smile-face" id="{{aveMood}}"></div>
-						<div class="day-order">{{date}}</div>
-					</a>
-					{{/if}}
-				</div>
-			{{/each}}
-			</div>
-		{{/each}}
+
+		<div class="month-day">
+
+
+		</div>
 	</div>
 </div>
