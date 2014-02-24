@@ -9,6 +9,15 @@ exports.list = function(req, res){
 
 // login page 
 exports.loginpage = function(req, res) {
+	// if (req.cookies.remember) {
+	// 	var month = new Date().getMonth() + 1;
+	// 	var day = new Date().getDate();
+	//     res.redirect("/" + month + "-" + day);
+	// } else {
+	// 	res.send('<form method="post"><p>Check to <label>'
+	// 	  + '<input type="checkbox" name="remember"/> remember me</label> '
+	// 	  + '<input type="submit" value="Submit"/>.</p></form>');
+	// }
 	console.log("login page");
 	var username = req.query.username;
 	console.log("username is: " + username);
