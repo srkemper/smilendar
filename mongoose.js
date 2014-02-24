@@ -1,4 +1,7 @@
-var databaseURI = "mongodb://smilendar147:smilendar147@ds027819.mongolab.com:27819/heroku_app21990328";
+var dotenv = require('dotenv');
+dotenv.load();
+
+var databaseURI = process.env.MONGO_URL;
 var mongoose = require("mongoose");
 mongoose.connect(databaseURI);
 var db = mongoose.connection;

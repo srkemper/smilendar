@@ -23,6 +23,11 @@ var mongoose = require('mongoose');
 var mongoosedb = require('./mongoose');
 var Event = mongoose.model('Event');
 
+var dotenv = require('dotenv');
+dotenv.load();
+
+var secrets = require('./secrets');
+
 
 var User = mongoose.model('User');
 
@@ -53,7 +58,8 @@ app.configure(function() {
   app.use(express.json());
   app.use(express.urlencoded());
   app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
+  app.use(express.cookieParser(process.env.LOGIN_SECRET));
+  // app.use(express.cookieSession());
   app.use(express.session());
   app.use(app.router);
   app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
