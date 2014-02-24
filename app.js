@@ -22,6 +22,10 @@ var db = require('./db');
 var mongoose = require('mongoose');
 var mongoosedb = require('./mongoose');
 var Event = mongoose.model('Event');
+
+var dotenv = require('dotenv');
+dotenv.load();
+
 var secrets = require('./secrets');
 
 
