@@ -26,7 +26,7 @@ var Event = mongoose.model('Event');
 var dotenv = require('dotenv');
 dotenv.load();
 
-var secrets = require('./secrets');
+// var secrets = require('./secrets');
 
 
 var User = mongoose.model('User');
