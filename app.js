@@ -22,6 +22,7 @@ var db = require('./db');
 var mongoose = require('mongoose');
 var mongoosedb = require('./mongoose');
 var Event = mongoose.model('Event');
+var secrets = require('./secrets');
 
 
 var User = mongoose.model('User');

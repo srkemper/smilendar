@@ -28,6 +28,7 @@
     "mongoose": "~3.8.7",
     "grunt-shell-spawn": "~0.3.0",
     "mongojs": "~0.10.0",
-    "date.js": "~0.1.1"
+    "date.js": "~0.1.1",
+    "dotenv": "~0.2.4"
   }
 }
