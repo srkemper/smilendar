@@ -60,11 +60,9 @@ function getAvgMoodInMonth(events) {
     var timeToAdd = eve.end - eve.start;
     var eventMood = eve.mood;
     var moodExist = true;
-    var eventsToAdd = 1;
     if (eventMood == null && !moodForDay[start_day].MoodExist) {
         eventMood = 0;
         moodExist = false;
-        eventsToAdd = 0;
         timeToAdd = 0;
     }
 
@@ -72,7 +70,7 @@ function getAvgMoodInMonth(events) {
     moodForDay[start_day].MoodExist = moodExist;
     moodForDay[start_day].timeToAdd += timeToAdd; // need to define first!!
     moodForDay[start_day].todaysScaledMood += eventMood*timeToAdd;
-    moodForDay[start_day].totalEvents += eventsToAdd;
+    moodForDay[start_day].totalEvents += 1;
 
     // console.log(tempEvent)
     // console.log(moodForDay[start_day])
