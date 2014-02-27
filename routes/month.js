@@ -125,17 +125,28 @@ exports.monthInfo = function(req, res) {
     };
     console.log('---debuggg----')
     console.log('user is ' + user)
-    // console.log(events);
+    console.log(events);
+
     var moodForDay = getAvgMoodInMonth(events);
-    
+    console.log(moodForDay)
     // console.log(moodForDay[i]);
     for (var i=0; i<dayCount; i++) {
       var j=i+1;
+      var avgmood;
+      var totalevents;
+      if (moodForDay.length == 0) {
+        avgmood = 5;
+        totalevents = 0;
+      } else {
+        avgmood = moodForDay[i].avgMood;
+        totalevents = moodForDay[i].totalEvents;
+      }
+
       monthMood.days.push(
           { date:j,
             url:monthId + '-' + j,
-            aveMood:moodId[moodForDay[i].avgMood],
-            totalEvents:moodForDay[i].totalEvents
+            aveMood:moodId[avgmood],
+            totalEvents:totalevents
           }
         );
     }
