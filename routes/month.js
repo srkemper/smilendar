@@ -125,10 +125,10 @@ exports.monthInfo = function(req, res) {
     };
     console.log('---debuggg----')
     console.log('user is ' + user)
-    console.log(events);
+    // console.log(events);
 
     var moodForDay = getAvgMoodInMonth(events);
-    console.log(moodForDay)
+    // console.log(moodForDay)
     // console.log(moodForDay[i]);
     for (var i=0; i<dayCount; i++) {
       var j=i+1;
