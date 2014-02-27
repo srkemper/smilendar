@@ -176,8 +176,8 @@ app.post('/addEvent', function(request, response) {
     if (err) {console.log('could not save new event')};
     console.log(saved);
   })
-  var month = new Date().getMonth() + 1;
-  var date = new Date().getDate();
+  var month = new Date(start).getMonth() + 1;
+  var date = new Date(start).getDate();
   response.redirect('/' + month + "-" + date);
 });
 

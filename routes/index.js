@@ -160,10 +160,13 @@ function returnDayInString(date) {
 //gets a ordered list (by start time) of the events for this day
 exports.index = function(req, res){
     console.log('---routes.index---')
+    console.log(req.session)
+    console.log(req.cookies)
     // parse id for date from URL
     var dayId = req.params.id;
     locals.dayId = dayId;
-    locals.user = req.session.username;
+    locals.user = req.session.username || req.cookies.username;
+    console.log(locals.user)
 
     var today = getDateFromDayID(dayId);
     var currWeekInfo = getCurrentWeek(today);
@@ -193,7 +196,7 @@ function formatAMPM(date) {
 }
 
 function returnURLforPrevAndNextWeek(date) {
-    console.log('returnURLforPrevAndNextWeek');
+    // console.log('returnURLforPrevAndNextWeek');
     var oneWeekInEpoch = 60*60*24*7*1000;
     var fiveHours = 60*60*5*1000;
     // var tempDate = new Date();
@@ -204,7 +207,7 @@ function returnURLforPrevAndNextWeek(date) {
     // var nextWeek = new Date(tempDate)
     var nextWeek = new Date(date.getTime() + oneWeekInEpoch + fiveHours);
 
-    console.log(nextWeek);
+    // console.log(nextWeek);
 
     lastWeekTag = getTagAndDate(lastWeek);
     nextWeekTag = getTagAndDate(nextWeek);
@@ -215,7 +218,7 @@ function returnURLforPrevAndNextWeek(date) {
 
 exports.dayInfo = function(req, res) {
 
-    // console.log('dayInfo');
+    console.log('dayInfo');
     var dateId = req.params.id;
     var date = getDateFromDayID(dateId)
     // console.log('dateId is '+ dateId)
@@ -228,30 +231,38 @@ exports.dayInfo = function(req, res) {
     locals.lastWeekURL = tagsForPrevAndNextWeek[0];
     locals.nextWeekURL = tagsForPrevAndNextWeek[1];
 
+    console.log(req.session)
+    console.log(req.cookies)
+    var user = req.session.username || req.cookies.username;
 
-    Event.findByDate(date, req.session.username, function(err, events) {
-      // console.log("--------Event.findByDate--------------")
+    if (typeof(user) == 'undefined') {
+        console.log('hello')
+        res.redirect('/');
+    } else {
+        Event.findByDate(date, user, function(err, events) {
+          // console.log("--------Event.findByDate--------------")
 
 
-      // adding "starttime" and "endtime" in strings
-      for (var i=0; i<events.length; i++) {
-            var m = events[i].mood;
-            if (m==-2 || m==-1 || m==0 || m==1 || m==2) {
-                events[i].moodString = moodToString[events[i].mood+2];
-            } else {
-                events[i].moodString = "null"
-            }
-            events[i].starttime = formatAMPM(new Date(events[i].start))
-            events[i].endtime = formatAMPM(new Date(events[i].end))
-            // console.log(events[i])
-      }
-      // console.log(events)
-      res.json({
-            "eventList": events, 
-            "fullDateInString": locals.fullDateInString,
-            "lastWeekURL": locals.lastWeekURL,
-            "nextWeekURL": locals.nextWeekURL
+          // adding "starttime" and "endtime" in strings
+          for (var i=0; i<events.length; i++) {
+                var m = events[i].mood;
+                if (m==-2 || m==-1 || m==0 || m==1 || m==2) {
+                    events[i].moodString = moodToString[events[i].mood+2];
+                } else {
+                    events[i].moodString = "null"
+                }
+                events[i].starttime = formatAMPM(new Date(events[i].start))
+                events[i].endtime = formatAMPM(new Date(events[i].end))
+                // console.log(events[i])
+          }
+          // console.log(events)
+          res.json({
+                "eventList": events, 
+                "fullDateInString": locals.fullDateInString,
+                "lastWeekURL": locals.lastWeekURL,
+                "nextWeekURL": locals.nextWeekURL
+            });
+
         });
-
-    });
+    }
 }

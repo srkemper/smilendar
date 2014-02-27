@@ -47,8 +47,8 @@ eventSchema.statics.findByDate = function(date, user, callback) {
   beg = beg.getTime();
   end = end.getTime();
   this.find({user: user, 'start':{$gte:beg}, 'end':{$lte:end}}, null, {sort:{'start':1}}, function(err, events) {
-    console.log(events);
-    console.log('events')
+    // console.log(events);
+    // console.log('events')
     events.forEach(function(eve) {
       // if (eve.start_day == date.getDate() && eve.start_month == date.getMonth() && eve.start_year == date.getYear()) {
         eventList.push(eve.toJSON());
