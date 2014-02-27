@@ -100,19 +100,35 @@ exports.view = function(req, res) {
 exports.monthInfo = function(req, res) {
   // Generating sudo data about daily summary here
   console.log("monthview AJAX received!");
+  console.log(req.params);
+  console.log(req.session);
+  console.log(req.cookies.username);
   var monthId = req.params.id;
   dayCount = daysInMonth(monthId-1,2014);  // currently hardcoded for 2014 only
   console.log('How many days in this month? : '+dayCount);
 
-  Event.moodByMonth(parseInt(monthId) - 1, 2014, req.session.username, function(err, events) {
+  var user = req.session.username || req.cookies.username;
+  console.log('user!');
+  console.log(user);
+  console.log(typeof(user));
+  if (typeof(user) == 'undefined') {
+    console.log('undefined!');
+    res.redirect('/');
+  } else {
+
+  Event.moodByMonth(parseInt(monthId) - 1, 2014, user, function(err, events) {
     if (err) {console.log('error getting moods');}
     
 
     var monthMood = {
       days:[]
     };
-
+    console.log('---debuggg----')
+    console.log('user is ' + user)
+    // console.log(events);
     var moodForDay = getAvgMoodInMonth(events);
+    
+    // console.log(moodForDay[i]);
     for (var i=0; i<dayCount; i++) {
       var j=i+1;
       monthMood.days.push(
@@ -127,7 +143,7 @@ exports.monthInfo = function(req, res) {
     cal = new calendar(0);               // weeks starting on Monday
     // m = cal.monthDays(2014, parseInt(monthId)-1);
     console.log('---mood by month---')
-    console.log(monthMood);
+    // console.log(monthMood);
     m = cal.monthJSON(2014, parseInt(monthId)-1, monthMood);  // month is from 0 - 11
 
     var weeks = [],
@@ -170,6 +186,6 @@ exports.monthInfo = function(req, res) {
 
   })
 
-
+  }
 };
 

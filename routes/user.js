@@ -14,6 +14,7 @@ exports.loginpage = function(req, res) {
 		req.session.username = req.cookies.username;
 		var month = new Date().getMonth() + 1;
 		var day = new Date().getDate();
+		// res.setHeader('Set-Cookie', req.session.getSetCookieHeaderValue());
 	    res.redirect("/" + month + "-" + day);
 	} else {
 		console.log("login page");
@@ -29,6 +30,7 @@ exports.loginpage = function(req, res) {
 		// res.cookie('username', username, { maxAge: three_days, httpOnly: true });
 		// res.send();
 		req.session.username = username;
+		// res.setHeader('Set-Cookie', req.session.getSetCookieHeaderValue());
 		res.render('login.handlebars', catchError)
 	}
 }
