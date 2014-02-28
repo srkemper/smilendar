@@ -195,7 +195,8 @@ app.post('/addComment', function(request, response) {
       console.log("not updated :(");
     }
     console.log(updated);
-    response.redirect('/calendar_event/' + params.event_id);
+    response.redirect(params.goback)
+    // response.redirect('/calendar_event/' + params.event_id);
   })
 })
 

@@ -14,8 +14,8 @@ var today = {
 var locals = {
     script: '/javascripts/event_view.js',
     goback: {
-        link: '/12',
-        display: 'Today',
+        link: '',
+        display: '',
     },
     // eventlist: data
 };
@@ -53,7 +53,7 @@ exports.view = function(req, res) {
       locals.goback.link = '/'+ eveIns.month.toString() + "-" + eveIns.date.toString();
       locals.dayId = eveIns.month.toString() + "-" + eveIns.date.toString();
       if (eveIns.date != new Date().getDate()){
-        locals.goback.display = 'Day';
+        locals.goback.display = 'Back';
       } else {
         locals.goback.display = 'Today';
       }
