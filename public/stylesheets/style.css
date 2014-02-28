@@ -145,8 +145,16 @@ div {
   width: 100%;
   background-color: #f2f2f4;
 }
+.nav-bar-header .header-inner .menu-today {
+  float: right;
+  padding-right: 15px;
+}
 .nav-bar-header .header-inner .menu-button {
   float: right;
+}
+.nav-bar-header .header-inner .menu-addEvent {
+  float: right;
+  padding-right: 15px;
 }
 .nav-bar-header .menu-drop-down {
   z-index: 999;

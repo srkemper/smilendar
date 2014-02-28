@@ -111,6 +111,7 @@ app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
 app.get('/addEvent/:id', addEvent.view);
 app.get('/:id',routes.index);
+app.get('/alt/:id',index.alternate)
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month/:id', month.view);

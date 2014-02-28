@@ -1,11 +1,23 @@
 <div class="header-inner">
-  <a class="go-back stay" href="{{goback.link}}">{{goback.display}}</a>
-  <a class="menu-button stay" href="#">Menu</a>
+  <a class="go-back stay glyphicon glyphicon-chevron-left" href="{{goback.link}}">{{goback.display}}</a>
+  {{#if alternate}}
+    <a class="menu-button stay" href='/logout'>Logout</a>
+
+    <a class="menu-addEvent stay" href="/addEvent/{{dayId}}">Add Event</a>
+    <a class="menu-today stay" href="/alt/{{dayId}}">Back</a>
+
+  {{else}}
+    <a class="menu-button stay" href="#">Menu</a>
+  {{/if}}
 </div>
+
+{{#if alternate}}
+{{else}}
+
 <div class="menu-drop-down">
   <ul class="drop-down-list">
     {{#if user}}
-    <li class="go-to-today"><a class="stay" href="/today">Today</a></li>
+    <li class="go-to-today"><a class="stay" href="/{{dayId}}">Back</a></li>
     <li class=""><a class="stay" href="/addEvent/{{dayId}}">Add Event</a></li>
     <li>
       <a class="stay" href='/logout'>Logout</a>
@@ -16,3 +28,4 @@
   </ul>
 </div>
 
+{{/if}}

@@ -76,7 +76,8 @@ var locals = {
     },
     fullDateInString: '',
     lastWeekURL: '',
-    nextWeekURL: ''
+    nextWeekURL: '',
+    alternate: false
 };
 
 // append '0' to the front of string if string has length 1
@@ -157,9 +158,8 @@ function returnDayInString(date) {
     return fullDate
 }
 
-//gets a ordered list (by start time) of the events for this day
-exports.index = function(req, res){
-    console.log('---routes.index---')
+function renderingIndex(req, res) {
+    console.log('---renderingIndex---')
     console.log(req.session)
     console.log(req.cookies)
     // parse id for date from URL
@@ -179,9 +179,26 @@ exports.index = function(req, res){
     locals.lastWeekURL = tagsForPrevAndNextWeek[0];
     locals.nextWeekURL = tagsForPrevAndNextWeek[1];
 
+    // storing alternative options
+    req.cookies.alternate = locals.alternate;
+    req.session.alternate = locals.alternate;
     res.render('homepage', locals);
+}
+
+//gets a ordered list (by start time) of the events for this day
+exports.index = function(req, res){
+    console.log('---routes.index---')
+    locals.alternate = false;   // for A-B testing
+    renderingIndex(req,res);
+    
 
 };
+
+// renders alternative design, for A-B testing
+exports.alternate = function(req, res) {
+    locals.alternate = true;   // for A-B testing
+    renderingIndex(req,res);
+}
 
 // source: http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
 function formatAMPM(date) {
@@ -231,8 +248,8 @@ exports.dayInfo = function(req, res) {
     locals.lastWeekURL = tagsForPrevAndNextWeek[0];
     locals.nextWeekURL = tagsForPrevAndNextWeek[1];
 
-    console.log(req.session)
-    console.log(req.cookies)
+    console.log(req.session.alternate)
+    console.log(req.cookies.alternate)
     var user = req.session.username || req.cookies.username;
 
     if (typeof(user) == 'undefined') {
