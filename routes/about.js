@@ -1,6 +1,5 @@
 exports.view = function(req,res) {
     console.log('---about---');
-    
     var locals = {
 	    user: '',
 	    // title: 'Today',
