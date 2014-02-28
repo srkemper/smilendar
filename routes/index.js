@@ -211,7 +211,7 @@ function formatAMPM(date) {
 }
 
 function returnURLforPrevAndNextWeek(date) {
-    // console.log('returnURLforPrevAndNextWeek');
+    console.log('returnURLforPrevAndNextWeek');
     var oneWeekInEpoch = 60*60*24*7*1000;
     var fiveHours = 60*60*5*1000;
     // var tempDate = new Date();
@@ -222,7 +222,9 @@ function returnURLforPrevAndNextWeek(date) {
     // var nextWeek = new Date(tempDate)
     var nextWeek = new Date(date.getTime() + oneWeekInEpoch + fiveHours);
 
-    // console.log(nextWeek);
+    console.log(date);
+    console.log(lastWeek);
+    console.log(nextWeek);
 
     lastWeekTag = getTagAndDate(lastWeek);
     nextWeekTag = getTagAndDate(nextWeek);
