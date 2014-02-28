@@ -9,6 +9,7 @@ var user = require('./routes/user');
 var calendar_event = require('./routes/calendar_event');
 var month = require('./routes/month');
 var addEvent = require('./routes/addEvent');
+var about = require('./routes/about');
 var app = express();
 var http = require('http');
 var path = require('path');
@@ -107,7 +108,7 @@ var eventsJSON = require("./data.json");
 // });
 
 app.get('/',user.loginpage);
-app.get('/about', index.about);
+app.get('/about', about.view);
 app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
 app.get('/addEvent/:id', addEvent.view);
@@ -157,13 +158,44 @@ app.post('/changeMood', function(request, response) {
 
 app.post('/addEvent', function(request, response) {
   var params = request.body;
-  var startString = params.date + " " + params.startTime;
-  var endString = params.date + " " + params.endTime;
-  var start = Date.parse(startString);
-  var end = Date.parse(endString);
-  console.log(startString, endString);
-  console.log(start, end);
+  console.log('---addEvent---');
+  console.log('---params---');
   console.log(params);
+  console.log('---console---');
+
+  var startvec = params.startTime.split('T');
+  var endvec = params.endTime.split('T');
+
+  if (startvec.length == 2) {
+    // represent time as user's local time
+    var start = Date.parse(startvec[0]+' '+startvec[1]);
+    var end = Date.parse(endvec[0]+' '+endvec[1]);
+  } else {
+    var start = Date.parse(params.startTime);
+    var end = Date.parse(params.endTime);
+  }
+  console.log('start time');
+  console.log(params.startTime);
+  console.log(new Date(start));
+
+  console.log('end time');
+  console.log(params.endTime);
+  console.log(new Date((end)));
+
+  
+
+  // check that endString is larger than startString
+  // if (end < start) {
+  //   console.log('not updated')
+  // } else {
+
+  // var startString = params.date + " " + params.startTime;
+  // var endString = params.date + " " + params.endTime;
+  // var start = Date.parse(startString);
+  // var end = Date.parse(endString);
+  // console.log(startString, endString);
+  console.log(start, end);
+  // console.log(params);
   var newEvent = new Event({
     name: params.name,
     start: start,
@@ -181,6 +213,10 @@ app.post('/addEvent', function(request, response) {
   var month = new Date(start).getMonth() + 1;
   var date = new Date(start).getDate();
   response.redirect('/' + month + "-" + date);
+
+  // }
+
+
 });
 
 app.post('/addComment', function(request, response) {

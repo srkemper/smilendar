@@ -67,7 +67,7 @@ var moodToString = {
 
 var locals = {
     user: currUser,
-    url: gapi.url,
+    url: '',
     // title: 'Today',
     script: '/javascripts/day_view.js',
     goback: {
@@ -97,7 +97,7 @@ function getTagAndDate(currDate) {
     // month = appendZero(month);
     // date = appendZero(date);
 
-    tag = month+'-'+date;
+    var tag = month+'-'+date;
 
     return [tag, date]
 }
@@ -233,7 +233,7 @@ function returnURLforPrevAndNextWeek(date) {
 
 exports.dayInfo = function(req, res) {
 
-    console.log('dayInfo');
+    console.log('---dayInfo---');
     var dateId = req.params.id;
     var date = getDateFromDayID(dateId)
     // console.log('dateId is '+ dateId)
@@ -282,6 +282,3 @@ exports.dayInfo = function(req, res) {
     }
 }
 
-exports.about = function(req,res) {
-    res.render('about',locals)
-}
