@@ -190,8 +190,6 @@ exports.index = function(req, res){
     console.log('---routes.index---')
     locals.alternate = false;   // for A-B testing
     renderingIndex(req,res);
-    
-
 };
 
 // renders alternative design, for A-B testing
@@ -282,4 +280,8 @@ exports.dayInfo = function(req, res) {
 
         });
     }
+}
+
+exports.about = function(req,res) {
+    res.render('about',locals)
 }

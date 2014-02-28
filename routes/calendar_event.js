@@ -39,7 +39,7 @@ var moods = [
 exports.view = function(req, res) {
   var eveId = req.params.id;
   console.log('calendar_event_id: '+eveId);
-  locals.user = req.session.username;
+  locals.user = req.cookies.username;
   db.events.findOne({_id:mongojs.ObjectId(eveId)},function(err,doc){
     if (!err) {
       console.log('mongojs working in calendar_event.js!');

@@ -26,11 +26,11 @@
 
 		</div>
 		<div class="cal-row-fluid weekday-num">
-			{{#if alternate}}
+			{{!-- {{#if alternate}}
 				<a class="pull-left weekdaynav stay" id="lastweek" href="/alt{{lastWeekURL}}">
-			{{else}}
+			{{else}} --}}
 				<a class="pull-left weekdaynav stay" id="lastweek" href="{{lastWeekURL}}">
-			{{/if}}
+			{{!-- {{/if}} --}}
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</a>
 			{{#each tagDate}}
@@ -49,11 +49,11 @@
 		{{!-- 		<div class="cal-cell1" id="sun" href="9">
 					<div class="day-order">9</div>
 				</div> --}}
-			{{#if alternate}}
+			{{!-- {{#if alternate}}
 				<a class="pull-right weekdaynav stay" id="nextweek" href="{{nextWeekURL}}">
-			{{else}}
+			{{else}} --}}
 				<a class="pull-right weekdaynav stay" id="nextweek" href="{{nextWeekURL}}">
-			{{/if}}
+			{{!-- {{/if}} --}}
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</a>
 		</div>
@@ -98,8 +98,9 @@
 	</div>
 
 	<div class='col-xs-12 form-group add-event-button'>
-        <input type='submit' class='btn btn-primary btn-block' value='Add Event'>
+		<form method='get' action='/addEvent/{{dayId}}' role='form'>
+	        <input type='submit' class='btn btn-primary btn-block' value='Add Event'>
+	    </form>
 	</div>
 
-	
 </div>

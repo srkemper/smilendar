@@ -1,24 +1,29 @@
 <div class="header-inner">
   <a class="go-back stay glyphicon glyphicon-chevron-left" href="{{goback.link}}">{{goback.display}}</a>
-  {{#if alternate}}
+
+
+{{!--   {{#if alternate}}
     <a class="menu-button stay" href='/logout'>Logout</a>
 
     <a class="menu-addEvent stay" href="/addEvent/{{dayId}}">Add Event</a>
-    <a class="menu-today stay" href="/alt/{{dayId}}">Back</a>
+    <a class="menu-today stay" href="/alt/{{dayId}}">Today</a>
 
-  {{else}}
+  {{else}} --}}
     <a class="menu-button stay" href="#">Menu</a>
-  {{/if}}
+    
+  {{!-- {{/if}} --}}
 </div>
 
-{{#if alternate}}
-{{else}}
+{{!-- {{#if alternate}}
 
+{{else}}
+ --}}
 <div class="menu-drop-down">
   <ul class="drop-down-list">
     {{#if user}}
-    <li class="go-to-today"><a class="stay" href="/{{dayId}}">Back</a></li>
-    <li class=""><a class="stay" href="/addEvent/{{dayId}}">Add Event</a></li>
+    <li class="go-to-today"><a class="stay" href="/{{dayId}}">Today</a></li>
+    <li class=""><a class="stay" href="/about">About</a></li>
+    {{!-- <li class=""><a class="stay" href="/addEvent/{{dayId}}">Add Event</a></li> --}}
     <li>
       <a class="stay" href='/logout'>Logout</a>
     </li>
@@ -28,4 +33,4 @@
   </ul>
 </div>
 
-{{/if}}
+{{!-- {{/if}} --}}
