@@ -267,6 +267,9 @@ div {
   width: 10px;
   margin: 0 auto;
 }
+.day-view .add-event-button {
+  padding-top: 20px;
+}
 .day-view .this-week {
   margin: 10px 0;
 }
