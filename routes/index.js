@@ -246,8 +246,6 @@ exports.dayInfo = function(req, res) {
     locals.lastWeekURL = tagsForPrevAndNextWeek[0];
     locals.nextWeekURL = tagsForPrevAndNextWeek[1];
 
-    console.log(req.session.alternate)
-    console.log(req.cookies.alternate)
     var user = req.session.username || req.cookies.username;
 
     if (typeof(user) == 'undefined') {
