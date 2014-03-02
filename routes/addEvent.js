@@ -1,6 +1,5 @@
 
 
-
 exports.view = function(req, res) {
     console.log('---addEvent view---')
 	console.log(req.params.id)

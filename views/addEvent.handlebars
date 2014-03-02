@@ -1,8 +1,37 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<div class="alert alert-error">  
+  <a class="close" data-dismiss="alert">×</a>  
+  <strong>Error!</strong> This is a fatal error.  
+</div>  
+<div class="alert alert-success">  
+  <a class="close" data-dismiss="alert">×</a>  
+  <strong>Success!</strong> You have successfully done it.  
+</div>  
+<div class="alert alert-info">  
+  <a class="close" data-dismiss="alert">×</a>  
+  <strong>Info!</strong> Watch this, but you may forget.  
+</div>  
+
+<div class="alert alert-block">  
+  <a class="close" data-dismiss="alert">×</a>  
+  <h4 class="alert-heading">Warning!</h4>  
+ What are you doing?! this will delete all files!!  
+</div> 
+<div class="container">  
+<div class="row">  
+<div class="span4">  
+<div class="alert">  
+  <a class="close" data-dismiss="alert">×</a>  
+  <strong>Warning!</strong> Best check yo self, you're not looking too good.  
+</div>  
+</div>  
+</div>  
+</div>  
+
 
 <div class="event-view">
   <div class="row">
-    <form method='post' action='/addEvent' role='form'>
+    <form method='post' action='/addEvent' role='form' id='postEvent-form'>
 {{!--     <div class="col-xs-12">
       <a href="/{{goback}}" class="text-left"> &lt; Today </a>
     </div> --}}
@@ -81,7 +110,7 @@
       </div>
       <div class='col-xs-12 form-group'>
         {{!-- <button type="button"><a href="/addEvent">Add Event</a></button> --}}
-        <input type='submit' class='btn btn-primary btn-block' value='Add Event'>
+        <input type='submit' class='btn btn-primary btn-block' value='Add Event' id='addEvent-button'>
       </div>
 {{!--     <div class="col-xs-12 take-photo navbar-fixed-bottom">
       <button type="button" class="btn btn-default camIcon"><span class="glyphicon glyphicon-star"></span></button>

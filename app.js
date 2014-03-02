@@ -192,7 +192,7 @@ app.post('/addEvent', function(request, response) {
   if (params.startTime.length == 0 || params.endTime.length == 0 || end < start) {
     console.log('not updated')
     // request.flash("error", "Invalid form...");
-    response.redirect('/addEvent/'+params.dayId)
+    // response.redirect('/addEvent/'+params.dayId)
   
   } else {
 
