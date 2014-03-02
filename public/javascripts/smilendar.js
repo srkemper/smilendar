@@ -1,16 +1,10 @@
-// document.ontouchmove = function(event){
-//     event.preventDefault();
-// }
-
-
-
-
 $(document).ready(function(){
     showMenu();
     $(".go-to-today a").attr('href','/'+getTagAndDate(new Date()));
     $(function() {
         $.stayInWebApp('a.stay');
     });
+
 });
 
 
@@ -19,16 +13,18 @@ function chooseMood(e) {
     e.stopImmediatePropagation();
     console.log("did it!");
     var mood = $(this).attr('id');
-    console.log(mood);
+    // console.log(mood);
     $(this).parent().parent().siblings(".mood-display").attr('id',mood);
 
     // Update mood to database using AJAX
     var dbid = $(this).parent().parent().siblings(".mood-display").attr('data-identifier');
-    console.log(dbid);
+    // console.log(dbid);
     $.ajax({
      url: '/changeMood',
      type: 'POST',
-     success: function(){console.log("ajax post success")},
+     success: function(){
+        console.log("ajax post success")
+    },
      contentType: 'application/json',
      data: JSON.stringify({id:dbid, mood: mood})
     });
@@ -38,6 +34,11 @@ function chooseMood(e) {
 function initDynamicEventHandlers() {
     // Dynamically append event handler to AJAX created content.
     console.log('initialized!');
+    $('.smile').on('click', function() {
+        console.log('button selected!!!')
+      ga('send', 'event', 'smiley', 'click');
+    });
+
     $(".smile").on('click','.mood-status',chooseMood);
     // $(document).delegate('.go-to-event','click',function(e){
     //     var dest = $(this).attr("href");
