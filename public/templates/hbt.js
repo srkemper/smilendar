@@ -42,9 +42,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Smilendar"]["Templates"]["templates/eventList.handlebars"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var stack1, self=this;
+  var buffer = "", stack1, self=this;
 
 function program1(depth0,data) {
+  
+  
+  return "\n<div class=\"empty-state col-xs-12\">\n  <h5 class=\"\">Looks like you don't have any event today.</h5>\n  <p class=\"\">Tap add button to make some, then you can start logging your mood.</p>\n</div>\n";
+  }
+
+function program3(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n  ";
@@ -54,9 +60,12 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.eventList), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { return stack1; }
-  else { return ''; }
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.eventList), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.eventList), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  return buffer;
   });
 
 this["Smilendar"]["Templates"]["templates/monthDay.handlebars"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

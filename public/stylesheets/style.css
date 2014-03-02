@@ -124,7 +124,7 @@ body {
   height: 100%;
   width: 100%;
   overflow: auto;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lato", Helvetica, Arial, sans-serif;
 }
 ul,
 li,
@@ -326,6 +326,10 @@ div {
 .day-view .event-brief {
   color: #888888;
   font-size: 12px;
+}
+.day-view .empty-state {
+  text-align: center;
+  color: #aaaaaa;
 }
 .smile {
   position: absolute;
