@@ -47,7 +47,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   
-  return "\n<div class=\"empty-state col-xs-12\">\n  <h5 class=\"\">Looks like you don't have any event today.</h5>\n  <p class=\"\">Tap add button to make some, then you can start logging your mood.</p>\n</div>\n";
+  return "\n<div class=\"empty-state col-xs-12\">\n  <h5 class=\"\">Looks like you don't have any event.</h5>\n  <p class=\"\">Tap add button to make some, then you can start logging your mood.</p>\n  <p>&#8595</p>\n</div>\n";
   }
 
 function program3(depth0,data) {
