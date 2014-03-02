@@ -1,3 +1,12 @@
+{{#unless eventList}}
+<div class="empty-state col-xs-12">
+  <h5 class="">Looks like you don't have any event.</h5>
+  <p class="">Tap add button to make some, then you can start logging your mood.</p>
+  <p>&#8595</p>
+</div>
+{{/unless}}
+
+
 {{#each eventList}}
   {{> eventItem}}
 {{/each}}

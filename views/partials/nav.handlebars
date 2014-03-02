@@ -1,5 +1,7 @@
 <div class="header-inner">
+  {{#if goback.link}}
   <a class="go-back stay glyphicon glyphicon-chevron-left" href="{{goback.link}}">{{goback.display}}</a>
+  {{/if}}
 
 
 {{!--   {{#if alternate}}
@@ -10,7 +12,7 @@
 
   {{else}} --}}
     <a class="menu-button stay" href="#">Menu</a>
-    
+
   {{!-- {{/if}} --}}
 </div>
 
