@@ -43,6 +43,7 @@ function postComment(e) {
     // console.log(comment);
     console.log(dropdownButton.parent().parent().siblings(".comment-in-dayview").text());
     console.log('begin ajax post comment')
+
     $.ajax({
         url: '/addCommentAJAX',
         type: 'POST',
@@ -50,7 +51,7 @@ function postComment(e) {
             console.log("ajax post comment success")
             // update on the page, by changing the html of the comment
             dropdownButton.parent().parent().siblings(".comment-in-dayview").text(comment);
-
+            ga('send', 'event', 'comment-test', 'click', 'homepage');
         },
         contentType: "application/json",
         data: JSON.stringify({"id":dbid, "comment": comment})
@@ -65,7 +66,18 @@ function initDynamicEventHandlers() {
     // send google analytics event for smiley dropdown
     $('.smile').on('click', function() {
         console.log('dropdown selected!!!')
-      ga('send', 'event', 'smiley', 'click');
+      ga('send', 'event', 'smiley', 'click', 'dropdown');
+
+
+      // example
+      // ga('send', {
+      //     'hitType': 'event',          // Required.
+      //     'eventCategory': 'button',   // Required.
+      //     'eventAction': 'click',      // Required.
+      //     'eventLabel': 'nav buttons',
+      //     'eventValue': 4
+      //   });
+
     });
 
     $(".smile").on('click','.mood-status',chooseMood);
