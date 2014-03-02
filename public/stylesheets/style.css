@@ -128,7 +128,8 @@ body {
 }
 .form-control {
   background-color: #f2f4f3;
-  border: none;
+  border: 1px solid #eeeeee;
+  box-shadow: none;
 }
 .about p {
   color: #888888;
@@ -209,8 +210,12 @@ div {
 .container-fluid {
   margin-top: 50px;
 }
+.month-view .legend {
+  text-align: center;
+  color: #aaaaaa;
+}
 .month-view .this-week {
-  margin: 10px 0 54px 0;
+  margin: 10px 0 34px 0;
 }
 .month-view .pager {
   margin-top: 0px;
