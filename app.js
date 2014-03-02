@@ -174,20 +174,27 @@ app.post('/addEvent', function(request, response) {
     var start = Date.parse(params.startTime);
     var end = Date.parse(params.endTime);
   }
+
   console.log('start time');
   console.log(params.startTime);
+  console.log('start date');
   console.log(new Date(start));
 
   console.log('end time');
   console.log(params.endTime);
+  console.log('end date');
   console.log(new Date((end)));
 
-  
+  var name = params.name || 'New Event';  // uses default value if nothing is defined
+  console.log(name)
 
   // check that endString is larger than startString
-  // if (end < start) {
-  //   console.log('not updated')
-  // } else {
+  if (params.startTime.length == 0 || params.endTime.length == 0 || end < start) {
+    console.log('not updated')
+    // request.flash("error", "Invalid form...");
+    response.redirect('/addEvent/'+params.dayId)
+  
+  } else {
 
   // var startString = params.date + " " + params.startTime;
   // var endString = params.date + " " + params.endTime;
@@ -197,7 +204,7 @@ app.post('/addEvent', function(request, response) {
   console.log(start, end);
   // console.log(params);
   var newEvent = new Event({
-    name: params.name,
+    name: name,
     start: start,
     end: end,
     location: params.location,
@@ -214,7 +221,7 @@ app.post('/addEvent', function(request, response) {
   var date = new Date(start).getDate();
   response.redirect('/' + month + "-" + date);
 
-  // }
+  }
 
 
 });
