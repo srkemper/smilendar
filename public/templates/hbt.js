@@ -23,7 +23,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.name); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</h5>\n    <p class=\"event-brief\">";
+    + "</h5>\n    <p class=\"event-brief comment-in-dayview\">";
   if (stack1 = helpers.comment) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.comment); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
@@ -35,7 +35,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0._id); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">smile</button>\n        <div class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dLabel\">\n          <ul class=\"mood-list\">\n            <li id=\"excited\" attr=\"2\" class=\"smile-face mood-status\">Happy</li>\n            <li id=\"happy\" attr=\"1\" class=\"smile-face mood-status\">Excited</li>\n            <li id=\"soso\" attr=\"0\" class=\"smile-face mood-status\">Soso</li>\n            <li id=\"sad\" attr=\"-1\" class=\"smile-face mood-status\">Sad</li>\n            <li id=\"angry\" attr=\"-2\" class=\"smile-face mood-status\">Angry</li>\n            <div class=\"clearfix\"></div>\n          </ul>\n\n\n\n          <div class=\"text-input\">\n            Comment\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"clearfix visible-xs\"></div>\n  </a>\n</div>";
+    + "\">smile</button>\n        <div class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dLabel\">\n          <ul class=\"mood-list\">\n            <li id=\"excited\" attr=\"2\" class=\"smile-face mood-status\">Happy</li>\n            <li id=\"happy\" attr=\"1\" class=\"smile-face mood-status\">Excited</li>\n            <li id=\"soso\" attr=\"0\" class=\"smile-face mood-status\">Soso</li>\n            <li id=\"sad\" attr=\"-1\" class=\"smile-face mood-status\">Sad</li>\n            <li id=\"angry\" attr=\"-2\" class=\"smile-face mood-status\">Angry</li>\n            <div class=\"clearfix\"></div>\n          </ul>\n\n\n          <div class=\"input-group\">\n            <input type=\"text\" class=\"form-control comment-input\" placeholder=\"Comment here!\">\n            <span class=\"input-group-btn\">\n              <button class=\"btn btn-default Go-button\" type=\"button\">Done</button>\n            </span>\n          </div>\n\n          \n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"clearfix visible-xs\"></div>\n  </a>\n</div>";
   return buffer;
   });
 

@@ -226,6 +226,32 @@ app.post('/addEvent', function(request, response) {
 
 });
 
+app.post('/addCommentAJAX', function(req, res) {
+  console.log('---addCommentAJAX---');
+  console.log(req.body.id, req.body.comment);
+  db.events.update({_id: mongojs.ObjectId(req.body.id)}, 
+    {$set: {comment:req.body.comment}}, function(err, updated) {
+    if (err) {
+      console.log("not updated :(");
+    }
+    // console.log(updated);
+    res.json(200);
+    
+  })
+
+
+  // db.events.update({_id: mongojs.ObjectId(request.body.id)}, 
+  //   {$set: {mood:moods[request.body.mood]}}, function(err, updated) {
+  //   if (err) {
+  //     console.log("not updated :(");
+  //   }
+  //   console.log(updated);
+
+  // })
+  // response.json(200);
+
+});
+
 app.post('/addComment', function(request, response) {
   var params = request.body;
   console.log(params);

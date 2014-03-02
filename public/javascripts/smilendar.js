@@ -23,7 +23,7 @@ function chooseMood(e) {
      url: '/changeMood',
      type: 'POST',
      success: function(){
-        console.log("ajax post success")
+        console.log("ajax post mood success")
     },
      contentType: 'application/json',
      data: JSON.stringify({id:dbid, mood: mood})
@@ -31,15 +31,55 @@ function chooseMood(e) {
     e.preventDefault();
 }
 
+// post comment from dropdown menu
+function postComment(e) {
+    // e.stopImmediatePropagation();
+    console.log('post comment');
+    var dropdownButton = $(this).parent().parent().parent().siblings(".mood-display");
+    var dbid = dropdownButton.attr('data-identifier');
+    var comment = $(this).parent().siblings(".comment-input").val();
+    console.log(dbid);
+    // var comment = $(".comment-input").val();
+    // console.log(comment);
+    console.log(dropdownButton.parent().parent().siblings(".comment-in-dayview").text());
+    console.log('begin ajax post comment')
+    $.ajax({
+        url: '/addCommentAJAX',
+        type: 'POST',
+        success: function() {
+            console.log("ajax post comment success")
+            // update on the page, by changing the html of the comment
+            dropdownButton.parent().parent().siblings(".comment-in-dayview").text(comment);
+
+        },
+        contentType: "application/json",
+        data: JSON.stringify({"id":dbid, "comment": comment})
+    });
+    e.preventDefault();
+}
+
 function initDynamicEventHandlers() {
     // Dynamically append event handler to AJAX created content.
     console.log('initialized!');
+
+    // send google analytics event for smiley dropdown
     $('.smile').on('click', function() {
-        console.log('button selected!!!')
+        console.log('dropdown selected!!!')
       ga('send', 'event', 'smiley', 'click');
     });
 
     $(".smile").on('click','.mood-status',chooseMood);
+
+    // clicking on comment box
+    $(".comment-input").on('click', function(e) {
+        console.log("text box selected")
+        e.stopImmediatePropagation();
+        e.preventDefault();
+    });
+
+    // listener on Go button for posting comment
+    $(".smile").on('click','.Go-button', postComment);
+
     // $(document).delegate('.go-to-event','click',function(e){
     //     var dest = $(this).attr("href");
     //     console.log('damn!');

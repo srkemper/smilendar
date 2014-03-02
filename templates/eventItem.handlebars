@@ -8,7 +8,7 @@
   </div>
   <div class="col-xs-9 event-info">
     <h5 class="event-title">{{name}}</h5>
-    <p class="event-brief">{{comment}}</p>
+    <p class="event-brief comment-in-dayview">{{comment}}</p>
     <div class="smile">
       <div class="dropdown">
         <button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{moodString}}" data-identifier="{{_id}}">smile</button>
@@ -22,16 +22,17 @@
             <div class="clearfix"></div>
           </ul>
 
-{{!--           <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-          </div> --}}
 
-          <div class="text-input">
-            Comment
+          <div class="input-group">
+            <input type="text" class="form-control comment-input" placeholder="Comment here!">
+            <span class="input-group-btn">
+              <button class="btn btn-default Go-button" type="button">Done</button>
+            </span>
           </div>
+
+          {{!-- <div class="text-input">
+            Comment
+          </div> --}}
         </div>
       </div>
     </div>

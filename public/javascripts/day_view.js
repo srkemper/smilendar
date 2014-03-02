@@ -7,7 +7,6 @@ $(document).ready(function(){
     // $("#nextweek").on("click", showNextWeek);
 })
 
-
 function initializeDayView() {
     console.log('---initializeDayView---')
     var curUrl = window.location.pathname;
@@ -36,7 +35,7 @@ function selectDay(e) {
     $(this).siblings().find(".day-order").removeClass("active");
     $(this).find(".day-order").addClass("active");
     var day = $(this).attr('id');
-    console.log(day);
+    // console.log(day);
     var urlToPass = '/dayEvent/'+day;
     $.get(urlToPass, renderDayEvent);
     console.log(urlToPass);
@@ -52,7 +51,7 @@ function selectDay(e) {
 function renderDayEvent(result) {
   // Using handlebars template to render event list of a day
     console.log("renderDayEvent results:");
-    console.log(result.eventList);
+    // console.log(result.eventList);
 
     renderFullDateInString(result.fullDateInString);
     renderLeftRightArrow(result.lastWeekURL, result.nextWeekURL);
@@ -62,7 +61,7 @@ function renderDayEvent(result) {
     Handlebars.registerPartial('eventItem', Smilendar.Templates["templates/eventItem.handlebars"]);
     var htmlText = template(result);
 
-    console.log(htmlText);
+    // console.log(htmlText);
 
     $("#this_day").html(htmlText);
 
