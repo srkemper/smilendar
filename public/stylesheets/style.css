@@ -605,3 +605,9 @@ a {
 .tour img {
   width: 100%;
 }
+#nextweek {
+  right: 10px;
+}
+#lastweek {
+  left: 10px;
+}
