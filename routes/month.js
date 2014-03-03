@@ -8,7 +8,8 @@ var locals = {
   user: 'random',
   title: 'Today',
   script: '/javascripts/month_view.js',
-  footer: 'month'
+  footer: 'month',
+  nav: 'nav'
 };
 
 var monthNameFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -118,7 +119,7 @@ exports.monthInfo = function(req, res) {
 
   Event.moodByMonth(parseInt(monthId) - 1, 2014, user, function(err, events) {
     if (err) {console.log('error getting moods');}
-    
+
 
     var monthMood = {
       days:[]
@@ -150,7 +151,7 @@ exports.monthInfo = function(req, res) {
           }
         );
     }
-    
+
     cal = new calendar(0);               // weeks starting on Monday
     // m = cal.monthDays(2014, parseInt(monthId)-1);
     console.log('---mood by month---')

@@ -134,11 +134,38 @@ body {
 .about p {
   color: #888888;
 }
+.btn-rounded {
+  border-radius: 18px;
+}
+.btn-default {
+  background-color: #ffffff;
+  border: 1px solid #aaaaaa;
+  background-image: none;
+}
+.btn-default:hover {
+  background-color: #ffffff;
+  border: 1px solid #aaaaaa;
+}
+.btn-default:active {
+  background-color: #f2f4f3;
+  border: 1px solid #aaaaaa;
+}
 .btn-primary {
   border-color: #00AEEF;
   background-color: #00AEEF;
   background-image: none;
-  border-radius: 18px;
+}
+.btn-primary:hover {
+  border-color: #00AEEF;
+  background-color: #00AEEF;
+}
+.btn-primary:active {
+  background-color: #047dbb;
+  border-color: #047dbb;
+}
+.col-centered {
+  float: none;
+  margin: 0 auto;
 }
 ul,
 li,
@@ -206,9 +233,6 @@ div {
   margin-top: 20px;
   width: 100%;
   background-color: #f2f2f4;
-}
-.container-fluid {
-  margin-top: 50px;
 }
 .month-view .legend {
   text-align: center;
@@ -450,18 +474,26 @@ a {
 }
 .login-page .splash-background {
   position: relative;
-  background-image: url('../images/splash_1.png');
   background-position: 35% 50%;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 }
-.login-page .login-row {
+.login-page .col-floated {
+  z-index: 300;
   bottom: 20px;
   position: absolute;
   width: 100%;
   text-align: center;
   min-height: 100px;
+}
+.login-page .btn-login {
+  width: 160px;
+}
+.login-page .btn-learn-more {
+  width: 160px;
+  border-radius: 18px;
+  margin-bottom: 10px;
 }
 .login-page .navbar-form {
   margin: 0;
@@ -478,4 +510,32 @@ a {
   border-color: #00AEEF;
   background-color: #00AEEF;
   color: white;
+}
+.swiper-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+.swiper-content .inner {
+  padding: 20px;
+}
+.swiper-pagination-switch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #222;
+  margin-right: 5px;
+  opacity: 0.8;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.swiper-visible-switch {
+  background: #888;
+}
+.swiper-active-switch {
+  background: red;
 }
