@@ -178,7 +178,8 @@ div {
   width: 100%;
   z-index: 50;
 }
-.nav-bar-header .header-inner {
+.nav-bar-header .header-inner,
+.login-view .header-inner {
   padding: 0 15px;
   z-index: 50;
   line-height: 44px;
@@ -186,38 +187,46 @@ div {
   width: 100%;
   background-color: #f2f2f4;
 }
-.nav-bar-header .header-inner .menu-today {
+.nav-bar-header .header-inner .menu-today,
+.login-view .header-inner .menu-today {
   float: right;
   padding-right: 15px;
 }
-.nav-bar-header .header-inner .menu-button {
+.nav-bar-header .header-inner .menu-button,
+.login-view .header-inner .menu-button {
   float: right;
 }
-.nav-bar-header .header-inner .menu-addEvent {
+.nav-bar-header .header-inner .menu-addEvent,
+.login-view .header-inner .menu-addEvent {
   float: right;
   padding-right: 15px;
 }
-.nav-bar-header .menu-drop-down {
+.nav-bar-header .menu-drop-down,
+.login-view .menu-drop-down {
   z-index: 999;
   width: 100%;
   background-color: #f2f2f4;
 }
-.nav-bar-header .drop-down-list {
+.nav-bar-header .drop-down-list,
+.login-view .drop-down-list {
   max-height: 0px;
   overflow: hidden;
   list-style: none;
   -webkit-transition: all 0.3s;
 }
-.nav-bar-header .drop-down-list a {
+.nav-bar-header .drop-down-list a,
+.login-view .drop-down-list a {
   text-align: right;
   display: block;
   padding: 10px 15px;
   border-bottom: 1px solid #eeeeee;
 }
-.nav-bar-header .drop-down-list .active {
+.nav-bar-header .drop-down-list .active,
+.login-view .drop-down-list .active {
   background-color: #dedede;
 }
-.nav-bar-header .show-menu .drop-down-list {
+.nav-bar-header .show-menu .drop-down-list,
+.login-view .show-menu .drop-down-list {
   max-height: 500px;
 }
 .weekdaynav {
@@ -233,6 +242,9 @@ div {
   margin-top: 20px;
   width: 100%;
   background-color: #f2f2f4;
+}
+.container-fluid {
+  padding-top: 50px;
 }
 .month-view .legend {
   text-align: center;
@@ -463,23 +475,24 @@ a {
 .event-view .end-time {
   color: #bbcbcb;
 }
-.login-page {
-  position: absolute;
+.splash-page {
+  position: relative;
   z-index: 65;
   background-color: white;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
 }
-.login-page .splash-background {
+.splash-page .splash-background {
   position: relative;
   background-position: 35% 50%;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 }
-.login-page .col-floated {
+.splash-page .col-floated {
   z-index: 300;
   bottom: 20px;
   position: absolute;
@@ -487,29 +500,41 @@ a {
   text-align: center;
   min-height: 100px;
 }
-.login-page .btn-login {
+.splash-page .btn-login {
   width: 160px;
 }
-.login-page .btn-learn-more {
+.splash-page .btn-learn-more {
   width: 160px;
   border-radius: 18px;
   margin-bottom: 10px;
 }
-.login-page .navbar-form {
+.splash-page .navbar-form {
   margin: 0;
 }
-.login-page .login-name {
+.splash-page .login-name {
   margin: 20px auto;
   padding: 0 18px;
   width: 160px;
   border-radius: 18px;
 }
-.login-page .login-submit {
+.splash-page .login-submit {
   width: 160px;
   border-radius: 18px;
   border-color: #00AEEF;
   background-color: #00AEEF;
   color: white;
+}
+.splash-page .login-view {
+  position: absolute;
+  bottom: -100%;
+  z-index: 500;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transition: all 0.5s;
+}
+.splash-page .login-view-show {
+  bottom: 0;
 }
 .swiper-content {
   position: absolute;

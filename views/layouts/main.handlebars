@@ -52,10 +52,13 @@
 
 
 
-
+  {{#unless splash}}
   <div class="container-fluid">
   	{{{body}}}
   </div>
+  {{else}}
+    {{{body}}}
+  {{/unless}}
   <div class="nav-bar">
     {{#if footer}}
       {{> footer}}

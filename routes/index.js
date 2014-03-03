@@ -74,6 +74,7 @@ var locals = {
         link: '',
         display: '',
     },
+    nav: 'nav',
     fullDateInString: '',
     lastWeekURL: '',
     nextWeekURL: '',
@@ -272,7 +273,7 @@ exports.dayInfo = function(req, res) {
           }
           // console.log(events)
           res.json({
-                "eventList": events, 
+                "eventList": events,
                 "fullDateInString": locals.fullDateInString,
                 "lastWeekURL": locals.lastWeekURL,
                 "nextWeekURL": locals.nextWeekURL

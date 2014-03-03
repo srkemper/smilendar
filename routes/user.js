@@ -8,7 +8,7 @@ exports.list = function(req, res){
 };
 
 // login page
-exports.loginpage = function(req, res) {
+exports.splash = function(req, res) {
 	if (req.cookies.username) {
 		console.log("cookies.username = " + req.cookies.username);
 		req.session.username = req.cookies.username;
@@ -22,6 +22,7 @@ exports.loginpage = function(req, res) {
 		console.log("username is: " + username);
 		var locals = {
 			script: '/javascripts/splash_view.js',
+			splash: 'splash',
 			catchError: null
 		}
 		if (username) {
@@ -34,8 +35,12 @@ exports.loginpage = function(req, res) {
 		// res.send();
 		req.session.username = username;
 		// res.setHeader('Set-Cookie', req.session.getSetCookieHeaderValue());
-		res.render('login.handlebars', locals)
+		res.render('splash.handlebars', locals)
 	}
+}
+
+exports.login = function(req, res){
+	res.render('login.handlebars', locals)
 }
 
 // redirect after login
