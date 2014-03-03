@@ -58,7 +58,7 @@ app.configure(function() {
   app.use(express.logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded());
-  app.use(express.methodOverride());
+  app.use(express.methodOverride());  
   app.use(express.cookieParser(process.env.LOGIN_SECRET));
   // app.use(express.cookieSession());
   app.use(express.session());
@@ -113,7 +113,7 @@ app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
 app.get('/addEvent/:id', addEvent.view);
 app.get('/:id',routes.index);
-app.get('/addEventPostSucess/:id', index.addEventPostSucess);
+// app.get('/addEventPostSucess/:id', index.addEventPostSucess);
 app.get('/alt/:id',index.alternate)
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
@@ -234,6 +234,7 @@ app.post('/addEvent', function(request, response) {
   })
   var month = new Date(start).getMonth() + 1;
   var date = new Date(start).getDate();
+  request.session.addEventPostSucess = true;
   response.redirect('/' + month + "-" + date);
 
   }

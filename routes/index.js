@@ -151,11 +151,19 @@ function returnDayInString(date) {
 function renderingIndex(req, res) {
     console.log('---renderingIndex---')
     console.log(req.session)
-    console.log(req.cookies)
+    // console.log(req.cookies)
     // parse id for date from URL
     var dayId = req.params.id;
     locals.dayId = dayId;
     locals.user = req.session.username || req.cookies.username;
+    console.log(req.session.addEventPostSucess)
+
+    locals.addEventPostSucess = false;
+    if (req.session.addEventPostSucess) {
+        locals.addEventPostSucess = true;
+        req.session.addEventPostSucess = false;
+    }
+
     console.log(locals.user)
 
     var today = getDateFromDayID(dayId);
@@ -188,9 +196,9 @@ exports.alternate = function(req, res) {
     renderingIndex(req,res);
 }
 
-exports.addEventPostSucess = function(req, res) {
-    
-}
+// exports.addEventPostSucess = function(req, res) {
+
+// }
 
 // source: http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
 function formatAMPM(date) {

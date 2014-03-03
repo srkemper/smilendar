@@ -4,9 +4,9 @@ $(document).ready(function(){
     $(function() {
         $.stayInWebApp('a.stay');
     });
-
 });
 
+var curr = null;
 
 function chooseMood(e) {
     // Choose the mood for according event
@@ -60,26 +60,31 @@ function postComment(e) {
 
 }
 
+function sendGoogleAnalyticsForCloseDropdown() {
+    console.log('dropdown closed');
+    var end = new Date().getTime();
+    var diff = end - start; // units of miliseconds
+    console.log(start);
+    console.log(end);
+    console.log(diff);
+    // curr.addClass('closed');
+    ga('send', 'event', 'smiley2', 'click', 'close-dropdown');
+    ga('send', {
+      'hitType': 'timing',          // Required.
+      'eventCategory': 'smiley2',   // Required.
+      'eventAction': 'chooseMood',      // Required.
+      'eventLabel': 'dropdown',
+      'eventValue': diff
+    });
+    curr = null;    // reset curr
+}
+
 function initDynamicEventHandlers() {
     // Dynamically append event handler to AJAX created content.
     console.log('initialized!');
-
+    
     // send google analytics event for smiley dropdown
-    $('.smile').on('click', function() {
-        console.log('dropdown selected!!!')
-      ga('send', 'event', 'smiley', 'click', 'dropdown');
-
-
-      // example
-      // ga('send', {
-      //     'hitType': 'event',          // Required.
-      //     'eventCategory': 'button',   // Required.
-      //     'eventAction': 'click',      // Required.
-      //     'eventLabel': 'nav buttons',
-      //     'eventValue': 4
-      //   });
-
-    });
+    // see boostrap.js, search for JimW
 
     $(".smile").on('click','.mood-status',chooseMood);
 
@@ -103,6 +108,9 @@ function initDynamicEventHandlers() {
         setTimeout(function(){ form.submit()}, 150);
         // window.location.replace("/3-2");
     });
+
+    // listen to whether dropdown is active
+    // see boostrap.js, search for JimW
 
     // $(document).delegate('.go-to-event','click',function(e){
     //     var dest = $(this).attr("href");
