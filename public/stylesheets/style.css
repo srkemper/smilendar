@@ -605,15 +605,14 @@ a {
 .tour img {
   width: 100%;
 }
-#lastweek {
-  left: 10px;
-}
-#nextweek {
-  right: 10px;
-}
 #delete-btn {
   background-color: white;
   color: red;
   border: 1px solid #aaa;
   margin-top: 45px;
+}
+.btn-comment {
+  background-color: white;
+  color: #888888;
+  border: 1px solid #aaa;
 }
