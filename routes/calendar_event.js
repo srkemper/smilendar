@@ -35,7 +35,8 @@ var moods = [
   "sad",
   "soso",
   "happy",
-  "excited"
+  "excited",
+  "undefined"
 ]
 exports.view = function(req, res) {
   var eveId = req.params.id;
@@ -65,7 +66,7 @@ exports.view = function(req, res) {
       eveIns.startTime = formatAMPM(start);
       eveIns.endTime = formatAMPM(end);
       if (eveIns.mood == null) {
-        eveIns.mood = 2
+        eveIns.mood = 5
       } else {
         eveIns.mood += 2
       }
