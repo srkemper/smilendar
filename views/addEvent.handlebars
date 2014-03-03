@@ -27,7 +27,12 @@
 </div>  
 </div>  
 </div>   --}}
-
+{{#if flash}}
+  <div class="alert alert-info">  
+  <a class="close" data-dismiss="alert">×</a>  
+  <strong>Error!</strong> {{flash}}
+</div>  
+{{/if}}
 
 <div class="event-view">
   <div class="row">

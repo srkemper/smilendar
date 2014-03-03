@@ -113,14 +113,17 @@
 		</div>
 		{{/each}} --}}
 
-
-
 	</div>
 
 	<div class='form-group add-event-button'>
 		<form method='get' action='/addEvent/{{dayId}}' role='form' id='addeventget'>
-			<input type='hidden' name='addEventPostSucess' value='{{addEventPostSucess}}' id="addEventPostSucess">
 	        <input type='submit' class='btn btn-primary btn-block' value='Add Event'>
+	    </form>
+	</div>
+
+	<div class='form-group add-event-button'>
+		<form method='get' action='#' role='form'>
+			<input type='hidden' name='addEventPostSucess' value='{{addEventPostSucess}}' id="addEventPostSucess">
 	    </form>
 	</div>
 
