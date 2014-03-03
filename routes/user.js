@@ -7,8 +7,8 @@ exports.list = function(req, res){
   res.send("respond with a resource");
 };
 
-// login page 
-exports.loginpage = function(req, res) {
+// login page
+exports.splash = function(req, res) {
 	if (req.cookies.username) {
 		console.log("cookies.username = " + req.cookies.username);
 		req.session.username = req.cookies.username;
@@ -20,7 +20,11 @@ exports.loginpage = function(req, res) {
 		console.log("login page");
 		var username = req.query.username;
 		console.log("username is: " + username);
-		var catchError = null;
+		var locals = {
+			script: '/javascripts/splash_view.js',
+			splash: 'splash',
+			catchError: null
+		}
 		if (username) {
 			var day = new Date().getDate();
 			var month = new Date().getMonth() + 1;
@@ -31,7 +35,7 @@ exports.loginpage = function(req, res) {
 		// res.send();
 		req.session.username = username;
 		// res.setHeader('Set-Cookie', req.session.getSetCookieHeaderValue());
-		res.render('login.handlebars', catchError)
+		res.render('splash.handlebars', locals)
 	}
 }
 
@@ -53,8 +57,11 @@ exports.login_redirect = function(req, res){
 		res.redirect('/')
 		// res.render('login.handlebars', catchError)
 	}
-	
+
 }
+
+
+
 
 exports.logout = function(req, res){
 	req.session.username = null;

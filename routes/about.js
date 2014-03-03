@@ -7,6 +7,7 @@ exports.view = function(req,res) {
 	        link: '',
 	        display: '',
 	    },
+        nav:'nav'
 	};
 
 	locals.dayId = getTag(new Date());	// get tag for Today

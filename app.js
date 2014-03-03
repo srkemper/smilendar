@@ -58,7 +58,7 @@ app.configure(function() {
   app.use(express.logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded());
-  app.use(express.methodOverride());  
+  app.use(express.methodOverride());
   app.use(express.cookieParser(process.env.LOGIN_SECRET));
   // app.use(express.cookieSession());
   app.use(express.session());
@@ -107,7 +107,7 @@ var eventsJSON = require("./data.json");
 //   }
 // });
 
-app.get('/',user.loginpage);
+app.get('/',user.splash);
 app.get('/about', about.view);
 app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
@@ -194,6 +194,7 @@ app.post('/addEvent', function(request, response) {
     console.log('not updated')
     // request.flash("error", "Invalid form...");
     // response.redirect('/addEvent/'+params.dayId)
+
     response.render('addEvent',{
       'user': params.user,
       'script': params.script,
@@ -208,6 +209,7 @@ app.post('/addEvent', function(request, response) {
         'display':"Back"
       }
     });
+
 
   } else {
 
@@ -245,18 +247,18 @@ app.post('/addEvent', function(request, response) {
 app.post('/addCommentAJAX', function(req, res) {
   console.log('---addCommentAJAX---');
   console.log(req.body.id, req.body.comment);
-  db.events.update({_id: mongojs.ObjectId(req.body.id)}, 
+  db.events.update({_id: mongojs.ObjectId(req.body.id)},
     {$set: {comment:req.body.comment}}, function(err, updated) {
     if (err) {
       console.log("not updated :(");
     }
     // console.log(updated);
     res.json(200);
-    
+
   })
 
 
-  // db.events.update({_id: mongojs.ObjectId(request.body.id)}, 
+  // db.events.update({_id: mongojs.ObjectId(request.body.id)},
   //   {$set: {mood:moods[request.body.mood]}}, function(err, updated) {
   //   if (err) {
   //     console.log("not updated :(");
