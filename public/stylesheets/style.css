@@ -605,6 +605,12 @@ a {
 .tour img {
   width: 100%;
 }
+#lastweek {
+  left: 10px;
+}
+#nextweek {
+  right: 10px;
+}
 #delete-btn {
   background-color: white;
   color: red;
