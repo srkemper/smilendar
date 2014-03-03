@@ -687,7 +687,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
       console.log('dropdown opened!!!')
       var starttime = new Date().getTime()
       console.log(starttime)
-      ga('send', 'event', 'smiley4', 'click', 'open-dropdown')
+      ga('send', 'event', 'smiley', 'click', 'open-dropdown')
       ///////
 
       $this.focus()
@@ -748,7 +748,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
       console.log(starttime);
       console.log(endtime);
       console.log(difftime);
-      ga('send', 'event', 'smiley4', 'click', 'close-dropdown');
+      ga('send', 'event', 'smiley', 'click', 'close-dropdown');
       ////// added by ZayneS to test returned event value.
       ga('send', 'event', 'smiley-interval','click','time-interval-for-dropdown',difftime);
       ga('send', {

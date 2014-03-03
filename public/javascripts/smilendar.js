@@ -51,7 +51,7 @@ function postComment(e) {
             console.log("ajax post comment success")
             // update on the page, by changing the html of the comment
             dropdownButton.parent().parent().siblings(".comment-in-dayview").text(comment);
-            ga('send', 'event', 'comment-test2', 'post', 'homepage ajax');
+            ga('send', 'event', 'comment-ajax', 'post', 'homepage ajax');
         },
         contentType: "application/json",
         data: JSON.stringify({"id":dbid, "comment": comment})
@@ -68,10 +68,10 @@ function sendGoogleAnalyticsForCloseDropdown() {
     console.log(end);
     console.log(diff);
     // curr.addClass('closed');
-    ga('send', 'event', 'smiley2', 'click', 'close-dropdown');
+    ga('send', 'event', 'smiley', 'click', 'close-dropdown');
     ga('send', {
       'hitType': 'timing',          // Required.
-      'eventCategory': 'smiley2',   // Required.
+      'eventCategory': 'smiley',   // Required.
       'eventAction': 'chooseMood',      // Required.
       'eventLabel': 'dropdown',
       'eventValue': diff
@@ -103,7 +103,7 @@ function initDynamicEventHandlers() {
     $("#post-comment-edit-page").submit(function(e) {
         e.preventDefault();
         console.log('post comment edit page')
-        ga('send', 'event', 'comment-test5', 'post', 'edit event page');
+        ga('send', 'event', 'comment-eventpage', 'post', 'edit event page');
         var form = this;
         setTimeout(function(){ form.submit()}, 150);
         // window.location.replace("/3-2");
