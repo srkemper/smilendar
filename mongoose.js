@@ -61,13 +61,13 @@ eventSchema.virtual('start_year').get(function() {
 });
 
 // Get total number of events for this user
-// eventSchema.statics.getNumTotalEvents = function(user, callback) {
-//   var count = 0;
-//   this.count({user: user}, function( err, count){
-//     console.log( "Number of events:", count );
-//     callback(err, count);
-//   });
-// };
+eventSchema.statics.getNumTotalEvents = function(user, callback) {
+  var count = 0;
+  this.count({user: user}, function( err, count){
+    console.log( "Number of events:", count );
+    callback(err, count);
+  });
+};
 
 // static findByDate method that takes in a date and returns a list of all the events on that date
 // eventually will be extended to events for a specific user on a specific date
@@ -83,22 +83,23 @@ eventSchema.statics.findByDate = function(date, user, callback) {
 
   var curr = this;
   var count = 0;
+  
   // checks to see if account is empty
-  curr.count({user: user}, function( err, count){
-    console.log( "Number of total events:", count );
-    var today = new Date();
-    // console.log(date);
-    // console.log(today);
-    var isSameDay = (today.getDate() == date.getDate() 
-        && today.getMonth() == date.getMonth()
-        && today.getFullYear() == date.getFullYear())
-    // console.log('is same day:', isSameDay)
-    if (count == 0 && isSameDay) {
-      changeSampleJSONDatetime(user);
-      // console.log(sampleJSON);
+  // curr.count({user: user}, function( err, count){
+  //   console.log( "Number of total events:", count );
+  //   var today = new Date();
+  //   // console.log(date);
+  //   // console.log(today);
+  //   var isSameDay = (today.getDate() == date.getDate() 
+  //       && today.getMonth() == date.getMonth()
+  //       && today.getFullYear() == date.getFullYear())
+  //   // console.log('is same day:', isSameDay)
+  //   if (count == 0 && isSameDay) {
+  //     changeSampleJSONDatetime(user);
+  //     // console.log(sampleJSON);
 
-      callback(err, sampleJSON.events);
-    } else {
+  //     callback(err, sampleJSON.events);
+  //   } else {
 
       // actual find by date function
       curr.find({user: user, 'start':{$gte:beg}, 'end':{$lte:end}}, null, {sort:{'start':1}}, function(err, events) {
@@ -112,8 +113,8 @@ eventSchema.statics.findByDate = function(date, user, callback) {
         callback(err, eventList);
       });
 
-    }
-  });
+  //   }
+  // });
 
 
 };
@@ -128,24 +129,24 @@ eventSchema.statics.moodByMonth = function(month, year, user, callback) {
   var curr = this;
   var count = 0;
 
-  // checks to see if account is empty, if so, then provide sample data
-  curr.count({user: user}, function( err, count){
-    console.log( "Number of total events:", count );
-    var today = new Date();
-    var isSameMonth = (today.getMonth() == month
-        && today.getFullYear() == year)
-    // console.log('is same day:', isSameDay)
-    if (count == 0 && isSameMonth) {
-      changeSampleJSONDatetime(user);
+  // // checks to see if account is empty, if so, then provide sample data
+  // curr.count({user: user}, function( err, count){
+  //   console.log( "Number of total events:", count );
+  //   var today = new Date();
+  //   var isSameMonth = (today.getMonth() == month
+  //       && today.getFullYear() == year)
+  //   // console.log('is same day:', isSameDay)
+  //   if (count == 0 && isSameMonth) {
+  //     changeSampleJSONDatetime(user);
 
-      callback(err, sampleJSON.events);
-    } else {
+  //     callback(err, sampleJSON.events);
+  //   } else {
 
       curr.find({user:user, 'start':{$gte:starttime}, 'end':{$lte: endtime}}, function(err, events) {
         callback(err, events);
       });
-    }
-  });
+  //   }
+  // });
 
 };
 
