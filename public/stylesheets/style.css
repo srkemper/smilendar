@@ -611,3 +611,8 @@ a {
   border: 1px solid #aaa;
   margin-top: 45px;
 }
+.btn-comment {
+  background-color: white;
+  color: #888888;
+  border: 1px solid #aaa;
+}
