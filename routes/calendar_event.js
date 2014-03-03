@@ -17,6 +17,7 @@ var locals = {
         link: '',
         display: '',
     },
+    nav: 'nav'
     // eventlist: data
 };
 
