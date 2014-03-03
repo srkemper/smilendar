@@ -651,10 +651,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
   }
 
   var starttime = new Date().getTime();
+  var start = null;
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
-    // e.preventDefault();
+    e.preventDefault();
     // console.log('toggle!');
     // e.stopImmediatePropagation();
     if ($this.is('.disabled, :disabled')) return
@@ -679,12 +680,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
       $parent
         .toggleClass('open')
         .trigger('shown.bs.dropdown', relatedTarget)
-      
+
       ////// Added by JimW
       // Google analytics for opening dropdown
-      console.log('dropdown opened!!!')
+      console.log('dropdown opened!!!');
       start = new Date().getTime();
-      console.log(start)
+      console.log(start);
       ga('send', 'event', 'smiley3', 'click', 'open-dropdown');
       ///////
 
