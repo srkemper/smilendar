@@ -39,10 +39,6 @@ exports.splash = function(req, res) {
 	}
 }
 
-exports.login = function(req, res){
-	res.render('login.handlebars', locals)
-}
-
 // redirect after login
 exports.login_redirect = function(req, res){
 	console.log("logged in");
@@ -63,6 +59,9 @@ exports.login_redirect = function(req, res){
 	}
 
 }
+
+
+
 
 exports.logout = function(req, res){
 	req.session.username = null;

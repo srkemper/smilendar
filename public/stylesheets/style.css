@@ -487,6 +487,7 @@ a {
 }
 .splash-page .splash-background {
   position: relative;
+  background-image: url('../images/background_image.jpg');
   background-position: 35% 50%;
   background-repeat: no-repeat;
   width: 100%;
@@ -512,17 +513,28 @@ a {
   margin: 0;
 }
 .splash-page .login-name {
-  margin: 20px auto;
+  margin: 0 auto;
+  margin-bottom: 20px;
   padding: 0 18px;
   width: 160px;
   border-radius: 18px;
 }
 .splash-page .login-submit {
+  display: block;
+  margin: 0 auto;
   width: 160px;
   border-radius: 18px;
   border-color: #00AEEF;
   background-color: #00AEEF;
   color: white;
+}
+.splash-page .welcome {
+  margin-top: 20px;
+  text-align: center;
+}
+.splash-page .welcome h5 {
+  line-height: 1.35;
+  color: #888888;
 }
 .splash-page .login-view {
   position: absolute;
@@ -542,7 +554,6 @@ a {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
 }
 .swiper-content .inner {
   padding: 20px;
@@ -562,5 +573,35 @@ a {
   background: #888;
 }
 .swiper-active-switch {
-  background: red;
+  background: #00AEEF;
+}
+.title {
+  height: 100%;
+}
+.title .logo {
+  position: relative;
+  height: 90%;
+  overflow: hidden;
+}
+.title .logo img {
+  position: absolute;
+  top: 50%;
+  margin-top: -159px;
+  width: 100%;
+}
+.tour {
+  height: 100%;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+.tour h5 {
+  text-align: center;
+  line-height: 1.4;
+}
+.tour .tour-image {
+  max-height: 66%;
+  overflow: hidden;
+}
+.tour img {
+  width: 100%;
 }

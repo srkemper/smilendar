@@ -4,34 +4,46 @@
             <div class="swiper-container swiper-content">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="inner">
-                            <h1>Movie 1</h1>
-                            <img class="movie-pic" src="img/1.jpg" height="150" width="150" alt="">
-                            <div class="movie-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, consequuntur, officiis esse assumenda corporis voluptates sunt veritatis vero ipsam veniam porro cum libero hic? Pariatur, repudiandae sunt iusto molestiae quam!</div>
+                        <div class="inner title">
+                            <div class="logo">
+                                <img src="../images/splash_2.png">
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="inner">
-                            <h1>Movie 2</h1>
-                            <img class="movie-pic" src="img/2.jpg" height="150" width="150" alt="">
-                            <div class="movie-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, consequuntur, officiis esse assumenda corporis voluptates sunt veritatis vero ipsam veniam porro cum libero hic? Pariatur, repudiandae sunt iusto molestiae quam!</div>
+                        <div class="inner tour">
+                            <h5>Track your mood along</br> with daily schedules</h5>
+                            <div class="tour-image">
+                                <img class="movie-pic" src="../images/tour_2.png">
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="inner">
-                            <h1>Movie 2</h1>
-                            <img class="movie-pic" src="img/2.jpg" height="150" width="150" alt="">
-                            <div class="movie-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, consequuntur, officiis esse assumenda corporis voluptates sunt veritatis vero ipsam veniam porro cum libero hic? Pariatur, repudiandae sunt iusto molestiae quam!</div>
+                        <div class="inner tour">
+                            <h5>Document private comments</br>  about your events</h5>
+                             <div class="tour-image">
+                                <img class="movie-pic" src="../images/tour_3.png">
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="inner">
-                            <h1>Movie 2</h1>
-                            <img class="movie-pic" src="img/2.jpg" height="150" width="150" alt="">
-                            <div class="movie-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, consequuntur, officiis esse assumenda corporis voluptates sunt veritatis vero ipsam veniam porro cum libero hic? Pariatur, repudiandae sunt iusto molestiae quam!</div>
+                       <div class="inner tour">
+                            <h5>See how your calendar</br>  and emotions correlate</h5>
+                             <div class="tour-image">
+                                <img class="movie-pic" src="../images/tour_4.png">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                       <div class="inner tour">
+                            <h5>Better understand yourself</br> and start a new healthy habit!</h5>
+                             <div class="tour-image">
+                                <img class="movie-pic" src="../images/tour_5.jpg">
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -55,12 +67,15 @@
     </div>
     <div class="login-view">
         <div class="header-inner">
-            <div class="go-back stay glyphicon">Cancel</div>
+            <a class="go-back stay glyphicon">Cancel</a>
         </div>
 
         {{#if catchError}}
             <div> You have not logged in yet </div>
         {{else}}
+            <div class="welcome col-centered">
+               <h5> Welcome to smilendar =) </br>Please log in with your name.</h5>
+            </div>
             <form method="get" action="login" class="navbar-form" role="form">
                 <div class="form-group">
                     <input type="text" class="form-control login-name" name="username" placeholder="Your Name">
