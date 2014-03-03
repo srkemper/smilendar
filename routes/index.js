@@ -6,22 +6,12 @@ var currUser;
 var gapi = require('./gapi');
 var db = require('../db.js');
 var year = 2014;    // only code for current year
-var mongoose = require('../mongoose')
+var mongoose = require('../mongoose');
 var Event = mongoose.model('Event');
 
-// given a day in a week, return the entire week in array
-// usage
-// console.log(new Date().getWeek());
-// Date.prototype.getWeek = function(){
-//  return [new Date(this.setDate(this.getDate()-this.getDay()))]
-//           .concat(
-//             String(Array(6)).split(',')
-//                .map ( function(){
-//                        return new Date(this.setDate(this.getDate()+1));
-//                      }, this )
-//           );
-// }
 
+
+// given a day in a week, return the entire week in array
 function getWeek(fromDate){
  var sunday = new Date(fromDate.setDate(fromDate.getDate()-fromDate.getDay()))
     ,result = [new Date(sunday)];
@@ -237,6 +227,7 @@ exports.dayInfo = function(req, res) {
 
     console.log('---dayInfo---');
     var dateId = req.params.id;
+    console.log(dateId);
     var date = getDateFromDayID(dateId)
     // console.log('dateId is '+ dateId)
     // console.log(dateId)
@@ -250,13 +241,28 @@ exports.dayInfo = function(req, res) {
 
     var user = req.session.username || req.cookies.username;
 
+    
+
     if (typeof(user) == 'undefined') {
         console.log('hello')
         res.redirect('/');
     } else {
+        // Event.getNumTotalEvents(user, function(err, count) {
+        //     console.log( "Number of events in routes:", count );
+        //     if (count == 0 && isSameDay) {
+        //         changeSampleJSONDatetime(user);
+        //         // console.log(sampleJSON);
+        //         res.json({
+        //             "eventList": sampleJSON.events, 
+        //             "fullDateInString": locals.fullDateInString,
+        //             "lastWeekURL": locals.lastWeekURL,
+        //             "nextWeekURL": locals.nextWeekURL
+        //         });
+
+        //     } else {
+
         Event.findByDate(date, user, function(err, events) {
           // console.log("--------Event.findByDate--------------")
-
 
           // adding "starttime" and "endtime" in strings
           for (var i=0; i<events.length; i++) {
@@ -275,10 +281,17 @@ exports.dayInfo = function(req, res) {
                 "eventList": events, 
                 "fullDateInString": locals.fullDateInString,
                 "lastWeekURL": locals.lastWeekURL,
-                "nextWeekURL": locals.nextWeekURL
+                "nextWeekURL": locals.nextWeekURL,
+                "dayId": dateId
             });
 
         });
+
+
+        //     }
+
+        // });
+
     }
 }
 

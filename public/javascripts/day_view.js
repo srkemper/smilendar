@@ -55,6 +55,7 @@ function renderDayEvent(result) {
 
     renderFullDateInString(result.fullDateInString);
     renderLeftRightArrow(result.lastWeekURL, result.nextWeekURL);
+    renderAddEventLink(result.dayId);
 
     // Retrieve templates from template file
     var template = Smilendar.Templates["templates/eventList.handlebars"];
@@ -67,6 +68,12 @@ function renderDayEvent(result) {
 
     // append event handler to AJAX created content
     initDynamicEventHandlers();
+}
+
+function renderAddEventLink(dayId) {
+    console.log($("#addeventget").attr('action'))
+    $("#addeventget").attr('action','/addEvent/'+dayId);
+    console.log($("#addeventget").attr('action'))
 }
 
 function renderLeftRightArrow(lastWeekURL, nextWeekURL) {

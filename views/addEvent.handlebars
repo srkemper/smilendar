@@ -43,22 +43,16 @@
         </div> --}}
         <input type='hidden' name='user' value='{{user}}'>
         <input type='hidden' name='mood' value='0'>
-        <input type='hidden' name='dayId' value='{{dayId}}'
-        
+        <input type='hidden' name='dayId' value='{{dayId}}'>
+        <input type='hidden' name='script' value='{{script}}'>
+        <input type='hidden' name='gobacklink' value='{{goback.link}}'>
+
         <input type='hidden' name='comment' value=''>
         <div class='form-group'>
           <label for="name-input">Title:</label>
-          <input type='text' class='form-control' name='name' id='name-input'>
+          <input type='text' class='form-control' name='name' id='name-input' value="{{curr_title}}">
         </div>
-        {{!-- <div class='form-group'>
-          <label class="control-label" for="add-event-datepicker">Date:</label>
-          <div class='input-group'>
-            <span class="input-group-addon">
-              <i class="glyphicon glyphicon-time"></i>
-            </span>
-            <input type='text' class='form-control' name='date' id='add-event-datepicker'>
-          </div>
-        </div> --}}
+
         <div class='form-group'>
           <label for="name-input">Start:</label>
           <input type="datetime-local" placeholder="Start" name="startTime" class="form-control" id="start_time" value="{{default_start_time}}">
@@ -68,6 +62,41 @@
           <input type="datetime-local" placeholder="End" name="endTime" class="form-control" id="end_time" value="{{default_end_time}}">
         </div>
       </div>
+
+      <div class="col-xs-12 note">
+        <div class='form-group'>
+          <label for="notes-input">Notes:</label>
+          <input type='text' class='form-control' name='note' id='notes-input' value="{{curr_notes}}">
+        </div>
+      </div>
+      <div class="col-xs-12 comment">
+        <div class='form-group'>
+          <label for='location-input'>Location:</label>
+          <input type='text' class='form-control' name='location' id='location-input' value="{{curr_location}}">
+        </div>
+      </div>
+      <div class='col-xs-12 form-group'>
+        {{!-- <button type="button"><a href="/addEvent">Add Event</a></button> --}}
+        <input type='submit' class='btn btn-primary btn-block' value='Add Event' id='addEvent-button'>
+      </div>
+{{!--     <div class="col-xs-12 take-photo navbar-fixed-bottom">
+      <button type="button" class="btn btn-default camIcon"><span class="glyphicon glyphicon-star"></span></button>
+    </div> --}}
+  </div>
+</div>
+
+
+        {{!-- <div class='form-group'>
+          <label class="control-label" for="add-event-datepicker">Date:</label>
+          <div class='input-group'>
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-time"></i>
+            </span>
+            <input type='text' class='form-control' name='date' id='add-event-datepicker'>
+          </div>
+        </div> --}}
+
+
       {{!-- <div class="col-xs-6 alarm">
         <div class='form-group'>
           <label>Start time:</label>
@@ -96,24 +125,3 @@
           </script>
         </div>
       </div> --}}
-      <div class="col-xs-12 note">
-        <div class='form-group'>
-          <label for="notes-input">Notes:</label>
-          <input type='text' class='form-control' name='note' id='notes-input'>
-        </div>
-      </div>
-      <div class="col-xs-12 comment">
-        <div class='form-group'>
-          <label for='location-input'>Location:</label>
-          <input type='text' class='form-control' name='location' id='location-input'>
-        </div>
-      </div>
-      <div class='col-xs-12 form-group'>
-        {{!-- <button type="button"><a href="/addEvent">Add Event</a></button> --}}
-        <input type='submit' class='btn btn-primary btn-block' value='Add Event' id='addEvent-button'>
-      </div>
-{{!--     <div class="col-xs-12 take-photo navbar-fixed-bottom">
-      <button type="button" class="btn btn-default camIcon"><span class="glyphicon glyphicon-star"></span></button>
-    </div> --}}
-  </div>
-</div>

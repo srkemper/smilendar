@@ -193,7 +193,21 @@ app.post('/addEvent', function(request, response) {
     console.log('not updated')
     // request.flash("error", "Invalid form...");
     // response.redirect('/addEvent/'+params.dayId)
-  
+    response.render('addEvent',{
+      'user': params.user,
+      'script': params.script,
+      'curr_title': params.name,
+      'default_start_time': params.startTime,
+      'default_end_time': params.endTime,
+      'curr_notes': params.note,
+      'curr_location': params.location,
+      'dayId': params.dayId,
+      'goback': {
+        'link': params.gobacklink,
+        'display':"Back"
+      }
+    });
+
   } else {
 
   // var startString = params.date + " " + params.startTime;

@@ -24,7 +24,7 @@ function returnTwoDigits(digit) {
 function getTimeInputDefaultHelper(date) {
     // return date string as YYYY-MM-DDTHH:MM
     var year = date.getFullYear();
-    var month = returnTwoDigits(date.getMonth());
+    var month = returnTwoDigits(date.getMonth()+1);
     var day = returnTwoDigits(date.getDate());
     var hour = returnTwoDigits(date.getHours());
     var minutes = returnTwoDigits(date.getMinutes());
@@ -35,8 +35,9 @@ function getTimeInputDefaultHelper(date) {
 function getTimeInputDefault(dayId) {
     // given dayId return date string as YYYY-MM-DDTHH:MM
     // example output: 2014-01-03T03:59
-
+    console.log('---getTimeInputDefault---')
     var desiredDay = getDateFromDayID(dayId);
+    console.log(desiredDay)
     var today = new Date(); // get curr time from today
 
     var year = desiredDay.getFullYear();
