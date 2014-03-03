@@ -6,7 +6,7 @@ $(document).ready(function(){
     var addEventPostSucess = $("#addEventPostSucess").val();
     console.log('addEventPostSucess', addEventPostSucess);
     if (addEventPostSucess) {
-        ga('send', 'event', 'add event test', 'post');
+        ga('send', 'event', 'add event', 'post');
     }
     // $("#lastweek").on("click", showLastWeek);
     // $("#nextweek").on("click", showNextWeek);

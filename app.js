@@ -19,6 +19,8 @@ var mongo_client = require('mongodb').MongoClient;
 var mongojs = require('mongojs');
 
 var db = require('./db');
+var validator = require('validator');
+var node_validator = require('node-validator');
 
 var mongoose = require('mongoose');
 var mongoosedb = require('./mongoose');
@@ -163,6 +165,15 @@ app.post('/addEvent', function(request, response) {
   console.log('---params---');
   console.log(params);
   console.log('---console---');
+  console.log(params.name)
+
+  // validate for time
+  var checkTime = node_validator.isDate(params.startTime) && node_validator.isDate(params.endTime);
+  checkTime = validator.isAfter(params.endTime, [params.startTime])
+  console.log(checkTime)
+
+  // validate for string
+  var checkString = node_validator.isString(params.name);
 
   var startvec = params.startTime.split('T');
   var endvec = params.endTime.split('T');
@@ -176,25 +187,27 @@ app.post('/addEvent', function(request, response) {
     var end = Date.parse(params.endTime);
   }
 
-  console.log('start time');
-  console.log(params.startTime);
-  console.log('start date');
-  console.log(new Date(start));
+  // console.log('start time');
+  // console.log(params.startTime);
+  // console.log('start date');
+  // console.log(new Date(start));
 
-  console.log('end time');
-  console.log(params.endTime);
-  console.log('end date');
-  console.log(new Date((end)));
+  // console.log('end time');
+  // console.log(params.endTime);
+  // console.log('end date');
+  // console.log(new Date((end)));
 
   var name = params.name || 'New Event';  // uses default value if nothing is defined
   console.log(name)
 
   // check that endString is larger than startString
-  if (params.startTime.length == 0 || params.endTime.length == 0 || end < start) {
+  if (!checkTime || !checkString) {
+  // if (params.startTime.length == 0 || params.endTime.length == 0 || end < start) {
     console.log('not updated')
     // request.flash("error", "Invalid form...");
     // response.redirect('/addEvent/'+params.dayId)
 
+    request.session.addEventPostSucess = false;
     response.render('addEvent',{
       'user': params.user,
       'script': params.script,
@@ -207,7 +220,9 @@ app.post('/addEvent', function(request, response) {
       'goback': {
         'link': params.gobacklink,
         'display':"Back"
-      }
+      },
+      'nav':'nav',
+      'flash': "End time must be later than begin time."
     });
 
 

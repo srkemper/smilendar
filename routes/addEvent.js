@@ -71,6 +71,7 @@ exports.view = function(req, res) {
     		'display':"Back"
     	},
         'default_start_time': default_times[0],
-        'default_end_time': default_times[1]
+        'default_end_time': default_times[1],
+        'nav': 'nav'
     });
 };
