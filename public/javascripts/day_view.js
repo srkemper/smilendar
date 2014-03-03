@@ -67,7 +67,7 @@ function renderDayEvent(result) {
     Handlebars.registerPartial('eventItem', Smilendar.Templates["templates/eventItem.handlebars"]);
     var htmlText = template(result);
 
-    // console.log(htmlText);
+    // console.log(htmlText); 
 
     $("#this_day").html(htmlText);
 
