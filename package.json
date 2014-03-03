@@ -29,6 +29,8 @@
     "grunt-shell-spawn": "~0.3.0",
     "mongojs": "~0.10.0",
     "date.js": "~0.1.1",
-    "dotenv": "~0.2.4"
+    "dotenv": "~0.2.4",
+    "validator": "~3.4.0",
+    "node-validator": "~0.1.4"
   }
 }
