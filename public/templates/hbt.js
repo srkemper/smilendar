@@ -39,7 +39,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0._id); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "' role='form'>\n                  <input type='submit' class='btn btn-primary btn-block' value='Comment'>\n                </form>\n            </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"clearfix visible-xs\"></div>\n  </a>\n</div>";
+    + "' role='form'>\n                  <input type='submit' class='btn btn-block btn-comment' value='Add Comment'>\n                </form>\n            </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"clearfix visible-xs\"></div>\n  </a>\n</div>";
   return buffer;
   });
 
