@@ -188,6 +188,10 @@ exports.alternate = function(req, res) {
     renderingIndex(req,res);
 }
 
+exports.addEventPostSucess = function(req, res) {
+    
+}
+
 // source: http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
 function formatAMPM(date) {
   var hours = date.getHours();

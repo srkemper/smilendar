@@ -51,12 +51,13 @@ function postComment(e) {
             console.log("ajax post comment success")
             // update on the page, by changing the html of the comment
             dropdownButton.parent().parent().siblings(".comment-in-dayview").text(comment);
-            ga('send', 'event', 'comment-test', 'click', 'homepage');
+            ga('send', 'event', 'comment-test2', 'post', 'homepage ajax');
         },
         contentType: "application/json",
         data: JSON.stringify({"id":dbid, "comment": comment})
     });
     e.preventDefault();
+
 }
 
 function initDynamicEventHandlers() {
@@ -89,8 +90,19 @@ function initDynamicEventHandlers() {
         e.preventDefault();
     });
 
-    // listener on Go button for posting comment
+    // listener on Go button for posting comment in homepage
+    // and send google analytics
     $(".smile").on('click','.Go-button', postComment);
+
+    // send google analytics for posting comment via edit event
+    $("#post-comment-edit-page").submit(function(e) {
+        e.preventDefault();
+        console.log('post comment edit page')
+        ga('send', 'event', 'comment-test5', 'post', 'edit event page');
+        var form = this;
+        setTimeout(function(){ form.submit()}, 150);
+        // window.location.replace("/3-2");
+    });
 
     // $(document).delegate('.go-to-event','click',function(e){
     //     var dest = $(this).attr("href");

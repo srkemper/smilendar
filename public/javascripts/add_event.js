@@ -28,9 +28,9 @@ function initializePageView() {
         // });
 
 
-        if (!name) {
-        	$('#name-input').css({ "border": '#FF0000 1px solid'});
-        }
+        // if (!name) {
+        // 	$('#name-input').css({ "border": '#FF0000 1px solid'});
+        // }
 
         console.log('submit')
         console.log(name);

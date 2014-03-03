@@ -113,6 +113,7 @@ app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
 app.get('/addEvent/:id', addEvent.view);
 app.get('/:id',routes.index);
+app.get('/addEventPostSucess/:id', index.addEventPostSucess);
 app.get('/alt/:id',index.alternate)
 app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
@@ -279,7 +280,6 @@ app.post('/addComment', function(request, response) {
     }
     console.log(updated);
     response.redirect(params.goback)
-    // response.redirect('/calendar_event/' + params.event_id);
   })
 })
 

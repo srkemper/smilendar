@@ -1,3 +1,22 @@
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48462023-2', {'cookieDomain': 'none'});
+  // ga('create', 'UA-48462023-2', 'smilendar.herokuapp.com');
+  ga('send', 'pageview', 'edit-event');
+
+
+  // Using jQuery Event API v1.3
+  // $('.dropdown').on('click', function() {
+  //  console.log('button selected!!!')
+  //   ga('send', 'event', 'button', 'click', 'nav-buttons');
+  // });
+
+</script>
+
 <div class="event-view">
   <div class="row">
 {{!--  <div class="col-xs-12">
@@ -38,7 +57,7 @@
       <div class="note-content">{{eveIns.note}}</div>
     </div>
     <div class="col-xs-12 comment">
-      <form method='post' action='/addComment' role='form'>
+      <form method='post' action='/addComment' role='form' id="post-comment-edit-page">
         
         <input type='hidden' name='event_id' value='{{eveIns._id}}'>
         <input type='hidden' name='goback' value='{{goback.link}}'>
