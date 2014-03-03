@@ -650,9 +650,10 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
+  /// added by JimW
   var starttime = new Date().getTime();
-  var start = null;
-
+  ///
+  
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
     e.preventDefault();
@@ -684,8 +685,8 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
       ////// Added by JimW
       // Google analytics for opening dropdown
       console.log('dropdown opened!!!');
-      start = new Date().getTime();
-      console.log(start);
+      starttime = new Date().getTime();
+      console.log(starttime);
       ga('send', 'event', 'smiley3', 'click', 'open-dropdown');
       ///////
 
@@ -742,18 +743,18 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
 
       ////// added by JimW, send Google analytics for close dropdown
       console.log('dropdown closed');
-      var end = new Date().getTime();
-      var diff = end - start; // units of miliseconds
-      console.log(start);
-      console.log(end);
-      console.log(diff);
+      var endtime = new Date().getTime();
+      var difftime = endtime - starttime; // units of miliseconds
+      console.log(starttime);
+      console.log(endtime);
+      console.log(difftime);
       ga('send', 'event', 'smiley3', 'click', 'close-dropdown');
       ga('send', {
         'hitType': 'timing',          // Required.
         'eventCategory': 'smiley2',   // Required.
         'eventAction': 'chooseMood',      // Required.
         'eventLabel': 'dropdown',
-        'eventValue': diff
+        'eventValue': difftime
       });
       //////
     })
