@@ -616,3 +616,9 @@ a {
   color: #888888;
   border: 1px solid #aaa;
 }
+#nextweek {
+  right: 10px;
+}
+#lastweek {
+  left: 10px;
+}
