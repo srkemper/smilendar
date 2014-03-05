@@ -162,50 +162,45 @@ app.post('/changeMood', function(request, response) {
 app.post('/addEvent', function(request, response) {
   var params = request.body;
   console.log('---addEvent---');
-  console.log('---params---');
-  console.log(params);
-  console.log('---console---');
-  console.log(params.name)
 
+  var startTime = (params.startTime || "").replace(/[TZ]/g," ");
+  var endTime = (params.endTime || "").replace(/[TZ]/g," ");
+  console.log('---params---');
+  // console.log(params);
+  // console.log(params.name)
+  console.log(startTime);
+  console.log(endTime)
   // validate for time
-  var checkTime = node_validator.isDate(params.startTime) && node_validator.isDate(params.endTime);
-  checkTime = validator.isAfter(params.endTime, [params.startTime])
+  var checkTime = validator.isDate(startTime) && validator.isDate(endTime);
+  console.log(checkTime);
+  checkTime = validator.isAfter(endTime, [startTime])
   console.log(checkTime)
 
   // validate for string
   var checkString = node_validator.isString(params.name);
 
-  var startvec = params.startTime.split('T');
-  var endvec = params.endTime.split('T');
+  startTime = new Date(startTime);
+  endTime = new Date(endTime);
 
-  if (startvec.length == 2) {
-    // represent time as user's local time
-    var start = Date.parse(startvec[0]+' '+startvec[1]);
-    var end = Date.parse(endvec[0]+' '+endvec[1]);
-  } else {
-    var start = Date.parse(params.startTime);
-    var end = Date.parse(params.endTime);
-  }
+  var sameDay = (startTime.getFullYear() == endTime.getFullYear() && startTime.getMonth() == endTime.getMonth() && startTime.getDate() == endTime.getDate());
 
-  // console.log('start time');
-  // console.log(params.startTime);
-  // console.log('start date');
-  // console.log(new Date(start));
-
-  // console.log('end time');
-  // console.log(params.endTime);
-  // console.log('end date');
-  // console.log(new Date((end)));
+  var start = startTime.getTime();
+  var end = startTime.getTime();
+  // var start = Date.parse(startTime);
+  // var end = Date.parse(endTime);
 
   var name = params.name || 'New Event';  // uses default value if nothing is defined
   console.log(name)
 
   // check that endString is larger than startString
-  if (!checkTime || !checkString) {
+  if (!checkTime || !checkString || !sameDay) {
   // if (params.startTime.length == 0 || params.endTime.length == 0 || end < start) {
     console.log('not updated')
-    // request.flash("error", "Invalid form...");
-    // response.redirect('/addEvent/'+params.dayId)
+    var flashCheckTime = '';
+    var flashSameDay = '';
+
+    if (!checkTime) {flashCheckTime = "End time must be later than begin time.";}
+    if (!sameDay) {flashSameDay = "Sorry, we currently only support events happening on the same day."; }
 
     request.session.addEventPostSucess = false;
     response.render('addEvent',{
@@ -222,7 +217,8 @@ app.post('/addEvent', function(request, response) {
         'display':"Back"
       },
       'nav':'nav',
-      'flash': "End time must be later than begin time."
+      'flashCheckTime': flashCheckTime,
+      'flashSameDay': flashSameDay
     });
 
 

@@ -27,10 +27,17 @@
 </div>  
 </div>  
 </div>   --}}
-{{#if flash}}
+{{#if flashCheckTime}}
   <div class="alert alert-info">  
   <a class="close" data-dismiss="alert">×</a>  
-  <strong>Error!</strong> {{flash}}
+  <strong>Error!</strong> {{flashCheckTime}}
+</div>  
+{{/if}}
+
+{{#if flashSameDay}}
+  <div class="alert alert-info">  
+  <a class="close" data-dismiss="alert">×</a>  
+  <strong>Info!</strong> {{flashSameDay}}
 </div>  
 {{/if}}
 
