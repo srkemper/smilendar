@@ -185,7 +185,7 @@ app.post('/addEvent', function(request, response) {
   var sameDay = (startTime.getFullYear() == endTime.getFullYear() && startTime.getMonth() == endTime.getMonth() && startTime.getDate() == endTime.getDate());
 
   var start = startTime.getTime();
-  var end = startTime.getTime();
+  var end = endTime.getTime();
   // var start = Date.parse(startTime);
   // var end = Date.parse(endTime);
 
