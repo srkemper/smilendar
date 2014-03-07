@@ -33,7 +33,7 @@ function chooseMood(e) {
 
 // post comment from dropdown menu
 function postComment(e) {
-    // e.stopImmediatePropagation();
+    // e.stopImmediatePropagation();    // allow dropdown to disappear
     console.log('post comment');
     var dropdownButton = $(this).parent().parent().parent().siblings(".mood-display");
     var dbid = dropdownButton.attr('data-identifier');
