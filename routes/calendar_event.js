@@ -21,6 +21,20 @@ var locals = {
     // eventlist: data
 };
 
+var monthToName = {
+    0: 'January',
+    1: 'February',
+    2: 'March',
+    3: 'April',
+    4: 'May',
+    5: 'June',
+    6: 'July',
+    7: 'Auguest',
+    8: 'September',
+    9: 'October',
+    10: 'November',
+    11: 'December'
+};
 
 // exports.index = function(req, res){
 //     console.log('-------------xxx');
@@ -59,12 +73,20 @@ exports.view = function(req, res) {
       } else {
         locals.goback.display = 'Today';
       }
-      eveIns.startHour = start.getHours();
-      eveIns.startMin = start.getMinutes();
-      eveIns.endHour = end.getHours();
-      eveIns.endMin = end.getMinutes();
+      // eveIns.startHour = start.getHours();
+      // eveIns.startMin = start.getMinutes();
+      // eveIns.endHour = end.getHours();
+      // eveIns.endMin = end.getMinutes();
       eveIns.startTime = formatAMPM(start);
       eveIns.endTime = formatAMPM(end);
+      console.log(start);
+      console.log(end);
+
+      if (end.getDate() > start.getDate()) {
+        eveIns.startTime += " on " + monthToName[start.getMonth()].substr(0,3) +', '+start.getDate();
+        eveIns.endTime += " on " + monthToName[end.getMonth()].substr(0,3) +', '+end.getDate();
+      }
+
       if (eveIns.mood == null) {
         eveIns.mood = 5
       } else {
