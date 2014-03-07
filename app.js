@@ -182,7 +182,8 @@ app.post('/addEvent', function(request, response) {
   startTime = new Date(startTime);
   endTime = new Date(endTime);
 
-  var sameDay = (startTime.getFullYear() == endTime.getFullYear() && startTime.getMonth() == endTime.getMonth() && startTime.getDate() == endTime.getDate());
+  // var sameDay = (startTime.getFullYear() == endTime.getFullYear() && startTime.getMonth() == endTime.getMonth() && startTime.getDate() == endTime.getDate());
+  // sameDay = true;
 
   var start = startTime.getTime();
   var end = endTime.getTime();
@@ -193,14 +194,14 @@ app.post('/addEvent', function(request, response) {
   console.log(name)
 
   // check that endString is larger than startString
-  if (!checkTime || !checkString || !sameDay) {
+  if (!checkTime || !checkString) {
   // if (params.startTime.length == 0 || params.endTime.length == 0 || end < start) {
     console.log('not updated')
     var flashCheckTime = '';
     var flashSameDay = '';
 
     if (!checkTime) {flashCheckTime = "End time must be later than begin time.";}
-    if (!sameDay) {flashSameDay = "Sorry, we currently only support events happening on the same day."; }
+    // if (!sameDay) {flashSameDay = "Sorry, we currently only support events happening on the same day."; }
 
     request.session.addEventPostSucess = false;
     response.render('addEvent',{
@@ -217,8 +218,8 @@ app.post('/addEvent', function(request, response) {
         'display':"Back"
       },
       'nav':'nav',
-      'flashCheckTime': flashCheckTime,
-      'flashSameDay': flashSameDay
+      'flashCheckTime': flashCheckTime
+      // 'flashSameDay': flashSameDay
     });
 
 
