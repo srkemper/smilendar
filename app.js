@@ -338,10 +338,33 @@ function oauth2callback(req, res) {
           var end = new Date(new Date().getFullYear(), 11, 30, 23, 59, 59);
           gapi.cal.events.list({'calendarId': results.items[i].id, 'singleEvents':true, 'orderBy':'startTime', 'timeMin': start.toISOString(), 'timeMax':end.toISOString()}).withAuthClient(gapi.client).execute(function(err, results){
             if (results && results.items) {
+              var Event = mongoose.model('Event');
               results.items.forEach(function(eve) {
-                console.log(eve)
-                my_events.push(eve);
                 //PUT INTO DB NOW
+                var startTime = new Date(eve.start.dateTime).getTime()
+                var endTime = new Date(eve.end.dateTime).getTime()
+                Event.find({"name": eve.summary, "start":startTime, "end":endTime, "user":req.cookies.username}).exec(function(err, found) {
+                  if (err) {console.log('error finding in mongoose')};
+                  console.log(found)
+                  if (!found || found.length == 0) {
+                    var newEvent = new Event({
+                      name: eve.summary,
+                      start: startTime,
+                      end: endTime,
+                      location: eve.location,
+                      mood: null,
+                      comment: "",
+                      note: "",
+                      user: req.cookies.username
+                    });
+                    console.log(newEvent)
+                    newEvent.save(function(err, saved) {
+                      if (err) {console.log('could not save new event')};
+                      console.log(saved);
+                    })
+                  }
+                });
+                // my_events.push(eve);
               });
             }
           });
