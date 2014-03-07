@@ -68,7 +68,8 @@ var locals = {
     fullDateInString: '',
     lastWeekURL: '',
     nextWeekURL: '',
-    alternate: false
+    alternate: false,
+    authurl: gapi.url
 };
 
 // append '0' to the front of string if string has length 1

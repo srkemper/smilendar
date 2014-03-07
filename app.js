@@ -14,7 +14,7 @@ var app = express();
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
-// var gapi = require('./routes/gapi');
+var gapi = require('./routes/gapi');
 var mongo_client = require('mongodb').MongoClient;
 var mongojs = require('mongojs');
 
@@ -114,6 +114,7 @@ app.get('/about', about.view);
 app.get('/login', user.login_redirect);
 app.get('/logout', user.logout);
 app.get('/addEvent/:id', addEvent.view);
+app.get('/oauth2callback', oauth2callback)
 app.get('/:id',routes.index);
 // app.get('/addEventPostSucess/:id', index.addEventPostSucess);
 app.get('/alt/:id',index.alternate)
@@ -312,28 +313,54 @@ app.get('/monthEvent/:id',month.monthInfo);   // AJAX to get month view informat
 
 // handling return value
 
-// app.get('/oauth2callback', function(req, res) {
-//   var code = req.query.code;
-//   console.log(code);
-//   gapi.client.getToken(code, function(err, tokens) {
-//     gapi.client.credentials = tokens;   // getting access tokens
-//     getData();
-//   console.log('getting tokens-----------');
-//     console.log(tokens);
+function oauth2callback(req, res) {
+  var code = req.query.code;
+  console.log('called back')
+  console.log(code);
+  gapi.client.getToken(code, function(err, tokens) {
+    gapi.client.credentials = tokens;   // getting access tokens
 
-
-//   });
-//     console.log('getting name---------');
-//     console.log(my_profile.name);
-//   var locals = {
-//         user: my_profile.name,
-//         title: 'Today',
-//         url: gapi.url
-//       };
-//     console.log(locals);
-// //    res.redirect('/',locals);
-//     res.render('homepage',locals);
-// });
+    gapi.oauth.userinfo.get().withAuthClient(gapi.client).execute(function(err, results){
+      console.log('getting results-----------');
+      console.log(results);
+      my_email = results.email;
+      my_profile.name = results.name;
+      my_profile.birthday = results.birthday;
+      my_events = []
+      gapi.cal.calendarList.list().withAuthClient(gapi.client).execute(function(err, results){
+        console.log('calendar results');
+        console.log(results);
+        for (var i = results.items.length - 1; i >= 0; i--) {
+          console.log('---');
+          console.log(results.items[i].summary, results.items[i].id);
+          my_calendars.push(results.items[i].summary);
+          var start = new Date(new Date().getFullYear(), 1, 1, 0, 0, 0);
+          var end = new Date(new Date().getFullYear(), 11, 30, 23, 59, 59);
+          gapi.cal.events.list({'calendarId': results.items[i].id, 'singleEvents':true, 'orderBy':'startTime', 'timeMin': start.toISOString(), 'timeMax':end.toISOString()}).withAuthClient(gapi.client).execute(function(err, results){
+            if (results && results.items) {
+              results.items.forEach(function(eve) {
+                console.log(eve)
+                my_events.push(eve);
+                //PUT INTO DB NOW
+              });
+            }
+          });
+        };
+        console.log("my events--------------")
+        console.log(my_events)
+        console.log('getting tokens-----------');
+        console.log(tokens);
+        console.log('getting name---------');
+        console.log(my_profile.name);
+        var month = new Date().getMonth() + 1;
+        var date = new Date().getDate();
+        console.log('redirecting to ' + month + "-" + date);
+        res.redirect('/' + month + "-" + date);
+      });
+    });
+  });
+  // res.render('homepage',locals);
+};
 
 
 // app.get('/cal', function(req, res){
@@ -347,26 +374,34 @@ app.get('/monthEvent/:id',month.monthInfo);   // AJAX to get month view informat
 //   res.render('cal.jade', locals);
 // });
 
+function startOfYear() {
+  var start = new Date(new Date().getFullYear, 0, 1, 0, 0, 0);
+  return start.toISOString()
+}
+function endOfYear() {
+  var end = new Date(new Date().getFullYear, 11, 30, 23, 59, 59);
+  return end
+}
 
 
-// var getData = function() {
-//   gapi.oauth.userinfo.get().withAuthClient(gapi.client).execute(function(err, results){
-//   console.log('getting results-----------');
-//       console.log(results);
-//       my_email = results.email;
-//       my_profile.name = results.name;
-//       my_profile.birthday = results.birthday;
-//   });
-//   gapi.cal.calendarList.list().withAuthClient(gapi.client).execute(function(err, results){
-//     console.log('calendar results');
-//     console.log(results);
-//     for (var i = results.items.length - 1; i >= 0; i--) {
-//         console.log('---');
-//         console.log(results.items[i].summary);
-//       my_calendars.push(results.items[i].summary);
-//     };
-//   });
-// };
+var getData = function() {
+  gapi.oauth.userinfo.get().withAuthClient(gapi.client).execute(function(err, results){
+    console.log('getting results-----------');
+    console.log(results);
+    my_email = results.email;
+    my_profile.name = results.name;
+    my_profile.birthday = results.birthday;
+  });
+  gapi.cal.calendarList.list().withAuthClient(gapi.client).execute(function(err, results){
+    console.log('calendar results');
+    console.log(results);
+    for (var i = results.items.length - 1; i >= 0; i--) {
+      console.log('---');
+      console.log(results.items[i].summary);
+      my_calendars.push(results.items[i].summary);
+    };
+  });
+};
 
 
 http.createServer(app).listen(app.get('port'), function(){
