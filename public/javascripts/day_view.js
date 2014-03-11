@@ -112,18 +112,43 @@ function initializeCheckIn() {
     });
 
 
-
-    setContentSize();
-    $(window).resize(function(){
-        setContentSize();
-    })
-
-    //Swiper Content
-    var mySwiper = new Swiper('.swiper-container',{
-    pagination: '.pagination',
-    grabCursor: true,
-    paginationClickable: true
+    $('#good').hammer().on("swipeleft", function(event) {
+        console.log('left');
+        $(this).css('background-color', '#555555');
+        $(this).attr('_id','sad');
+        $(this).html('happy');
     });
+
+    $('#good').hammer().on("swiperight", function(event) {
+        console.log('right');
+        $(this).css('background-color', '#57ad68');
+        $(this).html('sad');
+    });
+
+    // var element = document.getElementById('good');
+    // console.log('what is this? '+element);
+    // var hammertime = Hammer(element).on("tap", function(event) {
+    //     alert('hello!');
+    // });
+
+
+    // setContentSize();
+    // $(window).resize(function(){
+    //     setContentSize();
+    // })
+
+    // //Swiper Content
+    // var mySwiper = new Swiper('.swiper-container',{
+    // pagination: '.pagination',
+    // grabCursor: true,
+    // paginationClickable: true
+    // });
+}
+
+function setContentSize() {
+    $('.swiper-content').css({
+      height: $(window).height()//-$('.swiper-nav').height()
+    })
 }
 
 

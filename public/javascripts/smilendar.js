@@ -82,7 +82,7 @@ function sendGoogleAnalyticsForCloseDropdown() {
 function initDynamicEventHandlers() {
     // Dynamically append event handler to AJAX created content.
     console.log('initialized!');
-    
+
     // send google analytics event for smiley dropdown
     // see boostrap.js, search for JimW
 
