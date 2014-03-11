@@ -27,7 +27,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.comment) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.comment); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</p>\n    <div class=\"smile\">\n      <div class=\"dropdown closed\">\n        <button data-toggle=\"dropdown\" class=\"btn-xs smile-face mood-display\" id=\"";
+    + "</p>\n    <div class=\"smile\">\n      \n      <div class=\"dropdown closed\">\n        <button data-toggle=\"dropdown\" class=\"btn-xs smile-face mood-display\" id=\"";
   if (stack1 = helpers.moodString) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.moodString); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
@@ -39,7 +39,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.comment) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.comment); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n            <span class=\"input-group-btn\">\n              <button class=\"btn btn-default Go-button\" type=\"button\">Done</button>\n            </span>\n          </div>\n\n\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"clearfix visible-xs\"></div>\n  </a>\n</div>";
+    + "\">\n            <span class=\"input-group-btn\">\n              <button class=\"btn btn-default Go-button\" type=\"button\">Done</button>\n            </span>\n          </div>\n\n\n\n\n          \n\n\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"clearfix visible-xs\"></div>\n  </a>\n</div>";
   return buffer;
   });
 

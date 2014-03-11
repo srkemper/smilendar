@@ -22,13 +22,13 @@ function initializeSplashView() {
 
   //Update Nav Position
 
-  $('.btn-check-in').on('click',function(){
+  $('.btn-login').on('click',function(){
     // console.log('user is about to login!');
-    $('.check-in-view').addClass('check-in-view-show');
+    $('.login-view').addClass('login-view-show');
   });
 
   $('.go-back').on('click',function(){
-    $('.check-in-view').removeClass('check-in-view-show');
+    $('.login-view').removeClass('login-view-show');
   });
 
 }
@@ -38,7 +38,7 @@ function setContentSize() {
     $('.swiper-content').css({
       height: $(window).height()//-$('.swiper-nav').height()
     })
-  }
+}
 
 function updateNavPosition(){
     $('.swiper-nav .active-nav').removeClass('active-nav')

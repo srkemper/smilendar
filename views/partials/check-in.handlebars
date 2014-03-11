@@ -1,18 +1,67 @@
-  <div class="check-in-view">
-    <div class="header-inner">
-        <a class="go-back stay glyphicon">Cancel</a>
-    </div>
+<div class="check-in-view">
+      <div class="header-inner">
+          <a class="go-back stay glyphicon">Cancel</a>
+      </div>
+      <div class="welcome col-centered">
+         <h5> How do you feel now? </br>...</h5>
+      </div>
 
-
-        <div class="welcome col-centered">
-           <h5> Welcome to smilendar =) </br>Please log in with your name.</h5>
-        </div>
-        <form method="get" action="login" class="navbar-form" role="form">
-            <div class="form-group">
-                <input type="text" class="form-control login-name" name="username" placeholder="Your Name">
-                <input type="submit" class="form-control btn login-submit" value="Login">
-            </div>
-        </form>
-
-
+<div class="swiper-container swiper-content">
+  <div class="swiper-wrapper">
+      <div class="swiper-slide">
+          <div class="inner tour">
+              <h5>Track your mood along</br> with daily schedules</h5>
+              <div class="tour-image">
+                  <img class="movie-pic" src="../images/tour_2.png">
+              </div>
+              <div class="clearfix"></div>
+          </div>
+      </div>
+      <div class="swiper-slide">
+          <div class="inner tour">
+              <h5>Document private comments</br>  about your events</h5>
+               <div class="tour-image">
+                  <img class="movie-pic" src="../images/tour_3.png">
+              </div>
+              <div class="clearfix"></div>
+          </div>
+      </div>
+      <div class="swiper-slide">
+         <div class="inner tour">
+              <h5>See how your calendar</br>  and emotions correlate</h5>
+               <div class="tour-image">
+                  <img class="movie-pic" src="../images/tour_4.png">
+              </div>
+              <div class="clearfix"></div>
+          </div>
+      </div>
+      <div class="swiper-slide">
+         <div class="inner tour">
+              <h5>Better understand yourself</br> and start a new healthy habit!</h5>
+               <div class="tour-image">
+                  <img class="movie-pic" src="../images/tour_5.jpg">
+              </div>
+              <div class="clearfix"></div>
+          </div>
+      </div>
   </div>
+</div>
+
+      
+      <ul class="mood-list">
+        <li id="excited" attr="2" class="smile-face mood-status">Happy</li>
+        <li id="happy" attr="1" class="smile-face mood-status">Excited</li>
+        <li id="soso" attr="0" class="smile-face mood-status">Soso</li>
+        <li id="sad" attr="-1" class="smile-face mood-status">Sad</li>
+        <li id="angry" attr="-2" class="smile-face mood-status">Angry</li>
+        <div class="clearfix"></div>
+      </ul>
+
+      <div class="input-group">
+          <input type="text" class="form-control comment-input" placeholder="Comment here!" value="{{comment}}">
+          <span class="input-group-btn">
+            <button class="btn btn-default Go-button" type="button">Done</button>
+          </span>
+      </div>
+</div>
+

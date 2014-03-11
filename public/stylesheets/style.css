@@ -623,7 +623,7 @@ a {
 }
 .day-view {
   position: relative;
-  z-index: 65;
+  z-index: 0;
   background-color: white;
   top: 0px;
   left: 0px;

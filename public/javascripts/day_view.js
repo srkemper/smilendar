@@ -2,21 +2,13 @@
 
 $(document).ready(function(){
     initializeDayView();
+    initializeCheckIn();
     $(".weekday-num").on("click",".cal-cell1", selectDay);
     var addEventPostSucess = $("#addEventPostSucess").val();
     console.log('addEventPostSucess', addEventPostSucess);
     if (addEventPostSucess) {
         ga('send', 'event', 'add event', 'post');
     }
-
-      $('.btn-check-in').on('click',function(){
-        // console.log('user is about to login!');
-        $('.check-in-view').addClass('check-in-view-show');
-      });
-
-      $('.go-back').on('click',function(){
-        $('.check-in-view').removeClass('check-in-view-show');
-      });
     // $("#lastweek").on("click", showLastWeek);
     // $("#nextweek").on("click", showNextWeek);
 })
@@ -108,6 +100,43 @@ function showLastWeek(e) {
     e.preventDefault();
 }
 
-function checkIn(e) {
+function initializeCheckIn() {
+    // listeners on the button check in to start the page
+    $('.btn-check-in').on('click',function(){
+        // console.log('user is about to login!');
+        $('.check-in-view').addClass('check-in-view-show');
+      });
 
+      $('.go-back').on('click',function(){
+        $('.check-in-view').removeClass('check-in-view-show');
+    });
+
+
+
+    setContentSize();
+    $(window).resize(function(){
+        setContentSize();
+    })
+
+    //Swiper Content
+    var mySwiper = new Swiper('.swiper-container',{
+    pagination: '.pagination',
+    grabCursor: true,
+    paginationClickable: true
+    });
+}
+
+
+function updateNavPosition(){
+    $('.swiper-nav .active-nav').removeClass('active-nav')
+    var activeNav = $('.swiper-nav .swiper-slide').eq(contentSwiper.activeIndex).addClass('active-nav')
+    if (!activeNav.hasClass('swiper-slide-visible')) {
+      if (activeNav.index()>navSwiper.activeIndex) {
+        var thumbsPerNav = Math.floor(navSwiper.width/activeNav.width())-1
+        navSwiper.swipeTo(activeNav.index()-thumbsPerNav)
+      }
+      else {
+        navSwiper.swipeTo(activeNav.index())
+      }
+    }
 }
