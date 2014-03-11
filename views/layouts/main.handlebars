@@ -18,6 +18,7 @@
   <link href='/stylesheets/bootstrap-formhelpers.css' rel='stylesheet'>
   <link href='/stylesheets/jquery.ui.timepicker.css' rel='stylesheet'>
   <link href="/stylesheets/idangerous.swiper.css" rel='stylesheet'>
+  <link href="/stylesheets/bootstrap-notify.css" rel='stylesheet'>
   <script src="/javascripts/handlebars.js"></script>
   <script src="https://code.jquery.com/jquery.js"></script>
   {{!-- // <script src='/javascripts/jquery.mobile-1.4.1.js'></script> --}}
@@ -34,6 +35,7 @@
   <script src='/javascripts/bootstrap-formhelpers.js'></script>
   <script src='/javascripts/bootbox.min.js'></script>
   <script src='/javascripts/bootstrap-confirmation.js'></script>
+  <script src='/javascripts/bootstrap-notify.js'></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,6 +59,7 @@
 
     {{#unless splash}}
     <div class="container-fluid">
+      <div class='notifications top-left' style='z-index:100; position:aboslute; top: 75px; left: 15px;'></div>
     	{{{body}}}
     </div>
     {{else}}

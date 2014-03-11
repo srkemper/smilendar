@@ -28,18 +28,22 @@
 </div>  
 </div>   --}}
 {{#if flashCheckTime}}
-  <div class="alert alert-info">  
-  <a class="close" data-dismiss="alert">×</a>  
-  <strong>Error!</strong> {{flashCheckTime}}
-</div>  
+<script>
+    $(window).load(function() {
+      $('.top-left').notify({
+          message: { text: "End time must be later than begin time." },
+          type: "info"
+          }).show();
+    })
+  </script>
 {{/if}}
-
+{{!-- 
 {{#if flashSameDay}}
   <div class="alert alert-info">  
   <a class="close" data-dismiss="alert">×</a>  
   <strong>Info!</strong> {{flashSameDay}}
 </div>  
-{{/if}}
+{{/if}} --}}
 
 <div class="event-view">
   <div class="row">

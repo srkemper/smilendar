@@ -1,3 +1,5 @@
+var gapi = require('./gapi');
+
 function getDateFromDayID(dayId) {
     var today = new Date();
     var year = today.getFullYear();
@@ -72,6 +74,7 @@ exports.view = function(req, res) {
     	},
         'default_start_time': default_times[0],
         'default_end_time': default_times[1],
-        'nav': 'nav'
+        'nav': 'nav',
+        'authurl': gapi.url
     });
 };

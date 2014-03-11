@@ -1,6 +1,7 @@
 var data = require("../tester.json");
 var db = require('../db.js');
 var mongojs = require('mongojs');
+var gapi = require('./gapi');
 
 
 // The object of today, Currently fixed for testing.
@@ -17,7 +18,8 @@ var locals = {
         link: '',
         display: '',
     },
-    nav: 'nav'
+    nav: 'nav',
+    authurl: gapi.url
     // eventlist: data
 };
 

@@ -158,6 +158,12 @@ function renderingIndex(req, res) {
     var dayId = req.params.id;
     locals.dayId = dayId;
     locals.user = req.session.username || req.cookies.username;
+    locals.cameFromLogin = req.session.cameFromLogin;
+    req.session.cameFromLogin = null;
+    locals.synced = req.session.synced;
+    req.session.synced = null;
+    locals.deleted = req.session.deleted;
+    req.session.deleted = null;
     console.log(req.session.addEventPostSucess)
 
     locals.addEventPostSucess = false;

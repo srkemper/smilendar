@@ -9,7 +9,8 @@ var locals = {
   title: 'Today',
   script: '/javascripts/month_view.js',
   footer: 'month',
-  nav: 'nav'
+  nav: 'nav',
+  authurl: gapi.url
 };
 
 var monthNameFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];

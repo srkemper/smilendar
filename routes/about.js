@@ -1,3 +1,5 @@
+var gapi = require('./gapi');
+
 exports.view = function(req,res) {
     console.log('---about---');
     var locals = {
@@ -7,7 +9,8 @@ exports.view = function(req,res) {
 	        link: '',
 	        display: '',
 	    },
-        nav:'nav'
+        nav:'nav',
+        authurl: gapi.url
 	};
 
 	locals.dayId = getTag(new Date());	// get tag for Today

@@ -51,6 +51,7 @@ exports.login_redirect = function(req, res){
 		res.cookie('username', username, { maxAge: three_days, httpOnly: true });
 		var day = new Date().getDate();
 		var month = new Date().getMonth() + 1;
+		req.session.cameFromLogin = true;
 		res.redirect('/' + month + "-" + day);
 	} else {
 		catchError = 1;

@@ -305,6 +305,7 @@ app.post('/deleteEvent', function(request, response) {
   Event.remove({_id:params.event_id}, function(err) {
     if (err) {console.log("error, not removed");}
     else {console.log('removed successfully');}
+    request.session.deleted = true;
     response.redirect(params.goback)
   })
 })
@@ -379,6 +380,7 @@ function oauth2callback(req, res) {
         var month = new Date().getMonth() + 1;
         var date = new Date().getDate();
         console.log('redirecting to ' + month + "-" + date);
+        req.session.synced = true;
         res.redirect('/' + month + "-" + date);
       });
     });
