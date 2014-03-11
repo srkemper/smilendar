@@ -46,25 +46,30 @@
 </head>
 
 <body>
-  <nav class="nav-bar-header" role="navigation">
-    {{#if nav}}
-      {{> nav}}
-    {{/if}}
-</nav>
+  <div class="wrapper">
+    <nav class="nav-bar-header" role="navigation">
+      {{#if nav}}
+        {{> nav}}
+      {{/if}}
+    </nav>
 
 
 
-  {{#unless splash}}
-  <div class="container-fluid">
-  	{{{body}}}
-  </div>
-  {{else}}
-    {{{body}}}
-  {{/unless}}
-  <div class="nav-bar">
-    {{#if footer}}
-      {{> footer}}
-    {{/if}}
+    {{#unless splash}}
+    <div class="container-fluid">
+    	{{{body}}}
+    </div>
+    {{else}}
+      {{{body}}}
+    {{/unless}}
+{{!--     <div class="pop-up">
+      {{> check-in}}
+    </div> --}}
+    <div class="nav-bar">
+      {{#if footer}}
+        {{> footer}}
+      {{/if}}
+    </div>
   </div>
 </body>
 </html>

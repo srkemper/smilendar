@@ -8,6 +8,15 @@ $(document).ready(function(){
     if (addEventPostSucess) {
         ga('send', 'event', 'add event', 'post');
     }
+
+      $('.btn-check-in').on('click',function(){
+        // console.log('user is about to login!');
+        $('.check-in-view').addClass('check-in-view-show');
+      });
+
+      $('.go-back').on('click',function(){
+        $('.check-in-view').removeClass('check-in-view-show');
+      });
     // $("#lastweek").on("click", showLastWeek);
     // $("#nextweek").on("click", showNextWeek);
 })
@@ -67,7 +76,7 @@ function renderDayEvent(result) {
     Handlebars.registerPartial('eventItem', Smilendar.Templates["templates/eventItem.handlebars"]);
     var htmlText = template(result);
 
-    // console.log(htmlText); 
+    // console.log(htmlText);
 
     $("#this_day").html(htmlText);
 
@@ -97,4 +106,8 @@ function renderFullDateInString(result) {
 
 function showLastWeek(e) {
     e.preventDefault();
+}
+
+function checkIn(e) {
+
 }

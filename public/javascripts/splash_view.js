@@ -22,13 +22,13 @@ function initializeSplashView() {
 
   //Update Nav Position
 
-  $('.btn-login').on('click',function(){
+  $('.btn-check-in').on('click',function(){
     // console.log('user is about to login!');
-    $('.login-view').addClass('login-view-show');
+    $('.check-in-view').addClass('check-in-view-show');
   });
 
   $('.go-back').on('click',function(){
-    $('.login-view').removeClass('login-view-show');
+    $('.check-in-view').removeClass('check-in-view-show');
   });
 
 }
