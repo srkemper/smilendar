@@ -48,7 +48,7 @@ function selectDay(e) {
     $(this).siblings().find(".day-order").removeClass("active");
     $(this).find(".day-order").addClass("active");
     var day = $(this).attr('id');
-    // console.log(day);
+    console.log(day);
     var urlToPass = '/dayEvent/'+day;
     $.get(urlToPass, renderDayEvent);
     console.log(urlToPass);
@@ -194,12 +194,18 @@ function postMoodAndComment(e) {
     var user = userElem.val();
     console.log(user);
 
+    // get URL to render
+    var month = new Date().getMonth() + 1;
+    var date = new Date().getDate();
+    var day = month + "-" + date;
+    var urlToPass = '/dayEvent/'+day;
 
     $.ajax({
         url: 'newMoodAndComment',
         type: 'POST',
         success: function() {
             console.log('ajax post mood and comment success');
+            $.get(urlToPass, renderDayEvent);
         },
         contentType: 'application/json',
         data: JSON.stringify({

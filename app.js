@@ -144,11 +144,12 @@ app.post('/newMoodAndComment', function(req, res) {
     name: name,
     start: start,
     end: end,
-    location: '',
+    location: 'Stanford d.school',  // epic magic ***change later***
     mood: moodId,
     comment: comment,
     note: '',
-    user: params.user
+    user: params.user,
+    isMood: 1 // a mood was added
   });
   console.log(newEvent);
   newEvent.save(function(err, saved) {
@@ -156,6 +157,7 @@ app.post('/newMoodAndComment', function(req, res) {
     console.log(saved);
   })
   res.json(200);
+  
 });
 
 app.post('/changeMood', function(request, response) {
@@ -258,7 +260,8 @@ app.post('/addEvent', function(request, response) {
     mood: null,
     comment: "",
     note: params.note,
-    user: params.user
+    user: params.user,
+    isMood: 0 // not a mood event
   });
   newEvent.save(function(err, saved) {
     if (err) {console.log('could not save new event')};
