@@ -100,12 +100,17 @@ eventSchema.statics.findByDate = function(date, user, callback) {
 
   //     callback(err, sampleJSON.events);
   //   } else {
+      console.log('---findByDate---')
+      console.log(new Date(beg))
+      console.log(new Date(end))
 
       // actual find by date function
-      curr.find({user: user, 'start':{$gte:beg}, 'end':{$lte:end}}, null, {sort:{'start':1}}, function(err, events) {
+      // curr.find({user: user, 'start':{$gte:beg}, 'end':{$lte:end}}, null, {sort:{'start':1}}, function(err, events) {
+      curr.find({user: user, 'start':{$gte:beg, $lte:end}}, null, {sort:{'start':1}}, function(err, events) {
         // console.log(events);
         // console.log('events')
         events.forEach(function(eve) {
+          console.log(new Date(eve.start))
           // if (eve.start_day == date.getDate() && eve.start_month == date.getMonth() && eve.start_year == date.getYear()) {
             eventList.push(eve.toJSON());
           // }

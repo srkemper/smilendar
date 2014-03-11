@@ -28,6 +28,11 @@ body {
   }
 }
 
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
 .btn-rounded {
   border-radius: 18px;
 }
@@ -160,6 +165,7 @@ ul, li, div{
 
 .container-fluid{
   padding-top: 50px;
+  height: 100%;
   // margin-bottom: 54px;
 }
 
@@ -660,4 +666,33 @@ a {
   background-color: white;
   color: #888888;
   border: 1px solid #aaa;
+}
+
+// ------------- check in page -------------
+
+.day-view {
+
+  position: relative;
+  z-index: 65;
+  background-color: white;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+
+
+  .check-in-view {
+    position: absolute;
+    bottom: -100%;
+    z-index: 500;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: all 0.5s;
+  }
+
+  .check-in-view-show {
+    bottom: 0;
+  }
 }

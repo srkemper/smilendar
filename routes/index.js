@@ -286,8 +286,16 @@ exports.dayInfo = function(req, res) {
                 } else {
                     events[i].moodString = "null"
                 }
-                events[i].starttime = formatAMPM(new Date(events[i].start))
-                events[i].endtime = formatAMPM(new Date(events[i].end))
+
+                var startTime = new Date(events[i].start);
+                var endTime = new Date(events[i].end);
+                events[i].starttime = formatAMPM(startTime);
+                events[i].endtime = formatAMPM(endTime);
+
+                if (endTime.getDate() > date.getDate()) {
+                    events[i].endtime += " on " + monthToName[endTime.getMonth()].substr(0,3) +', '+endTime.getDate();
+                }
+
                 // console.log(events[i])
           }
           // console.log(events)
