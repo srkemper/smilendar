@@ -1,4 +1,11 @@
-
+var moodToString = {
+    4: "excited",
+    3: "happy",
+    2: "soso",
+    1: "sad",
+    0: "angry",
+    
+};
 
 $(document).ready(function(){
     initializeDayView();
@@ -111,19 +118,35 @@ function initializeCheckIn() {
         $('.check-in-view').removeClass('check-in-view-show');
     });
 
+    var numMoods = Object.keys(moodToString).length;
 
-    $('#good').hammer().on("swipeleft", function(event) {
+    $('#moodchooser').hammer().on("swipeleft", function(event) {
+        var curr = $(this)
+        var attr = parseInt(curr.attr('attr'));
+        var newattr = (attr+1+numMoods) % numMoods;
+        console.log(newattr);
         console.log('left');
-        $(this).css('background-color', '#555555');
-        $(this).attr('_id','sad');
+        curr.attr('attr', newattr.toString())
+        curr.css('background-color', '#555555');
+        // $(this).attr('_id','sad');
         $(this).html('happy');
     });
 
-    $('#good').hammer().on("swiperight", function(event) {
+    $('#moodchooser').hammer().on("swiperight", function(event) {
+        var curr = $(this)
+        var attr = parseInt(curr.attr('attr'));
+        var newattr = (attr-1+numMoods) % numMoods;
+        console.log(newattr);
+        console.log('left');
+        curr.attr('attr', newattr.toString())
         console.log('right');
         $(this).css('background-color', '#57ad68');
         $(this).html('sad');
     });
+
+    // Ajax posting mood and comment
+    $('#check-in-done').on('click',postMoodAndComment);
+
 
     // var element = document.getElementById('good');
     // console.log('what is this? '+element);
@@ -151,6 +174,41 @@ function setContentSize() {
     })
 }
 
+function postMoodAndComment(e) {
+    e.preventDefault();
+    console.log('---postMoodAndComment---');
+    var curr = $(this);
+    // console.log(curr)
+    var commentElem = curr.parent().siblings('#comment-check-in-group').children('#comment-check-in');
+    // console.log(commentElem);
+    var comment = commentElem.val();
+    console.log(comment);
+
+    var moodElem = curr.parent().siblings('.moodchooser-group').children('#moodchooser');
+    // console.log(moodElem);
+    var moodId = moodElem.attr('attr');
+    console.log(moodToString[moodId]);
+
+    // get username
+    var userElem = commentElem.siblings('#user-check-in');
+    var user = userElem.val();
+    console.log(user);
+
+
+    $.ajax({
+        url: 'newMoodAndComment',
+        type: 'POST',
+        success: function() {
+            console.log('ajax post mood and comment success');
+        },
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'mood': moodToString[moodId],
+            'comment': comment,
+            'user': user
+        })
+    });
+}
 
 function updateNavPosition(){
     $('.swiper-nav .active-nav').removeClass('active-nav')
