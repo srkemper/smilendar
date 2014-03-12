@@ -10,6 +10,7 @@
     <h5 class="event-title">{{name}}</h5>
     <p class="event-brief comment-in-dayview">{{comment}}</p>
     <div class="smile">
+      
       <div class="dropdown closed">
         <button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{moodString}}" data-identifier="{{_id}}">smile</button>
         <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -23,17 +24,30 @@
           </ul>
 
 
-          <div class="input-group">
+{{!--           <div class="input-group">
             <input type="text" class="form-control comment-input" placeholder="Comment here!" value="{{comment}}">
             <span class="input-group-btn">
               <button class="btn btn-default Go-button" type="button">Done</button>
             </span>
+<<<<<<< HEAD
           </div>
+
+
+
+
+          {{!-- Design with comment button --}}
 {{!--             <div class='form-group'>
                 <form method='get' action='/calendar_event/{{_id}}' role='form'>
                   <input type='submit' class='btn btn-block btn-comment' value='Add Comment'>
                 </form>
             </div> --}}
+
+          {{!-- </div> --}}
+            <div class='form-group'>
+                <form method='get' action='/calendar_event/{{_id}}' role='form'>
+                  <input type='submit' class='btn btn-block btn-comment' value='Add Comment'>
+                </form>
+            </div>
 {{!--           <div class="btn btn-default">
             Comment
           </div> --}}

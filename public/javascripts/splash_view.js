@@ -38,7 +38,7 @@ function setContentSize() {
     $('.swiper-content').css({
       height: $(window).height()//-$('.swiper-nav').height()
     })
-  }
+}
 
 function updateNavPosition(){
     $('.swiper-nav .active-nav').removeClass('active-nav')

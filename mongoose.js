@@ -17,7 +17,8 @@ var eventSchema = new Schema({
   mood: Number,
   comment: String,
   note: String,
-  user: String
+  user: String,
+  isMood: Number
 });
 
 var sampleJSON = require('./sample.json');

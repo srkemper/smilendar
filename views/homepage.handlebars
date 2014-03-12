@@ -1,20 +1,20 @@
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-48462023-3', 'smilendar.herokuapp.com');
-  // ga('create', 'UA-48462023-3', {'cookieDomain': 'none'});
-
-
-	// CS147smilendar GA analytics
   // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  // ga('create', 'UA-48462023-4', 'cs147smilendar.herokuapp.com');
+  // ga('create', 'UA-48462023-3', 'smilendar.herokuapp.com');
+  // ga('create', 'UA-48462023-3', {'cookieDomain': 'none'});
+
+
+	// CS147smilendar GA analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48462023-4', 'cs147smilendar.herokuapp.com');
   // ga('create', 'UA-48462023-4', {'cookieDomain': 'none'});
 
 
@@ -126,7 +126,7 @@
 			{{!-- {{#if alternate}}
 				<a class="pull-right weekdaynav stay" id="nextweek" href="{{nextWeekURL}}">
 			{{else}} --}}
-				<a class="weekdaynav stay" id="nextweek" href="{{nextWeekURL}}">
+				<a class="weekdaynav stay" id="nextweek" href="{{nextWeekURL}}"> hello
 			{{!-- {{/if}} --}}
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</a>
@@ -138,44 +138,17 @@
 	</div>
 
 	<div class="row", id="this_day">
-
-{{!--		<script id="ajax-comment" type="text/x-handlebars"> --}}
-{{!-- 		{{#each todaysEvents.events}}
-		<div class="event-item">
-			<a href="/calendar_event/{{id}}">
-			<div class="event-time col-xs-3">
-				<h6 class="start-time">2:15 PM</h6>
-				<h6 class="end-time">3:30 PM</h6>
-			</div>
-			<div class="col-xs-9 event-info">
-				<h5 class="event-title">{{name}}</h5>
-				<p class="event-brief">{{comment}}</p>
-				<div class="smile">
-					<div class="dropdown">
-						<button data-toggle="dropdown" class="btn-xs smile-face mood-display" id="{{mood}}" data-identifier="{{_id}}">smile</button>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-					    <li id="happy" class="smile-face mood-status">Happy</li>
-					    <li id="excited" class="smile-face mood-status">Excited</li>
-					    <li id="sad" class="smile-face mood-status">Sad</li>
-					    <li id="angry" class="smile-face mood-status">Angry</li>
-					  </ul>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix visible-xs"></div>
-			</a>
-		</div>
-		{{/each}} --}}
-
+		{{!-- Ajax for this day --}}
 	</div>
 
 	<div class='col-xs-12 form-group add-event-button'>
+		{{!-- Add event button --}}
 {{!-- 		<form method='get' action='/addEvent/{{dayId}}' role='form' id='addeventget'>
 	        <input type='submit' class='btn btn-primary btn-block' value='Add Event'>
 	    </form> --}}
-	    {{!-- <div class='btn btn-primary btn-check-in' role='form' id='check-in'>
+	    <div class='btn btn-primary btn-block btn-check-in' role='form' id='check-in'>
 	        Check In
-		</div> --}}
+		</div>
 	</div>
 
 	<div class='form-group add-event-button'>
@@ -184,33 +157,8 @@
 	    </form>
 	</div>
 
-	<div class="check-in-view">
-    <div class="header-inner">
-        <a class="go-back stay glyphicon">Cancel</a>
-    </div>
-
-
-        <div class="welcome col-centered">
-           <h5> How do you feel now? </br>...</h5>
-        </div>
-        <ul class="mood-list">
-          <li id="excited" attr="2" class="smile-face mood-status">Happy</li>
-          <li id="happy" attr="1" class="smile-face mood-status">Excited</li>
-          <li id="soso" attr="0" class="smile-face mood-status">Soso</li>
-          <li id="sad" attr="-1" class="smile-face mood-status">Sad</li>
-          <li id="angry" attr="-2" class="smile-face mood-status">Angry</li>
-          <div class="clearfix"></div>
-        </ul>
-
-        <div class="input-group">
-            <input type="text" class="form-control comment-input" placeholder="Comment here!" value="{{comment}}">
-            <span class="input-group-btn">
-              <button class="btn btn-default Go-button" type="button">Done</button>
-            </span>
-          </div>
-
-
-  </div>
+	{{!-- Include the cool snazzy check in code --}}
+	{{>check-in}}
 
 </div>
 

@@ -122,26 +122,46 @@ app.get('/users', user.list);
 app.get('/calendar_event/:id', calendar_event.view);
 app.get('/month/:id', month.view);
 
+app.post('/newMoodAndComment', function(req, res) {
+  console.log('---newMoodAndComment---')
+  var moods = {
+    "excited":2,
+    "happy":1,
+    "soso":0,
+    "sad":-1,
+    "angry":-2
+  }
+  var params = req.body;
+  var moodId = moods[params.mood]; // subtract 2 to get "angry"=-2
+  var comment = params.comment;
+  var name = params.mood;
+  name = name.charAt(0).toUpperCase() + name.slice(1); // upper case first letter
+
+  var diff = 5; // 5 min difference between start and end
+  var start = new Date().getTime();
+  var end = start+diff*60000;
+
+  var newEvent = new Event({
+    name: name,
+    start: start,
+    end: end,
+    location: 'Stanford d.school',  // epic magic ***change later***
+    mood: moodId,
+    comment: comment,
+    note: '',
+    user: params.user,
+    isMood: 1 // a mood was added
+  });
+  console.log(newEvent);
+  newEvent.save(function(err, saved) {
+    if (err) {console.log('could not save new mood')};
+    console.log(saved);
+  })
+  res.json(200);
+  
+});
+
 app.post('/changeMood', function(request, response) {
-  //console.log(request.body.id);
-  //console.log(request.body.mood);
-  // mongoosedb.once('open', function callback () {
-  //   var eventSchema = mongoose.Schema({
-  //     name: String,
-  //     id: String,
-  //     start: Number,
-  //     end: Number,
-  //     location: String,
-  //     mood: Number,
-  //     comment: String,
-  //     note: String
-  //   });
-  //   var Event = mongoose.model('Event', eventSchema);
-  //   Event.find({"_id": mongojs.ObjectId(request.body.id)}).exec(function(err, eve) {
-  //     if (err) {console.log('error finding in mongoose')};
-  //     //console.log(eve);
-  //   });
-  // });
   console.log(request.body.id, request.body.mood)
   var moods = {
     "excited":2,
@@ -241,7 +261,8 @@ app.post('/addEvent', function(request, response) {
     mood: null,
     comment: "",
     note: params.note,
-    user: params.user
+    user: params.user,
+    isMood: 0 // not a mood event
   });
   newEvent.save(function(err, saved) {
     if (err) {console.log('could not save new event')};
