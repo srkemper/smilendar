@@ -622,6 +622,7 @@ a {
   border: 1px solid #aaa;
 }
 .day-view {
+  overflow: visible !important; /*for the chevrons*/
   position: relative;
   z-index: 0;
   background-color: white;
@@ -642,4 +643,10 @@ a {
 }
 .day-view .check-in-view-show {
   bottom: 0;
+}
+#lastweek {
+  left: -10px;
+}
+#nextweek {
+  right: -10px;
 }
