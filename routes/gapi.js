@@ -27,7 +27,7 @@ var callback = function(clients) {
   exports.cal = clients.calendar;
   exports.oauth = clients.oauth2;
   exports.client = oauth2Client;  // export oauth2Client from gapi.js
-  // console.log(calendar_auth_url);
+  console.log(calendar_auth_url);
   exports.url = calendar_auth_url;
 };
 
