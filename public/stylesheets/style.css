@@ -622,7 +622,6 @@ a {
   border: 1px solid #aaa;
 }
 .day-view {
-  overflow: visible !important; /*for the chevrons*/
   position: relative;
   z-index: 0;
   background-color: white;

@@ -10,6 +10,7 @@ var moodToString = {
 $(document).ready(function(){
     initializeDayView();
     initializeCheckIn();
+    initializeWeekSwipe();
     $(".weekday-num").on("click",".cal-cell1", selectDay);
     var addEventPostSucess = $("#addEventPostSucess").val();
     console.log('addEventPostSucess', addEventPostSucess);
@@ -34,6 +35,16 @@ function initializeDayView() {
     console.log('initialize page');
 }
 
+function initializeWeekSwipe() {
+    $('.day-view .this-week').hammer().on("swipeleft", function(event) {
+        console.log('nextweek');
+        window.location = $('#nextweek').attr('href');
+    });
+    $('.day-view .this-week').hammer().on("swiperight", function(event) {
+        console.log('lastweek')
+        window.location = $('#lastweek').attr('href');
+    });
+}
 
 function highlightDay(dayUrl) {
     $("div.cal-cell1[href='"+dayUrl+"']").find('.day-order').addClass("active");
