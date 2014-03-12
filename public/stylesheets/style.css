@@ -643,9 +643,3 @@ a {
 .day-view .check-in-view-show {
   bottom: 0;
 }
-#nextweek {
-  right:-2px;
-}
-#lastweek {
-  left:-2px;
-}
