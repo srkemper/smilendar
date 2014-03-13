@@ -1,4 +1,8 @@
+{{#if isMood}}
+<div class="event-item isMoodEvent">
+{{else}}
 <div class="event-item">
+{{/if}}
   <a class="go-to-event" href="/calendar_event/{{_id}}">
   <div class="event-time col-xs-3">
     <h6 class="start-time">{{starttime}}</h6>

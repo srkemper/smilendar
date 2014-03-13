@@ -142,7 +142,7 @@ app.post('/newMoodAndComment', function(req, res) {
   var end = start+diff*60000;
 
   var newEvent = new Event({
-    name: name,
+    name: 'I feel '+name,
     start: start,
     end: end,
     location: 'Stanford d.school',  // epic magic ***change later***

@@ -4,10 +4,23 @@ this["Smilendar"]["Templates"] = this["Smilendar"]["Templates"] || {};
 this["Smilendar"]["Templates"]["templates/eventItem.handlebars"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
+function program1(depth0,data) {
+  
+  
+  return "\n<div class=\"event-item isMoodEvent\">\n";
+  }
 
-  buffer += "<div class=\"event-item\">\n  <a class=\"go-to-event\" href=\"/calendar_event/";
+function program3(depth0,data) {
+  
+  
+  return "\n<div class=\"event-item\">\n";
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.isMood), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  <a class=\"go-to-event\" href=\"/calendar_event/";
   if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0._id); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
@@ -51,7 +64,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   
-  return "\n<div class=\"empty-state col-xs-12\">\n  <h5 class=\"\">Looks like you don't have any event.</h5>\n  <p class=\"\">Tap add button to make some, then you can start logging your mood.</p>\n  <p>&#8595</p>\n</div>\n";
+  return "\n<div class=\"empty-state col-xs-12\">\n  <h5 class=\"\">Looks like you don't have any events today.</h5>\n  <p class=\"\">Tap \"Check In\" to record how you feel now, then you can start tracking your mood.</p>\n  <p>&#8595</p>\n</div>\n";
   }
 
 function program3(depth0,data) {
