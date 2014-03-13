@@ -390,6 +390,9 @@ div {
   text-align: center;
   color: #aaaaaa;
 }
+.day-view .isMoodEvent {
+  background-color: #F2F2F2;
+}
 .smile {
   position: absolute;
   right: 20px;

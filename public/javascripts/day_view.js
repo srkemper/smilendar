@@ -4,7 +4,14 @@ var moodToString = {
     2: "soso",
     1: "sad",
     0: "angry",
-    
+};
+
+var moodToColor = {
+    4: "#fddb00",
+    3: "#91da11",
+    2: "#00b9d7",
+    1: "#F781F3",
+    0: "#A901DB",
 };
 
 $(document).ready(function(){
@@ -135,24 +142,24 @@ function initializeCheckIn() {
         var curr = $(this)
         var attr = parseInt(curr.attr('attr'));
         var newattr = (attr+1+numMoods) % numMoods;
-        console.log(newattr);
+        console.log(moodToString[newattr]);
         console.log('left');
         curr.attr('attr', newattr.toString())
-        curr.css('background-color', '#555555');
+        curr.css('background-color', moodToColor[newattr]);
         // $(this).attr('_id','sad');
-        $(this).html('happy');
+        $(this).html(moodToString[newattr]);
     });
 
     $('#moodchooser').hammer().on("swiperight", function(event) {
         var curr = $(this)
         var attr = parseInt(curr.attr('attr'));
         var newattr = (attr-1+numMoods) % numMoods;
-        console.log(newattr);
+        console.log(moodToString[newattr]);
         console.log('left');
         curr.attr('attr', newattr.toString())
         console.log('right');
-        $(this).css('background-color', '#57ad68');
-        $(this).html('sad');
+        $(this).css('background-color', moodToColor[newattr]);
+        $(this).html(moodToString[newattr]);
     });
 
     // Ajax posting mood and comment
