@@ -683,7 +683,7 @@ a {
   left: 0px;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 
 
   .check-in-view {
@@ -702,4 +702,39 @@ a {
   .check-in-view-show {
     bottom: 0;
   }
+}
+
+// for fixing the bug in day view
+.check-in-view {
+  position: absolute;
+  bottom: -100%;
+  z-index: 500;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transition: all 0.5s;
+
+
+  // .commentfield{ width: 90px; height: 390px; border: 1px solid #999999; padding: 5px; }
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+
+.check-in-view-show {
+  bottom: 0;
+}
+
+.container-fluid {
+  position: fixed;
+  width: 100%;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+
+#nextweek {
+  right: 0px;
 }
