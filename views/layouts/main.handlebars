@@ -66,10 +66,12 @@
     {{else}}
       {{{body}}}
     {{/unless}}
-    {{>check-in}}
-{{!--     <div class="pop-up">
+
+    {{#if any}}
+      {{> check-in-button}}
       {{> check-in}}
-    </div> --}}
+    {{/if}}
+
     <div class="nav-bar">
       {{#if footer}}
         {{> footer}}

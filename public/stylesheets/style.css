@@ -394,6 +394,10 @@ div {
 .day-view .isMoodEvent {
   background-color: #F2F2F2;
 }
+.day-view .blank {
+  height: 150px;
+  width: 100%;
+}
 .smile {
   position: absolute;
   right: 20px;
@@ -429,7 +433,7 @@ div {
   background-image: url('../images/smiles_s.png');
   background-position: -42px -11px;
 }
-#soso {
+#so-so {
   background-image: url('../images/smiles_s.png');
   background-position: -82px -11px;
 }
@@ -718,10 +722,15 @@ a {
   background-image: url('../images/angry.png');
   background-color: #f781f3;
 }
+.check-in-button-group {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+}
 .btn-check-in {
   background-image: url('../images/check-in-button.png');
   background-color: transparent;
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   background-size: contain;
 }

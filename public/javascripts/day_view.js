@@ -244,9 +244,9 @@ function postMoodAndComment(e) {
             if (day == dayUrl) {
                 $.get(urlToPass, renderDayEvent);
             } else {
-                window.location.href = day;    
+                window.location.href = day;
             }
-            
+
         },
         contentType: 'application/json',
         data: JSON.stringify({

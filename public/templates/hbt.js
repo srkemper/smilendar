@@ -40,7 +40,7 @@ function program3(depth0,data) {
   if (stack1 = helpers.comment) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.comment); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</p>\n    <div class=\"smile\">\n      \n      <div class=\"dropdown closed\">\n        <button data-toggle=\"dropdown\" class=\"btn-xs smile-face mood-display\" id=\"";
+    + "</p>\n    <div class=\"smile\">\n\n      <div class=\"dropdown closed\">\n        <button data-toggle=\"dropdown\" class=\"btn-xs smile-face mood-display\" id=\"";
   if (stack1 = helpers.moodString) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.moodString); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
@@ -48,7 +48,7 @@ function program3(depth0,data) {
   if (stack1 = helpers._id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0._id); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">smile</button>\n        <div class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dLabel\">\n          <ul class=\"mood-list\">\n            <li id=\"excited\" attr=\"2\" class=\"smile-face mood-status\">Happy</li>\n            <li id=\"happy\" attr=\"1\" class=\"smile-face mood-status\">Excited</li>\n            <li id=\"soso\" attr=\"0\" class=\"smile-face mood-status\">Soso</li>\n            <li id=\"sad\" attr=\"-1\" class=\"smile-face mood-status\">Sad</li>\n            <li id=\"angry\" attr=\"-2\" class=\"smile-face mood-status\">Angry</li>\n            <div class=\"clearfix\"></div>\n          </ul>\n\n\n          <div class=\"input-group\">\n            <input type=\"text\" class=\"form-control comment-input\" placeholder=\"Comment here!\" value=\"";
+    + "\">smile</button>\n        <div class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dLabel\">\n          <ul class=\"mood-list\">\n            <li id=\"excited\" attr=\"2\" class=\"smile-face mood-status\">Happy</li>\n            <li id=\"happy\" attr=\"1\" class=\"smile-face mood-status\">Excited</li>\n            <li id=\"so-so\" attr=\"0\" class=\"smile-face mood-status\">Soso</li>\n            <li id=\"sad\" attr=\"-1\" class=\"smile-face mood-status\">Sad</li>\n            <li id=\"angry\" attr=\"-2\" class=\"smile-face mood-status\">Angry</li>\n            <div class=\"clearfix\"></div>\n          </ul>\n\n\n          <div class=\"input-group\">\n            <input type=\"text\" class=\"form-control comment-input\" placeholder=\"Comment here!\" value=\"";
   if (stack1 = helpers.comment) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.comment); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
