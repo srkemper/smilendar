@@ -170,6 +170,7 @@ body {
 .col-centered {
   float: none;
   margin: 0 auto;
+  text-indent: -999px;
 }
 ul,
 li,
@@ -716,4 +717,11 @@ a {
 .angry {
   background-image: url('../images/angry.png');
   background-color: #f781f3;
+}
+.btn-check-in {
+  background-image: url('../images/check-in-button.png');
+  background-color: transparent;
+  width: 130px;
+  height: 130px;
+  background-size: contain;
 }
