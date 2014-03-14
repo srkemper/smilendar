@@ -63,7 +63,6 @@ exports.view = function(req, res) {
     var dayId = req.params.id;
     
     default_times = getTimeInputDefault(dayId);
-    
     res.render('addEvent', {
     	'user':req.session.username || req.cookies.username,
     	'script':"/javascripts/add_event.js",
