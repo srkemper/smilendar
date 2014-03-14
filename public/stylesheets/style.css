@@ -666,6 +666,9 @@ a {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+#nextweek {
+  right: 0px;
+}
 #moodchooser {
   min-height: 600px;
   background-repeat: no-repeat;
@@ -721,12 +724,12 @@ a {
 #lastweek {
   margin-left: -10px;
 }
+.mood-list {
+  margin-bottom: 35px;
+}
 .nav-month {
   position: absolute;
-  top: 3px;
-  margin-top: -5px;
   font-weight: bold;
-}
-.mood-list {
-  margin-bottom: 35px !important;
+  margin-top: -5px;
+  top: 3px;
 }
