@@ -728,5 +728,5 @@ a {
   font-weight: bold;
 }
 .mood-list {
-  margin-bottom: 35px;
+  margin-bottom: 35px !important;
 }
