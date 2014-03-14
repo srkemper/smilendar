@@ -4,55 +4,14 @@
           <a class="go-back stay glyphicon pull-right" id="check-in-done">Done</a>
       </div>
 
-      <div class="welcome col-centered">
-         <h5> How do you feel now? </br>...</h5>
+      <div class="mood-request-group">
+         <h4>How do you feel now? </h4>
       </div>
-      <div class="intro moodchooser-group">
-        <div class="mood-list-swiper" style="height:300px" id="moodchooser" attr="2">
+      <div class="moodchooser-group">
+        <div class="mood-list-swiper so-so" id="moodchooser" attr="2">
+          <div class="mood-list-identifier"><p>So-So</p></div>
         </div>
-{{!--             <div class="swiper-container swiper-content">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="inner tour">
-                            <h5>Angry</h5>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="inner tour">
-                            <h5>Sad</h5>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="inner tour">
-                            <h5>So-so</h5>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                       <div class="inner tour">
-                            <h5>Happy</h5>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                       <div class="inner tour">
-                            <h5>Excited</h5>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-
-
-
-
-      {{!-- <ul class="mood-list">
-        <li id="excited" attr="2" class="smile-face mood-status">Happy</li>
-        <li id="happy" attr="1" class="smile-face mood-status">Excited</li>
-        <li id="soso" attr="0" class="smile-face mood-status">Soso</li>
-        <li id="sad" attr="-1" class="smile-face mood-status">Sad</li>
-        <li id="angry" attr="-2" class="smile-face mood-status">Angry</li>
-        <div class="clearfix"></div>
-      </ul> --}}
-
+      </div>
       <div class="input-group" id="comment-check-in-group" style="width: 100%;">
           <input type="text" class="form-control" id="comment-check-in" placeholder="Comment here!" value="{{comment}}">
           {{!-- <span class="input-group-btn">
