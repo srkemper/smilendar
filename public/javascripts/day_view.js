@@ -229,6 +229,9 @@ function postMoodAndComment(e) {
         type: 'POST',
         success: function() {
             console.log('ajax post mood and comment success');
+            console.log(curr.parent().parent().siblings('.day-view'));
+            // $(this).siblings().find(".day-order").removeClass("active");
+            // $(this).find(".day-order").removeClass("active");
             $.get(urlToPass, renderDayEvent);
         },
         contentType: 'application/json',
