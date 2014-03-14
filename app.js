@@ -127,7 +127,7 @@ app.post('/newMoodAndComment', function(req, res) {
   var moods = {
     "excited":2,
     "happy":1,
-    "soso":0,
+    "so-so":0,
     "sad":-1,
     "angry":-2
   }
@@ -158,7 +158,7 @@ app.post('/newMoodAndComment', function(req, res) {
     console.log(saved);
   })
   res.json(200);
-  
+
 });
 
 app.post('/changeMood', function(request, response) {
@@ -166,7 +166,7 @@ app.post('/changeMood', function(request, response) {
   var moods = {
     "excited":2,
     "happy":1,
-    "soso":0,
+    "so-so":0,
     "sad":-1,
     "angry":-2
   }

@@ -49,7 +49,7 @@ var monthToName = {
 var moodToString = {
     4: "excited",
     3: "happy",
-    2: "soso",
+    2: "so-so",
     1: "sad",
     0: "angry",
     null: "null"
@@ -65,6 +65,7 @@ var locals = {
         display: '',
     },
     nav: 'nav',
+    any: 'any',
     fullDateInString: '',
     lastWeekURL: '',
     nextWeekURL: '',
@@ -261,7 +262,7 @@ exports.dayInfo = function(req, res) {
 
     var user = req.session.username || req.cookies.username;
 
-    
+
 
     if (typeof(user) == 'undefined') {
         console.log('hello')
@@ -273,7 +274,7 @@ exports.dayInfo = function(req, res) {
         //         changeSampleJSONDatetime(user);
         //         // console.log(sampleJSON);
         //         res.json({
-        //             "eventList": sampleJSON.events, 
+        //             "eventList": sampleJSON.events,
         //             "fullDateInString": locals.fullDateInString,
         //             "lastWeekURL": locals.lastWeekURL,
         //             "nextWeekURL": locals.nextWeekURL

@@ -126,7 +126,7 @@
 				</div> --}}
 			{{!-- {{#if alternate}}
 				<a class="pull-right weekdaynav stay" id="nextweek" href="{{nextWeekURL}}">
-			{{else}}			
+			{{else}}
 			{{/if}}
 			 --}}
 			<a class="weekdaynav stay" id="nextweek" href="{{nextWeekURL}}" style="margin-right:-10px;">
@@ -142,13 +142,11 @@
 	<div class="row", id="this_day">
 		{{!-- Ajax for this day --}}
 	</div>
+	<div class="row blank">
+	</div>
 
-	<div class='col-xs-12 form-group add-event-button'>
-		{{!-- Add event button --}}
-{{!-- 		<form method='get' action='/addEvent/{{dayId}}' role='form' id='addeventget'>
-	        <input type='submit' class='btn btn-primary btn-block' value='Add Event'>
-	    </form> --}}
-	    <div class='btn btn-primary btn-block btn-check-in' role='form' id='check-in'>
+{{!-- 	<div class='col-xs-12 form-group add-event-button'>
+	    <div class='btn-check-in col-centered' role='form' id='check-in'>
 	        Check In
 		</div>
 	</div>
@@ -157,10 +155,10 @@
 		<form method='get' action='#' role='form'>
 			<input type='hidden' name='addEventPostSucess' value='{{addEventPostSucess}}' id="addEventPostSucess">
 	    </form>
-	</div>
+	</div> --}}
 
 	{{!-- Include the cool snazzy check in code --}}
-	
+
 
 </div>
 
