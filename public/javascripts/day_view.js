@@ -141,7 +141,9 @@ function initializeCheckIn() {
     $('#moodchooser').hammer().on("swipeleft", function(event) {
         var curr = $(this)
         var attr = parseInt(curr.attr('attr'));
-        var newattr = (attr+1+numMoods) % numMoods;
+        // var newattr = (attr+1+numMoods) % numMoods;
+        var newattr = Math.min(attr+1, 4);
+        console.log(newattr);
         console.log(moodToString[newattr]);
         console.log('left');
         curr.attr('attr', newattr.toString())
@@ -154,7 +156,9 @@ function initializeCheckIn() {
     $('#moodchooser').hammer().on("swiperight", function(event) {
         var curr = $(this)
         var attr = parseInt(curr.attr('attr'));
-        var newattr = (attr-1+numMoods) % numMoods;
+        var newattr = Math.max(attr-1,0);
+        console.log(newattr);
+        // var newattr = (attr-1+numMoods) % numMoods;
         console.log(moodToString[newattr]);
         console.log('left');
         curr.attr('attr', newattr.toString())
