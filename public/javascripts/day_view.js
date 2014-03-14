@@ -232,6 +232,10 @@ function postMoodAndComment(e) {
             console.log(curr.parent().parent().siblings('.day-view'));
             // $(this).siblings().find(".day-order").removeClass("active");
             // $(this).find(".day-order").removeClass("active");
+            var month = new Date().getMonth() + 1;
+            var date = new Date().getDate();
+            var id = "#" + month + "-" + date;
+            $(id).click();
             $.get(urlToPass, renderDayEvent);
         },
         contentType: 'application/json',

@@ -667,7 +667,10 @@ a {
   overflow-x: hidden;
 }
 #nextweek {
-  right: 0px;
+  margin-right: -10px;
+}
+#lastweek {
+  margin-left: -10px;
 }
 #moodchooser {
   min-height: 600px;
@@ -716,4 +719,14 @@ a {
 .angry {
   background-image: url('../images/angry.png');
   background-color: #f781f3;
+}
+
+.nav-month {
+  position: absolute;
+  top: 3px;
+  margin-top: -5px;
+  font-weight: bold;
+}
+.mood-list {
+  margin-bottom: 35px;
 }

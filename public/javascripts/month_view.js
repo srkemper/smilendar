@@ -4,6 +4,7 @@ $(document).ready(function(){
     initializeMonthView();
     $(".to-cal").on("click",hideMood);
     $(".to-mood").on("click",showMood);
+    showMood();
     // $(".weekday-num").on("click",".cal-cell1", selectDay);
 })
 
