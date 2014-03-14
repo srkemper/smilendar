@@ -61,7 +61,7 @@
 		})
 	</script>
 {{/if}}
-{{#if deleted}}
+{{!-- {{#if deleted}}
 	<script>
 		$(window).load(function() {
 			$('.top-left').notify({
@@ -70,7 +70,7 @@
 	   	    }).show();
 		})
 	</script>
-{{/if}}
+{{/if}} --}}
 
 <div class="day-view">
 	<div class="row">
@@ -102,9 +102,10 @@
 		<div class="cal-row-fluid weekday-num">
 			{{!-- {{#if alternate}}
 				<a class="pull-left weekdaynav stay" id="lastweek" href="/alt{{lastWeekURL}}">
-			{{else}} --}}
+			{{else}}
+			{{/if}}
+			 --}}
 			<a class="weekdaynav stay" id="lastweek" href="{{lastWeekURL}}">
-			{{!-- {{/if}} --}}
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</a>
 			{{#each tagDate}}
@@ -125,9 +126,10 @@
 				</div> --}}
 			{{!-- {{#if alternate}}
 				<a class="pull-right weekdaynav stay" id="nextweek" href="{{nextWeekURL}}">
-			{{else}} --}}
+			{{else}}			
+			{{/if}}
+			 --}}
 			<a class="weekdaynav stay" id="nextweek" href="{{nextWeekURL}}">
-			{{!-- {{/if}} --}}
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</a>
 		</div>
@@ -158,7 +160,7 @@
 	</div>
 
 	{{!-- Include the cool snazzy check in code --}}
-	{{>check-in}}
+	
 
 </div>
 
