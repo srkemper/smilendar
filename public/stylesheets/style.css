@@ -646,3 +646,10 @@ a {
 .day-view .check-in-view-show {
   bottom: 0;
 }
+
+.nav-month {
+  font-weight: bold;
+  position: absolute;
+  top: 3px;
+  margin-top: -5px;
+}
