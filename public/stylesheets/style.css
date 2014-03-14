@@ -727,13 +727,13 @@ a {
 }
 .check-in-button-group {
   position: fixed;
-  bottom: 10px;
+  bottom: 5px;
   width: 100%;
 }
 .btn-check-in {
   background-image: url('../images/check-in-button.png');
   background-color: transparent;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   background-size: contain;
 }
