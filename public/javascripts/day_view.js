@@ -28,11 +28,16 @@ $(document).ready(function(){
     // $("#nextweek").on("click", showNextWeek);
 })
 
-function initializeDayView() {
-    console.log('---initializeDayView---')
+function getDayURL() {
     var curUrl = window.location.pathname;
     var dayUrl = curUrl.split('/')[1];
     console.log('dayUrl: '+dayUrl);
+    return dayUrl;
+}
+
+function initializeDayView() {
+    console.log('---initializeDayView---')
+    var dayUrl = getDayURL();
 
     var urlToPass = 'dayEvent/' + dayUrl;
     // Load the event list of today
@@ -218,6 +223,9 @@ function postMoodAndComment(e) {
     var user = userElem.val();
     console.log(user);
 
+    // get current URL
+    var dayUrl = getDayURL();
+
     // get URL to render
     var month = new Date().getMonth() + 1;
     var date = new Date().getDate();
@@ -232,7 +240,13 @@ function postMoodAndComment(e) {
             console.log(curr.parent().parent().siblings('.day-view'));
             // $(this).siblings().find(".day-order").removeClass("active");
             // $(this).find(".day-order").removeClass("active");
-            $.get(urlToPass, renderDayEvent);
+
+            if (day == dayUrl) {
+                $.get(urlToPass, renderDayEvent);
+            } else {
+                window.location.href = day;    
+            }
+            
         },
         contentType: 'application/json',
         data: JSON.stringify({
