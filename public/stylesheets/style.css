@@ -258,6 +258,9 @@ div {
 .month-view .this-week {
   margin: 10px 0 34px 0;
 }
+.month-view .month-nav {
+  position: relative;
+}
 .month-view .pager {
   margin-top: 0px;
 }
@@ -265,7 +268,7 @@ div {
   z-index: -1;
   position: absolute;
   width: 100%;
-  margin: 6px -15px;
+  margin: 6px 0px;
   font-weight: bold;
   text-align: center;
 }
